@@ -1,28 +1,24 @@
-const Contact = () => (
-  <section id="contact" className="contact">
-    <h2>Contactez-moi!</h2>
-    <p>
-      Par <a href="mailto:alexandre@example.com">courriel</a> ou via{' '}
-      <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
-        Facebook
-      </a>
-      , contactez-moi. Il me fera plaisir de vous aider à cibler vos besoins.
-    </p>
+import { translations } from '../i18n';
 
-    <div className="contact__actions">
-      <a className="pill" href="mailto:alexandre@example.com">Email</a>
-      <a className="pill" href="https://www.facebook.com" target="_blank" rel="noreferrer">
-        Facebook
-      </a>
-    </div>
+const Contact = ({ lang }) => {
+  const contactContent = translations[lang].contact;
 
-    <nav className="floating-nav">
-      <a href="#accueil">AL-SI</a>
-      <a href="#apropos">À propos de moi</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </section>
-);
+  return (
+    <section id="contact" className="contact">
+      <h2>{contactContent.title}</h2>
+      {contactContent.paragraphs.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+
+      <div className="contact__channels">
+        {contactContent.channels.map(({ label, href }) => (
+          <a key={label} href={href} className="pill contact__pill" target="_blank" rel="noreferrer">
+            {label}
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default Contact;
