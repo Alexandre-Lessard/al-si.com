@@ -7,13 +7,45 @@ import Projects from './sections/Projects.jsx';
 import Articles from './sections/Articles.jsx';
 import Contact from './sections/Contact.jsx';
 import Footer from './sections/Footer.jsx';
+import { articles } from './articles/index.js';
 
 function App() {
   const [lang, setLang] = useState('fr');
+  const [articleSlug, setArticleSlug] = useState(null);
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+
+  // Hash-based article navigation
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash;
+      const match = hash.match(/^#article\/(.+)$/);
+      setArticleSlug(match ? match[1] : null);
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  // Scroll to top when entering an article
+  useEffect(() => {
+    if (articleSlug) window.scrollTo(0, 0);
+  }, [articleSlug]);
+
+  const handleBack = () => {
+    window.location.hash = '';
+  };
+
+  // Validate slug — redirect to homepage if article doesn't exist
+  const ArticleComponent = articleSlug ? articles[articleSlug] : null;
+  useEffect(() => {
+    if (articleSlug && !articles[articleSlug]) {
+      window.location.hash = '';
+    }
+  }, [articleSlug]);
 
   return (
     <div
@@ -26,14 +58,20 @@ function App() {
         `,
       }}
     >
-      <Nav lang={lang} setLang={setLang} />
+      <Nav lang={lang} setLang={setLang} articleSlug={articleSlug} onBack={handleBack} />
       <main>
-        <Hero lang={lang} />
-        <About lang={lang} />
-        <Services lang={lang} />
-        <Projects lang={lang} />
-        <Articles lang={lang} />
-        <Contact lang={lang} />
+        {ArticleComponent ? (
+          <ArticleComponent lang={lang} onBack={handleBack} />
+        ) : (
+          <>
+            <Hero lang={lang} />
+            <About lang={lang} />
+            <Services lang={lang} />
+            <Projects lang={lang} />
+            <Articles lang={lang} />
+            <Contact lang={lang} />
+          </>
+        )}
       </main>
       <Footer lang={lang} />
     </div>

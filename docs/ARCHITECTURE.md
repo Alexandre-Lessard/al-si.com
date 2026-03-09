@@ -80,6 +80,51 @@ npm run seo:compare  # Comparer avant/apres
 
 Le site est deploye sur GitHub Pages. Le build (`dist/`) est pousse via GitHub Actions ou manuellement. Cloudflare sert de CDN et gere le DNS pour al-si.com.
 
+## Systeme d'articles
+
+Le site supporte des articles en pleine page via un routing hash-based (`#article/slug`).
+
+### Structure
+
+```
+src/
+  articles/
+    index.js                  # Registre des articles (slug -> composant)
+    SeoEtudeDeCas.jsx         # Article: etude de cas SEO
+  components/
+    ArticleLayout.jsx         # Layout reutilisable pour les articles
+```
+
+### Routing
+
+`App.jsx` ecoute les changements de hash via `hashchange`. Un hash de format `#article/slug` active le mode article :
+- La section `<main>` affiche le composant article au lieu des sections homepage
+- `Nav.jsx` passe en mode article (lien retour + toggle langue, pas de liens sections)
+- L'IntersectionObserver est desactive en mode article (`if (articleSlug) return`)
+- Si le slug n'existe pas dans le registre, redirect vers la homepage
+
+### ArticleLayout
+
+Props : `title`, `subtitle`, `date`, `lang`, `onBack`, `badge` (optionnel, pour WipBadge par ex.)
+
+Le badge s'affiche dans le header, sous le subtitle. Utilise pour indiquer un article en cours.
+
+### Ajouter un article
+
+1. Creer `src/articles/MonArticle.jsx` avec le contenu FR/EN
+2. L'ajouter dans `src/articles/index.js` : `'mon-slug': lazy(() => import('./MonArticle.jsx'))` ou import direct
+3. Ajouter une entree dans `src/i18n.js` sous `articles.items` avec `slug: 'mon-slug'`
+
+## Cartes projets
+
+Les cartes dans `Projects.jsx` supportent plusieurs modes :
+
+- **Projet cliquable** : `url` defini → la carte entiere ouvre le lien
+- **GitHub only** : `githubOnly: true` + `github` → la carte ouvre le GitHub
+- **Coming soon** : `comingSoon: true` → carte grisee (opacity-60) avec badge "A venir"
+- **Icone GitHub** : si `github` est defini, une icone GitHub apparait en haut a droite (cliquable independamment)
+- **Image** : `image` pointe vers un fichier dans `public/`. Les SVG sont affiches a 75% avec opacity, les PNG en object-cover.
+
 ## Ajouter une section
 
 1. Creer `src/sections/NouvelleSection.jsx`
