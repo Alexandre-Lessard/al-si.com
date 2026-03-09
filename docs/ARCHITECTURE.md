@@ -76,14 +76,24 @@ The sitemap and robots.txt are in `public/`.
 npm run dev          # Development server
 npm run build        # Production build in dist/
 npm run preview      # Preview the build
-npm run seo:rankings # Check Google rankings (requires SERPAPI_KEY)
-npm run seo:audit    # Technical SEO audit
-npm run seo:compare  # Compare before/after
+npm run deploy       # Build + deploy to Cloudflare Pages
 ```
 
 ## Deployment
 
-The site is deployed on GitHub Pages. The build (`dist/`) is pushed via GitHub Actions or manually. Cloudflare serves as CDN and manages DNS for al-si.com.
+The site is deployed on [Cloudflare Pages](https://pages.cloudflare.com/) via Wrangler CLI.
+
+### Setup
+
+1. Copy `.env.example` to `.env`
+2. Fill in your Cloudflare account ID (found in the Cloudflare dashboard under any domain > Overview > right sidebar)
+3. Run `npm run deploy`
+
+The deploy script (`scripts/deploy.sh`) builds the project and deploys the `dist/` folder. On first run, you may need to authenticate with `npx wrangler login`.
+
+### Custom domain
+
+The custom domain (al-si.com) is configured in the Cloudflare Pages dashboard under the project's Custom Domains tab. DNS is managed by Cloudflare.
 
 ## Article system
 
