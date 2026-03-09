@@ -1,18 +1,38 @@
 import { translations } from '../i18n';
 import { sectionClasses } from '../styles';
+import { SectionHeader } from '../components/ui';
+import { ScrollReveal } from '../components/ScrollReveal';
 
 const About = ({ lang }) => {
   const t = translations[lang] || translations.fr;
-  const aboutContent = t.about;
+  const { title, paragraphs, stats } = t.about;
 
   return (
     <section id="about" className={sectionClasses}>
-      <h2 className="mt-0 mb-8 leading-tight">{aboutContent.title}</h2>
-      {aboutContent.paragraphs.map((paragraph, i) => (
-        <p key={i} className="text-text leading-relaxed mb-6">
-          {paragraph}
-        </p>
-      ))}
+      <ScrollReveal>
+        <SectionHeader title={title} />
+      </ScrollReveal>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-12 items-start">
+        <ScrollReveal>
+          <div>
+            {paragraphs.map((p, i) => (
+              <p key={i} className="text-base text-muted leading-relaxed mb-6 last:mb-0">{p}</p>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15}>
+          <div className="bg-surface border border-line rounded-2xl p-8">
+            {stats.map((stat, i) => (
+              <div key={i} className={`${i > 0 ? 'mt-6 pt-6 border-t border-line' : ''}`}>
+                <span className="text-3xl font-bold text-accent block mb-1">{stat.value}</span>
+                <span className="text-sm text-muted">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 };

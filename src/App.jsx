@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import Nav from './sections/Nav.jsx';
 import Hero from './sections/Hero.jsx';
-import Services from './sections/Services.jsx';
 import About from './sections/About.jsx';
+import Services from './sections/Services.jsx';
+import Projects from './sections/Projects.jsx';
+import Articles from './sections/Articles.jsx';
 import Contact from './sections/Contact.jsx';
 import Footer from './sections/Footer.jsx';
 
@@ -23,11 +26,14 @@ function App() {
         `,
       }}
     >
+      <Nav lang={lang} setLang={setLang} />
       <Hero lang={lang} />
       <About lang={lang} />
       <Services lang={lang} />
+      <Projects lang={lang} />
+      <Articles lang={lang} />
       <Contact lang={lang} />
-      <Footer lang={lang} setLang={setLang} />
+      <Footer lang={lang} />
     </div>
   );
 }

@@ -6,12 +6,16 @@
   --color-muted: #b5b5b5;
   --color-line: rgba(255, 255, 255, 0.06);
   --color-accent: #ff8b5f;
+  --color-accent-dim: rgba(255, 139, 95, 0.15);
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-hover: rgba(255, 255, 255, 0.05);
   --font-sans: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -26,23 +30,20 @@ a:hover {
   @apply text-accent;
 }
 
-/* Hero image glow effect */
-.hero-image-glow::after {
+/* Hero photo gradient circle behind */
+.hero-photo-glow::after {
   content: '';
-  @apply absolute -z-1;
-  inset: 10% -10% -10% 10%;
-  background: linear-gradient(135deg, transparent, rgba(255, 139, 95, 0.35));
+  @apply absolute -z-1 rounded-full;
+  width: 420px;
+  height: 420px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 139, 95, 0.35) 0%, transparent 70%);
   filter: blur(60px);
 }
 
-/* Floating nav toggle hamburger lines */
+/* Hamburger lines for mobile nav */
 .hamburger-line {
-  @apply w-[26px] h-[2px] bg-text rounded-full block mx-auto;
-}
-
-/* Mobile nav responsive */
-@media (max-width: 960px) {
-  .nav-content a {
-    @apply flex-[1_1_calc(50%-6px)] flex items-center justify-center;
-  }
+  @apply w-[22px] h-[2px] bg-text rounded-full block transition-transform duration-300;
 }
