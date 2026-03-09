@@ -25,5 +25,8 @@ dist-ssr
 
 notes/
 
+# Environment
+.env
+
 # SEO baseline
 seo-baseline/
