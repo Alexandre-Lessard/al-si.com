@@ -28,5 +28,8 @@ notes/
 # Environment
 .env
 
+# Wrangler (Cloudflare CLI)
+.wrangler/
+
 # SEO baseline
 seo-baseline/
