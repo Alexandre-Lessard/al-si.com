@@ -27,12 +27,14 @@ function App() {
       }}
     >
       <Nav lang={lang} setLang={setLang} />
-      <Hero lang={lang} />
-      <About lang={lang} />
-      <Services lang={lang} />
-      <Projects lang={lang} />
-      <Articles lang={lang} />
-      <Contact lang={lang} />
+      <main>
+        <Hero lang={lang} />
+        <About lang={lang} />
+        <Services lang={lang} />
+        <Projects lang={lang} />
+        <Articles lang={lang} />
+        <Contact lang={lang} />
+      </main>
       <Footer lang={lang} />
     </div>
   );

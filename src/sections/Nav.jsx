@@ -65,7 +65,7 @@ const Nav = ({ lang, setLang }) => {
       initial={{ y: -80 }}
       animate={{ y: hidden ? -80 : 0 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-line/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-bg/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.4)]"
     >
       <div className={`${containerClasses} flex items-center justify-between h-16`}>
         {/* Logo */}

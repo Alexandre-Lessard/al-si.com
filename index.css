@@ -30,19 +30,6 @@ a:hover {
   @apply text-accent;
 }
 
-/* Hero photo gradient circle behind */
-.hero-photo-glow::after {
-  content: '';
-  @apply absolute -z-1 rounded-full;
-  width: 420px;
-  height: 420px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 139, 95, 0.35) 0%, transparent 70%);
-  filter: blur(60px);
-}
-
 /* Hamburger lines for mobile nav */
 .hamburger-line {
   @apply w-[22px] h-[2px] bg-text rounded-full block transition-transform duration-300;

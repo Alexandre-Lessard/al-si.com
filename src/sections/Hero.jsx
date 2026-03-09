@@ -10,7 +10,7 @@ const Hero = ({ lang }) => {
   return (
     <section
       id="accueil"
-      className={`${containerClasses} flex gap-16 items-center min-h-[85vh] pt-24 pb-20 max-[960px]:flex-col max-[960px]:text-center max-[960px]:pt-28 max-[960px]:gap-10`}
+      className={`${containerClasses} flex gap-16 items-center min-h-[85vh] pt-24 pb-20 border-b border-line max-[960px]:flex-col max-[960px]:text-center max-[960px]:pt-28 max-[960px]:gap-10`}
     >
       <motion.div
         className="flex-1"
@@ -27,17 +27,17 @@ const Hero = ({ lang }) => {
         <p className="text-lg text-muted mb-10 max-w-lg max-[960px]:mx-auto">{subtitle}</p>
         <div className="flex gap-4 max-[960px]:justify-center flex-wrap">
           <Button href="#contact" variant="primary">{cta.primary}</Button>
-          <Button href="#services" variant="secondary">{cta.secondary}</Button>
+          <Button href="#projects" variant="secondary">{cta.secondary}</Button>
         </div>
       </motion.div>
 
       <motion.div
-        className="hero-photo-glow relative z-0 w-[320px] max-[960px]:w-[240px] shrink-0"
+        className="relative z-0 w-[320px] max-[960px]:w-[240px] shrink-0"
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
       >
-        <div className="aspect-square overflow-hidden rounded-[48px]">
+        <div className="aspect-square overflow-hidden rounded-[48px] ring-1 ring-white/[0.08] shadow-[0_12px_60px_rgba(0,0,0,0.7),0_4px_20px_rgba(0,0,0,0.5)]">
           <img
             className="w-full h-full object-cover scale-110"
             src="/alexandre-lessard.webp"

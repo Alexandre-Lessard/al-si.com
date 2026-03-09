@@ -15,18 +15,28 @@ const Contact = ({ lang }) => {
           {paragraphs.map((p, i) => (
             <p key={i} className="text-base text-muted max-w-xl mx-auto mb-4 last:mb-8">{p}</p>
           ))}
-          <div className="flex gap-4 justify-center flex-wrap">
-            {channels.map(({ label, href }, i) => (
-              <Button
-                key={i}
-                href={href}
-                variant={i === 0 ? 'primary' : 'secondary'}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {label}
-              </Button>
-            ))}
+          <div className="flex flex-col items-center gap-4">
+            <Button
+              href={channels[0].href}
+              variant="primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {channels[0].label}
+            </Button>
+            <div className="flex gap-4">
+              {channels.slice(1).map(({ label, href }, i) => (
+                <Button
+                  key={i}
+                  href={href}
+                  variant="secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {label}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
       </ScrollReveal>

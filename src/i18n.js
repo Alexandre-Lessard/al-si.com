@@ -1,53 +1,57 @@
 export const translations = {
   fr: {
     hero: {
-      heading: ['Alexandre Lessard', 'Développeur full-stack & administrateur réseau'],
-      subtitle: 'Solutions web, logiciels et infrastructures stables et performantes.',
-      alt: 'Écran affichant du code',
-      cta: { primary: 'Contactez-moi', secondary: 'Mes services' },
+      heading: ['Alexandre Lessard', 'Applications web, SaaS & automatisation'],
+      subtitle: 'Je transforme vos besoins d\'affaires en solutions techniques concrètes.',
+      alt: 'Alexandre Lessard développeur full-stack',
+      cta: { primary: 'Discuter de votre projet', secondary: 'Voir mes projets' },
     },
     about: {
       title: 'À propos de moi',
       paragraphs: [
-        "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience en technologies de l'information. Je conçois, automatise et déploie des solutions sur mesure — qu'il s'agisse d'un site web, d'un outil interne ou d'une infrastructure complète.",
+        "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience dans le domaine des technologies de l'information. Je conçois, automatise et déploie des solutions sur mesure, qu'il s'agisse d'un site web, d'un outil interne, d'une plateforme SaaS ou d'une infrastructure complète.",
         "Mon parcours en administration réseau m'a permis de bâtir des systèmes stables, sécurisés et performants, tandis que mon expérience en développement m'a appris à créer des applications efficaces et adaptées aux besoins réels des entreprises.",
-        "Curieux de nature et passionné par tout ce qui touche au numérique, j'élargis constamment mes compétences. Cette polyvalence me permet d'aborder chaque mandat avec une vision globale, d'apprendre rapidement et de livrer des solutions innovantes et durables."
+        "Curieux de nature et orienté résolution de problèmes, j'élargis constamment mes compétences afin de rester efficace dans un domaine qui évolue rapidement. Cette polyvalence me permet d'aborder les projets avec une vision globale, de comprendre rapidement les besoins d'une entreprise et de concevoir des solutions techniques solides et durables.",
       ],
+      recent: {
+        title: 'Expérience récente',
+        subtitle: 'Plateforme SaaS - secteur construction',
+        text: "Dernièrement, j'ai travaillé en mode full-stack sur une plateforme SaaS destinée au domaine de la construction. J'ai contribué autant au backend (Python) qu'au frontend (React, Vite, Tailwind), en développant de nouvelles fonctionnalités, en améliorant l'architecture du système et en livrant des fonctionnalités fiables, performantes et prêtes pour la production.",
+      },
       stats: [
         { value: '10+', label: "Années d'expérience en TI" },
-        { value: 'Full-stack', label: 'Développement web front-end & back-end' },
-        { value: 'Réseau', label: 'Infrastructure, sécurité & déploiement' },
+        { value: 'Full-stack', label: 'Python, React, Node.js' },
+        { value: 'SaaS', label: 'Plateformes & outils sur mesure' },
       ],
     },
     services: {
       title: 'Services',
       categories: [
         {
-          title: 'Développement',
+          title: "Applications web & SaaS",
           items: [
-            'Sites web modernes',
-            'Applications et services Node.js',
-            'Intégrations API, bots et automatisations',
-            'Outils internes et solutions sur mesure',
+            'Applications web sur mesure',
+            'Plateformes SaaS',
+            'Outils internes et dashboards',
+            'Interfaces utilisateur modernes (React, Tailwind)',
           ],
         },
         {
-          title: 'Infrastructure — Réseau',
+          title: 'Automatisation & intégrations',
           items: [
-            "Diagnostic réseau et optimisation",
-            "Configuration Wi-Fi, routage et VLAN",
-            "Sécurité réseau, segmentation et bonnes pratiques",
-            "Équipements physiques : installation et configuration"
+            "Intégration d'API tierces",
+            "Automatisation de processus",
+            "Bots, webhooks et synchronisation de données",
+            "Scripts et services backend (Node.js, Python)"
           ],
         },
         {
-          title: 'Infrastructure — Serveurs & On-Premise',
+          title: 'Déploiement & infrastructure',
           items: [
-            "Administration de serveurs Linux physiques et virtuels",
-            "Installation, configuration et maintenance de matériel TI",
-            "Déploiements on-premises fiables pour PME",
-            "Sécurité, DNS, monitoring et automatisation d'infrastructures",
-            "Déploiements cloud simples au besoin (AWS, Azure, Google Cloud)"
+            "Déploiement et mise en production",
+            "Administration de serveurs Linux",
+            "Performance, sécurité et monitoring",
+            "Infrastructure réseau au besoin"
           ],
         },
       ],
@@ -56,32 +60,32 @@ export const translations = {
       title: 'Projets',
       items: [
         {
-          title: 'Portfolio v2 — al-si.com',
-          description: 'Refonte complète du site personnel avec React, Tailwind CSS v4 et optimisation SEO documentée.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          title: 'Plateforme SaaS construction',
+          description: "Développement full-stack d'une plateforme de gestion pour le domaine de la construction. Backend Python, frontend React, Vite et Tailwind.",
+          tags: ['Python', 'React', 'Vite', 'Tailwind CSS'],
           gradient: 'bg-gradient-to-br from-accent/15 to-transparent',
+          icon: '🏗️'
+        },
+        {
+          title: 'Portfolio v2',
+          description: 'Site personnel avec React et Tailwind CSS v4. Optimisation SEO documentée comme étude de cas.',
+          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
           icon: '</>'
         },
         {
-          title: 'Outil de monitoring réseau',
-          description: "Dashboard en temps réel pour la surveillance d'infrastructures réseau et serveurs.",
-          tags: ['Node.js', 'WebSocket', 'Linux', 'SNMP'],
-          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
-          icon: '📡'
-        },
-        {
-          title: 'Automatisation déploiement PME',
-          description: "Scripts d'automatisation pour le déploiement et la maintenance de serveurs on-premises.",
-          tags: ['Bash', 'Ansible', 'Docker', 'Linux'],
-          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
-          icon: '⚙️'
-        },
-        {
-          title: 'Intégration API & bots',
-          description: "Systèmes d'intégration entre plateformes avec bots et webhooks automatisés.",
+          title: 'Intégrations API & bots',
+          description: "Systèmes d'intégration entre plateformes avec bots, webhooks et synchronisation automatisée.",
           tags: ['Node.js', 'REST API', 'Webhooks', 'Discord'],
           gradient: 'bg-gradient-to-br from-purple-500/15 to-transparent',
           icon: '🤖'
+        },
+        {
+          title: 'Automatisation & déploiement',
+          description: "Scripts et outils d'automatisation pour le déploiement et la maintenance de serveurs.",
+          tags: ['Node.js', 'Docker', 'Ansible', 'Linux'],
+          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
+          icon: '⚙️'
         },
       ],
     },
@@ -92,28 +96,29 @@ export const translations = {
         {
           title: 'Optimisation SEO et performance d\'un site React',
           date: 'Mars 2026',
-          excerpt: 'Étude de cas complète : audit, modernisation du stack technique et optimisation SEO d\'un portfolio développeur.',
+          excerpt: 'Étude de cas : audit technique, modernisation du stack et optimisation SEO d\'un portfolio développeur.',
         },
         {
-          title: 'Configurer des VLANs pour une PME',
+          title: 'Travailler en full-stack sur une plateforme SaaS',
           date: 'À venir',
-          excerpt: 'Guide pratique pour segmenter un réseau d\'entreprise avec des VLANs, du routage inter-VLAN et les bonnes pratiques de sécurité.',
+          excerpt: 'Retour d\'expérience sur le développement d\'une plateforme SaaS : architecture, choix techniques et leçons apprises.',
         },
         {
-          title: 'Sécurisation d\'un serveur Linux en production',
+          title: 'Automatiser des processus avec Node.js',
           date: 'À venir',
-          excerpt: 'Les étapes essentielles pour durcir un serveur Linux : SSH, firewall, monitoring et mises à jour automatiques.',
+          excerpt: 'Intégrations API, scripts planifiés et synchronisation de données : comment automatiser efficacement.',
         },
       ],
     },
     contact: {
       title: 'Contactez-moi',
       paragraphs: [
-        'Pour toute question ou pour discuter de votre projet, contactez-moi par courriel ou via Facebook.',
-        'Je réponds rapidement et pourrai vous guider vers la meilleure solution selon vos besoins.',
+        'Vous avez un projet d\'application, une idée de plateforme ou un besoin d\'automatisation?',
+        'Discutons-en. Je réponds rapidement et peux vous accompagner de la conception au déploiement.',
       ],
       channels: [
         { label: 'Courriel', href: 'mailto:alex@al-si.com' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alexandre-lessard-3b103991/' },
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },
       ],
     },
@@ -129,53 +134,57 @@ export const translations = {
   },
   en: {
     hero: {
-      heading: ['Alexandre Lessard', 'Full-stack developer & network administrator'],
-      subtitle: 'Reliable web, software and infrastructure solutions.',
-      alt: 'Screen displaying code',
-      cta: { primary: 'Contact Me', secondary: 'My Services' },
+      heading: ['Alexandre Lessard', 'Web apps, SaaS & automation'],
+      subtitle: 'I turn your business needs into concrete technical solutions.',
+      alt: 'Alexandre Lessard full-stack developer',
+      cta: { primary: 'Discuss your project', secondary: 'View my projects' },
     },
     about: {
       title: 'About Me',
       paragraphs: [
-        "Full-stack developer and network administrator with over ten years of experience in information technology. I design, automate and deploy custom solutions — whether it's a website, an internal tool or a full infrastructure.",
+        "Full-stack developer and network administrator with over ten years of experience in information technology. I design, automate and deploy custom solutions, whether it's a website, an internal tool, a SaaS platform or a full infrastructure.",
         "My background in network administration taught me how to build stable, secure and high-performance systems, while my development experience allows me to create efficient applications tailored to real business needs.",
-        "Curious and passionate about all things digital, I constantly expand my skills. This versatility gives me a global understanding of each project, helps me learn quickly, and enables me to deliver innovative and reliable solutions."
+        "Curious and problem-solving oriented, I constantly expand my skills to stay effective in a fast-evolving field. This versatility gives me a global understanding of each project, helps me quickly grasp business requirements and deliver solid, reliable technical solutions.",
       ],
+      recent: {
+        title: 'Recent experience',
+        subtitle: 'SaaS platform - construction industry',
+        text: "Recently, I worked as a full-stack developer on a SaaS platform for the construction industry. I contributed to both the backend (Python) and frontend (React, Vite, Tailwind), building new features, improving system architecture and delivering production-ready, high-performance functionality.",
+      },
       stats: [
         { value: '10+', label: 'Years of IT experience' },
-        { value: 'Full-stack', label: 'Front-end & back-end web development' },
-        { value: 'Network', label: 'Infrastructure, security & deployment' },
+        { value: 'Full-stack', label: 'Python, React, Node.js' },
+        { value: 'SaaS', label: 'Platforms & custom tools' },
       ],
     },
     services: {
       title: 'Services',
       categories: [
         {
-          title: 'Development',
+          title: 'Web applications & SaaS',
           items: [
-            'Modern websites',
-            'Node.js applications and services',
-            'API integrations, bots and automations',
-            'Internal tools and custom solutions',
+            'Custom web applications',
+            'SaaS platforms',
+            'Internal tools and dashboards',
+            'Modern user interfaces (React, Tailwind)',
           ],
         },
         {
-          title: 'Infrastructure — Network',
+          title: 'Automation & integrations',
           items: [
-            "Network diagnostics and optimization",
-            "Wi-Fi, routing and VLAN configuration",
-            "Network security, segmentation and best practices",
-            "Hardware installation and configuration"
+            "Third-party API integration",
+            "Process automation",
+            "Bots, webhooks and data synchronization",
+            "Backend scripts and services (Node.js, Python)"
           ],
         },
         {
-          title: 'Infrastructure — Servers & On-Premises',
+          title: 'Deployment & infrastructure',
           items: [
-            "Administration of physical and virtual Linux servers",
-            "Hardware installation, configuration and maintenance",
-            "Reliable on-premises deployments for small and medium businesses",
-            "Security, DNS, monitoring and infrastructure automation",
-            "Simple cloud deployments when required (AWS, Azure, Google Cloud)"
+            "Deployment and production setup",
+            "Linux server administration",
+            "Performance, security and monitoring",
+            "Network infrastructure when needed"
           ],
         },
       ],
@@ -184,32 +193,32 @@ export const translations = {
       title: 'Projects',
       items: [
         {
-          title: 'Portfolio v2 — al-si.com',
-          description: 'Complete rebuild of personal website with React, Tailwind CSS v4 and documented SEO optimization.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          title: 'Construction SaaS platform',
+          description: 'Full-stack development of a management platform for the construction industry. Python backend, React, Vite and Tailwind frontend.',
+          tags: ['Python', 'React', 'Vite', 'Tailwind CSS'],
           gradient: 'bg-gradient-to-br from-accent/15 to-transparent',
+          icon: '🏗️'
+        },
+        {
+          title: 'Portfolio v2',
+          description: 'Personal website built with React and Tailwind CSS v4. SEO optimization documented as a case study.',
+          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
           icon: '</>'
         },
         {
-          title: 'Network Monitoring Tool',
-          description: 'Real-time dashboard for monitoring network infrastructure and servers.',
-          tags: ['Node.js', 'WebSocket', 'Linux', 'SNMP'],
-          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
-          icon: '📡'
-        },
-        {
-          title: 'SMB Deployment Automation',
-          description: 'Automation scripts for deploying and maintaining on-premises servers.',
-          tags: ['Bash', 'Ansible', 'Docker', 'Linux'],
-          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
-          icon: '⚙️'
-        },
-        {
-          title: 'API Integration & Bots',
-          description: 'Cross-platform integration systems with automated bots and webhooks.',
+          title: 'API integrations & bots',
+          description: 'Cross-platform integration systems with bots, webhooks and automated synchronization.',
           tags: ['Node.js', 'REST API', 'Webhooks', 'Discord'],
           gradient: 'bg-gradient-to-br from-purple-500/15 to-transparent',
           icon: '🤖'
+        },
+        {
+          title: 'Automation & deployment',
+          description: 'Automation scripts and tools for server deployment and maintenance.',
+          tags: ['Node.js', 'Docker', 'Ansible', 'Linux'],
+          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
+          icon: '⚙️'
         },
       ],
     },
@@ -220,28 +229,29 @@ export const translations = {
         {
           title: 'SEO & Performance Optimization for a React Site',
           date: 'March 2026',
-          excerpt: 'Full case study: audit, technical stack modernization and SEO optimization of a developer portfolio.',
+          excerpt: 'Case study: technical audit, stack modernization and SEO optimization of a developer portfolio.',
         },
         {
-          title: 'Setting Up VLANs for Small Businesses',
+          title: 'Working Full-Stack on a SaaS Platform',
           date: 'Coming soon',
-          excerpt: 'Practical guide to segmenting a business network with VLANs, inter-VLAN routing and security best practices.',
+          excerpt: 'Lessons learned from building a SaaS platform: architecture decisions, technical choices and takeaways.',
         },
         {
-          title: 'Hardening a Linux Server in Production',
+          title: 'Automating Processes with Node.js',
           date: 'Coming soon',
-          excerpt: 'Essential steps to secure a Linux server: SSH, firewall, monitoring and automatic updates.',
+          excerpt: 'API integrations, scheduled scripts and data synchronization: how to automate effectively.',
         },
       ],
     },
     contact: {
       title: 'Contact Me',
       paragraphs: [
-        'For any questions or to discuss your project, feel free to contact me by email or via Facebook.',
-        'I reply quickly and can guide you toward the best solution for your needs.',
+        'Have a project, a platform idea or an automation need?',
+        'Let\'s talk. I reply quickly and can guide you from design to deployment.',
       ],
       channels: [
         { label: 'Email', href: 'mailto:alex@al-si.com' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alexandre-lessard-3b103991/' },
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },
       ],
     },
