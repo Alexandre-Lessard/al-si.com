@@ -57,6 +57,11 @@ export const translations = {
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },
       ],
     },
+    nav: {
+      about: 'À propos',
+      services: 'Services',
+      contact: 'Contact',
+    },
     footer: {
       text: 'Services informatiques',
     },
@@ -118,6 +123,11 @@ export const translations = {
         { label: 'Email', href: 'mailto:alex@al-si.com' },
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },
       ],
+    },
+    nav: {
+      about: 'About',
+      services: 'Services',
+      contact: 'Contact',
     },
     footer: {
       text: 'IT services',
