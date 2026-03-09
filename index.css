@@ -30,6 +30,57 @@ a:hover {
   @apply text-accent;
 }
 
+/* Article prose styling */
+.prose-custom h2 {
+  @apply text-xl md:text-2xl font-bold mt-12 mb-4;
+}
+.prose-custom h3 {
+  @apply text-lg font-semibold mt-8 mb-3;
+}
+.prose-custom p {
+  @apply text-base text-muted leading-relaxed mb-6;
+}
+.prose-custom ul, .prose-custom ol {
+  @apply text-base text-muted leading-relaxed mb-6 pl-6;
+}
+.prose-custom li {
+  @apply mb-2;
+}
+.prose-custom ul li {
+  list-style-type: disc;
+}
+.prose-custom ol li {
+  list-style-type: decimal;
+}
+.prose-custom table {
+  @apply w-full mb-8 text-sm;
+  border-collapse: collapse;
+}
+.prose-custom th {
+  @apply text-left py-3 px-4 border-b border-line font-semibold text-text;
+}
+.prose-custom td {
+  @apply py-3 px-4 border-b border-line text-muted;
+}
+.prose-custom code {
+  @apply bg-surface text-accent px-1.5 py-0.5 rounded text-sm;
+}
+.prose-custom blockquote {
+  @apply border-l-2 border-accent pl-4 ml-0 my-6;
+}
+.prose-custom blockquote p {
+  @apply text-text italic;
+}
+.prose-custom strong {
+  @apply text-text font-semibold;
+}
+.prose-custom hr {
+  @apply border-line my-10;
+}
+.prose-custom a {
+  @apply text-accent underline underline-offset-2 hover:text-text transition-colors;
+}
+
 /* Hamburger lines for mobile nav */
 .hamburger-line {
   @apply w-[22px] h-[2px] bg-text rounded-full block transition-transform duration-300;

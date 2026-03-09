@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { translations } from '../i18n';
 import { containerClasses } from '../styles';
 
-const Nav = ({ lang, setLang }) => {
+const Nav = ({ lang, setLang, articleSlug, onBack }) => {
   const t = translations[lang] || translations.fr;
   const nav = t.nav;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -25,9 +25,10 @@ const Nav = ({ lang, setLang }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Track active section via IntersectionObserver
+  // Track active section via IntersectionObserver (skip in article mode)
   useEffect(() => {
-    const ids = ['about', 'services', 'projects', 'contact'];
+    if (articleSlug) return;
+    const ids = ['about', 'services', 'projects', 'articles', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -45,12 +46,13 @@ const Nav = ({ lang, setLang }) => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [articleSlug]);
 
   const navLinks = [
     { id: 'about', label: nav.about },
     { id: 'services', label: nav.services },
     { id: 'projects', label: nav.projects },
+    { id: 'articles', label: nav.articles },
     { id: 'contact', label: nav.contact },
   ];
 
@@ -73,65 +75,97 @@ const Nav = ({ lang, setLang }) => {
           AL-SI
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Navigation principale">
-          {navLinks.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={(e) => handleNavClick(e, id)}
-              className={`text-sm font-medium transition-colors duration-200 ${
-                activeSection === id ? 'text-text' : 'text-muted hover:text-text'
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-
-          {/* Language toggle */}
-          <div className="flex items-center border border-line rounded-full overflow-hidden ml-2">
+        {articleSlug ? (
+          /* Article mode: back link + lang toggle */
+          <nav className="flex items-center gap-6">
             <button
-              className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                lang === 'fr' ? 'bg-white/[0.08] text-text' : 'text-muted'
-              }`}
-              onClick={() => setLang('fr')}
+              onClick={onBack}
+              className="text-sm text-muted hover:text-accent transition-colors duration-200 bg-transparent border-0 cursor-pointer p-0 flex items-center gap-1.5"
             >
-              FR
+              <span aria-hidden="true">&larr;</span> {lang === 'en' ? 'Back' : 'Retour'}
             </button>
-            <button
-              className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                lang === 'en' ? 'bg-white/[0.08] text-text' : 'text-muted'
-              }`}
-              onClick={() => setLang('en')}
-            >
-              EN
-            </button>
-          </div>
-        </nav>
+            <div className="flex items-center border border-line rounded-full overflow-hidden">
+              <button
+                className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
+                  lang === 'fr' ? 'bg-white/[0.08] text-text' : 'text-muted'
+                }`}
+                onClick={() => setLang('fr')}
+              >
+                FR
+              </button>
+              <button
+                className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
+                  lang === 'en' ? 'bg-white/[0.08] text-text' : 'text-muted'
+                }`}
+                onClick={() => setLang('en')}
+              >
+                EN
+              </button>
+            </div>
+          </nav>
+        ) : (
+          <>
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-8" aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}>
+              {navLinks.map(({ id, label }) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  onClick={(e) => handleNavClick(e, id)}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    activeSection === id ? 'text-text' : 'text-muted hover:text-text'
+                  }`}
+                >
+                  {label}
+                </a>
+              ))}
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2 bg-transparent border-0 cursor-pointer"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
-          aria-expanded={mobileOpen}
-        >
-          <span className={`hamburger-line ${mobileOpen ? 'translate-y-[4px] rotate-45' : ''}`} />
-          <span className={`hamburger-line ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`hamburger-line ${mobileOpen ? '-translate-y-[4px] -rotate-45' : ''}`} />
-        </button>
+              {/* Language toggle */}
+              <div className="flex items-center border border-line rounded-full overflow-hidden ml-2">
+                <button
+                  className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
+                    lang === 'fr' ? 'bg-white/[0.08] text-text' : 'text-muted'
+                  }`}
+                  onClick={() => setLang('fr')}
+                >
+                  FR
+                </button>
+                <button
+                  className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
+                    lang === 'en' ? 'bg-white/[0.08] text-text' : 'text-muted'
+                  }`}
+                  onClick={() => setLang('en')}
+                >
+                  EN
+                </button>
+              </div>
+            </nav>
+
+            {/* Mobile hamburger */}
+            <button
+              className="md:hidden flex flex-col gap-1.5 p-2 bg-transparent border-0 cursor-pointer"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Menu"
+              aria-expanded={mobileOpen}
+            >
+              <span className={`hamburger-line ${mobileOpen ? 'translate-y-[4px] rotate-45' : ''}`} />
+              <span className={`hamburger-line ${mobileOpen ? 'opacity-0' : ''}`} />
+              <span className={`hamburger-line ${mobileOpen ? '-translate-y-[4px] -rotate-45' : ''}`} />
+            </button>
+          </>
+        )}
       </div>
 
       {/* Mobile dropdown */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileOpen && !articleSlug && (
           <motion.nav
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
             className="md:hidden bg-bg/95 backdrop-blur-xl border-t border-line/50 overflow-hidden"
-            aria-label="Navigation principale"
+            aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}
           >
             <div className={`${containerClasses} py-4 flex flex-col gap-3`}>
               {navLinks.map(({ id, label }) => (

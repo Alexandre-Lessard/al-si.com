@@ -60,32 +60,36 @@ export const translations = {
       title: 'Projets',
       items: [
         {
-          title: 'Plateforme SaaS construction',
-          description: "Développement full-stack d'une plateforme de gestion pour le domaine de la construction. Backend Python, frontend React, Vite et Tailwind.",
-          tags: ['Python', 'React', 'Vite', 'Tailwind CSS'],
-          gradient: 'bg-gradient-to-br from-accent/15 to-transparent',
-          icon: '🏗️'
-        },
-        {
           title: 'Portfolio v2',
           description: 'Site personnel avec React et Tailwind CSS v4. Optimisation SEO documentée comme étude de cas.',
           tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
-          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
-          icon: '</>'
+          image: '/share-card.png',
+          github: 'https://github.com/Alexandre-Lessard/al-si.com',
+          githubOnly: true,
         },
         {
-          title: 'Intégrations API & bots',
-          description: "Systèmes d'intégration entre plateformes avec bots, webhooks et synchronisation automatisée.",
-          tags: ['Node.js', 'REST API', 'Webhooks', 'Discord'],
-          gradient: 'bg-gradient-to-br from-purple-500/15 to-transparent',
-          icon: '🤖'
+          title: 'Terra Indomita',
+          description: "Site vitrine avec calendrier événementiel dynamique pour une école de survie en nature. Frontend vanilla JS, backend Directus (REST API), déployé sur Cloudflare.",
+          tags: ['JavaScript', 'Directus', 'REST API', 'Cloudflare'],
+          gradient: 'bg-gradient-to-br from-green-700/20 to-green-900/10',
+          image: '/terra-indomita-logo.svg',
+          url: 'https://terra-indomita.ca/',
+          github: 'https://github.com/Alexandre-Lessard/terra-indomita.ca',
         },
         {
-          title: 'Automatisation & déploiement',
-          description: "Scripts et outils d'automatisation pour le déploiement et la maintenance de serveurs.",
-          tags: ['Node.js', 'Docker', 'Ansible', 'Linux'],
-          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
-          icon: '⚙️'
+          title: 'RNBP Canada',
+          description: "Registre national des biens personnels. Plateforme permettant d'enregistrer, protéger et retrouver des biens de valeur.",
+          tags: ['Web app', 'SaaS', 'Cloudflare'],
+          image: '/rnbp-preview.png',
+          url: 'https://rnbp.ca/',
+        },
+        {
+          title: 'Plugin WordPress — Gestion d\'abonnements',
+          description: "Plugin sur mesure pour la gestion des membres et abonnements d'un dojo d'arts martiaux. Interface d'administration intégrée à WordPress.",
+          tags: ['WordPress', 'PHP', 'Plugin'],
+          gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
+          icon: '🥋',
+          comingSoon: true,
         },
       ],
     },
@@ -95,18 +99,21 @@ export const translations = {
       items: [
         {
           title: 'Optimisation SEO et performance d\'un site React',
+          subtitle: 'Audit, modernisation du stack technique et optimisation SEO d\'un portfolio développeur.',
           date: 'Mars 2026',
           excerpt: 'Étude de cas : audit technique, modernisation du stack et optimisation SEO d\'un portfolio développeur.',
+          wipLabel: 'Étude en cours — résultats finaux à venir',
+          slug: 'seo-etude-de-cas',
         },
         {
-          title: 'Travailler en full-stack sur une plateforme SaaS',
+          title: 'Apprendre Kotlin en contribuant à l\'open source',
           date: 'À venir',
-          excerpt: 'Retour d\'expérience sur le développement d\'une plateforme SaaS : architecture, choix techniques et leçons apprises.',
+          excerpt: 'Retour d\'expérience sur l\'apprentissage de Kotlin à travers la contribution à un mod Minecraft en Java/Kotlin.',
         },
         {
-          title: 'Automatiser des processus avec Node.js',
+          title: 'Transformer un PC gaming en serveur NAS',
           date: 'À venir',
-          excerpt: 'Intégrations API, scripts planifiés et synchronisation de données : comment automatiser efficacement.',
+          excerpt: 'Documentation du processus de conversion d\'un ordinateur de gaming sous Linux en serveur NAS polyvalent.',
         },
       ],
     },
@@ -126,6 +133,7 @@ export const translations = {
       about: 'À propos',
       services: 'Services',
       projects: 'Projets',
+      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
@@ -193,32 +201,36 @@ export const translations = {
       title: 'Projects',
       items: [
         {
-          title: 'Construction SaaS platform',
-          description: 'Full-stack development of a management platform for the construction industry. Python backend, React, Vite and Tailwind frontend.',
-          tags: ['Python', 'React', 'Vite', 'Tailwind CSS'],
-          gradient: 'bg-gradient-to-br from-accent/15 to-transparent',
-          icon: '🏗️'
-        },
-        {
           title: 'Portfolio v2',
           description: 'Personal website built with React and Tailwind CSS v4. SEO optimization documented as a case study.',
           tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
-          gradient: 'bg-gradient-to-br from-blue-500/15 to-transparent',
-          icon: '</>'
+          image: '/share-card.png',
+          github: 'https://github.com/Alexandre-Lessard/al-si.com',
+          githubOnly: true,
         },
         {
-          title: 'API integrations & bots',
-          description: 'Cross-platform integration systems with bots, webhooks and automated synchronization.',
-          tags: ['Node.js', 'REST API', 'Webhooks', 'Discord'],
-          gradient: 'bg-gradient-to-br from-purple-500/15 to-transparent',
-          icon: '🤖'
+          title: 'Terra Indomita',
+          description: 'Marketing site with dynamic event calendar for an outdoor survival school. Vanilla JS frontend, Directus backend (REST API), deployed on Cloudflare.',
+          tags: ['JavaScript', 'Directus', 'REST API', 'Cloudflare'],
+          gradient: 'bg-gradient-to-br from-green-700/20 to-green-900/10',
+          image: '/terra-indomita-logo.svg',
+          url: 'https://terra-indomita.ca/',
+          github: 'https://github.com/Alexandre-Lessard/terra-indomita.ca',
         },
         {
-          title: 'Automation & deployment',
-          description: 'Automation scripts and tools for server deployment and maintenance.',
-          tags: ['Node.js', 'Docker', 'Ansible', 'Linux'],
-          gradient: 'bg-gradient-to-br from-green-500/15 to-transparent',
-          icon: '⚙️'
+          title: 'RNBP Canada',
+          description: 'National personal property registry. Platform for registering, protecting and recovering valuable possessions.',
+          tags: ['Web app', 'SaaS', 'Cloudflare'],
+          image: '/rnbp-preview.png',
+          url: 'https://rnbp.ca/',
+        },
+        {
+          title: 'WordPress Plugin — Membership Management',
+          description: 'Custom plugin for member and subscription management at a local martial arts dojo. Admin interface integrated into WordPress.',
+          tags: ['WordPress', 'PHP', 'Plugin'],
+          gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
+          icon: '🥋',
+          comingSoon: true,
         },
       ],
     },
@@ -228,18 +240,21 @@ export const translations = {
       items: [
         {
           title: 'SEO & Performance Optimization for a React Site',
+          subtitle: 'Audit, technical stack modernization and SEO optimization of a developer portfolio.',
           date: 'March 2026',
           excerpt: 'Case study: technical audit, stack modernization and SEO optimization of a developer portfolio.',
+          wipLabel: 'Ongoing study — final results coming soon',
+          slug: 'seo-etude-de-cas',
         },
         {
-          title: 'Working Full-Stack on a SaaS Platform',
+          title: 'Learning Kotlin Through Open Source Contributions',
           date: 'Coming soon',
-          excerpt: 'Lessons learned from building a SaaS platform: architecture decisions, technical choices and takeaways.',
+          excerpt: 'Experience report on learning Kotlin by contributing to a Minecraft mod built with Java/Kotlin.',
         },
         {
-          title: 'Automating Processes with Node.js',
+          title: 'Turning a Gaming PC Into a NAS Server',
           date: 'Coming soon',
-          excerpt: 'API integrations, scheduled scripts and data synchronization: how to automate effectively.',
+          excerpt: 'Documenting the process of converting a Linux gaming PC into a versatile NAS and gaming server.',
         },
       ],
     },
@@ -259,6 +274,7 @@ export const translations = {
       about: 'About',
       services: 'Services',
       projects: 'Projects',
+      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
