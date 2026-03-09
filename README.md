@@ -1,41 +1,43 @@
 # al-si.com
 
-Site personnel et portfolio d'Alexandre Lessard, développeur full-stack.
+Personal website and portfolio of Alexandre Lessard, full-stack developer.
 
 **[al-si.com](https://al-si.com)**
 
-## Apercu
+## Overview
 
-Site vitrine bilingue (FR/EN) presentant mes services, projets et parcours professionnel. Concu pour etre rapide, accessible et bien reference sur Google.
+Bilingual (FR/EN) showcase site presenting my services, projects and professional background. Designed to be fast, accessible and well-indexed on Google.
 
-## Stack technique
+## Tech stack
 
-| Technologie | Role |
+| Technology | Role |
 |---|---|
-| React 19 | Interface utilisateur |
-| Vite 7 | Build et dev server |
-| Tailwind CSS v4 | Styles utilitaires |
-| Framer Motion | Animations et transitions |
-| GitHub Pages | Hebergement |
-| Cloudflare | CDN et DNS |
-| Google Analytics 4 | Suivi de trafic |
+| React 19 | User interface |
+| Vite 7 | Build and dev server |
+| Tailwind CSS v4 | Utility-first styles |
+| Framer Motion | Animations and transitions |
+| GitHub Pages | Hosting |
+| Cloudflare | CDN and DNS |
+| Google Analytics 4 | Traffic tracking |
 
-## Decisions techniques
+## Technical decisions
 
-**SPA plutot que SSG/SSR** : Le site est une single-page application. Googlebot rend le JavaScript, et les meta tags SEO sont dans le HTML statique (`index.html`). Un framework SSR ajouterait de la complexite sans benefice mesurable pour un site vitrine.
+**SPA over SSG/SSR**: The site is a single-page application. Googlebot renders JavaScript, and SEO meta tags live in the static `index.html`. An SSR framework would add complexity with no measurable benefit for a showcase site.
 
-**Tailwind CSS v4 sans shadcn/ui** : shadcn/ui n'est pas compatible avec Tailwind v4 et l'overhead est disproportionne pour un site de cette taille. Les composants reutilisables (`Button`, `SectionHeader`, `ScrollReveal`) sont faits maison.
+**Tailwind CSS v4 without shadcn/ui**: shadcn/ui is compatible with Tailwind v4, but the overhead is disproportionate for a site this size. Reusable components (`Button`, `SectionHeader`, `ScrollReveal`) are handmade.
 
-**Framer Motion pour les animations** : Utilise pour le scroll reveal, les transitions de la nav et les animations d'entree du hero. La librairie represente la majeure partie du bundle JS, mais le resultat visuel justifie le cout.
+**Framer Motion for animations**: Used for scroll reveal, nav transitions and hero entrance animations. The library accounts for most of the JS bundle, but the visual result justifies the cost.
 
-**Bilingue via objet i18n** : Tout le contenu est dans `src/i18n.js`. Pas de librairie i18n, juste un objet avec les cles `fr` et `en`. Simple et suffisant.
+**Bilingual via i18n object**: All content lives in `src/i18n.js`. No i18n library — just an object with `fr` and `en` keys. Simple and sufficient.
 
-**SEO structure** : JSON-LD (schema.org Person), meta tags OG/Twitter, sitemap.xml, robots.txt. Le tout est dans `index.html` pour etre accessible sans JavaScript.
+**Structured SEO**: JSON-LD (schema.org Person), OG/Twitter meta tags, sitemap.xml, robots.txt. Everything is in `index.html` to be accessible without JavaScript.
 
-## Etude de cas SEO
+## SEO case study
 
-Ce site fait l'objet d'une etude de cas SEO documentee. L'objectif est de mesurer l'impact des optimisations techniques sur le ranking Google. Les scripts de mesure sont dans `seo-baseline/`.
+This site is the subject of a documented SEO case study. The goal is to measure the impact of technical optimizations on Google rankings.
 
-## Licence
+Read the full article: [al-si.com/#article/seo-etude-de-cas](https://al-si.com/#article/seo-etude-de-cas)
 
-Copyright (c) 2026 Alexandre Lessard. Tous droits reserves. Voir [LICENSE](LICENSE).
+## License
+
+Copyright (c) 2026 Alexandre Lessard. All rights reserved. See [LICENSE](LICENSE).

@@ -184,10 +184,11 @@ const ContentFr = () => (
       </tbody>
     </table>
     <p>
-      Le bundle est passé de 209 KB à 340 KB (66 → 108 KB gzip). Cette augmentation s'explique par l'ajout de Framer Motion,
-      Tailwind CSS v4, de nouvelles sections (Projets, Articles), un système de navigation complet, des animations sur chaque section
-      et un article de fond. Malgré tout ce qui a été ajouté, le site reste très léger — un résultat direct de l'optimisation
-      effectuée en parallèle : suppression des dépendances inutiles, refactoring des composants et nettoyage du CSS orphelin.
+      Le bundle JS est passé de 209 KB à 371 KB (66 → 116 KB gzip), et le CSS de 4.6 KB à 33 KB (1.6 → 6.3 KB gzip).
+      Cette augmentation s'explique par l'ajout de Framer Motion, Tailwind CSS v4, de nouvelles sections (Projets, Articles),
+      un système de navigation complet, des animations sur chaque section et un article de fond. Malgré tout ce qui a été ajouté,
+      le site reste léger — un résultat direct de l'optimisation effectuée en parallèle : suppression des dépendances inutiles,
+      refactoring des composants et nettoyage du CSS orphelin.
     </p>
 
     <div className="mt-10 p-6 border border-accent/20 rounded-2xl bg-accent/[0.04] text-center">
@@ -394,10 +395,11 @@ const ContentEn = () => (
       </tbody>
     </table>
     <p>
-      The bundle went from 209 KB to 340 KB (66 → 108 KB gzip). This increase reflects the addition of Framer Motion,
-      Tailwind CSS v4, new sections (Projects, Articles), a full navigation system, scroll animations on every section
-      and an in-depth article. Despite everything that was added, the site remains very lightweight — a direct result
-      of the optimization work done in parallel: removing unused dependencies, refactoring components and cleaning up orphaned CSS.
+      The JS bundle went from 209 KB to 371 KB (66 → 116 KB gzip), and CSS from 4.6 KB to 33 KB (1.6 → 6.3 KB gzip).
+      This increase reflects the addition of Framer Motion, Tailwind CSS v4, new sections (Projects, Articles), a full
+      navigation system, scroll animations on every section and an in-depth article. Despite everything that was added,
+      the site remains lightweight — a direct result of the optimization work done in parallel: removing unused dependencies,
+      refactoring components and cleaning up orphaned CSS.
     </p>
 
     <div className="mt-10 p-6 border border-accent/20 rounded-2xl bg-accent/[0.04] text-center">

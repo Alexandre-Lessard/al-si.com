@@ -1,133 +1,127 @@
-# Architecture technique
+# Architecture
 
-Reference interne pour comprendre comment le site est construit.
+Internal reference for understanding how the site is built.
 
-## Structure du projet
+## Project structure
 
 ```
 src/
-  main.jsx                    # Point d'entree React
-  App.jsx                     # Layout principal, gestion de la langue
-  i18n.js                     # Tout le contenu FR/EN
-  styles.js                   # Classes CSS partagees (section, container)
-  icons.jsx                   # Icones SVG inline pour les services
+  main.jsx                    # React entry point
+  App.jsx                     # Main layout, language management
+  i18n.js                     # All FR/EN content
+  styles.js                   # Shared CSS classes (section, container)
+  icons.jsx                   # Inline SVG icons for services
   components/
-    ui.jsx                    # Composants reutilisables (Button, SectionHeader)
-    ScrollReveal.jsx          # Wrapper Framer Motion fade-in au scroll
+    ui.jsx                    # Reusable components (Button, SectionHeader)
+    ScrollReveal.jsx          # Framer Motion fade-in on scroll wrapper
   sections/
-    Nav.jsx                   # Navigation fixe, hide on scroll, mobile hamburger
-    Hero.jsx                  # Hero avec photo et CTA
-    About.jsx                 # A propos + experience recente + stats
-    Services.jsx              # Grille de 3 cartes de services
-    Projects.jsx              # Grille de 4 cartes projets
-    Articles.jsx              # Grille d'articles (a venir)
-    Contact.jsx               # Banniere CTA avec boutons contact
+    Nav.jsx                   # Fixed nav, hide on scroll, mobile hamburger
+    Hero.jsx                  # Hero with photo and CTA
+    About.jsx                 # About + recent experience + stats
+    Services.jsx              # 3-card services grid
+    Projects.jsx              # 4-card projects grid
+    Articles.jsx              # Articles grid
+    Contact.jsx               # CTA banner with contact buttons
     Footer.jsx                # Copyright
+  articles/
+    index.js                  # Article registry (slug -> component)
+    SeoEtudeDeCas.jsx         # Article: SEO case study
+  components/
+    ArticleLayout.jsx         # Reusable article layout
 public/
-  alexandre-lessard.webp      # Photo personnelle (65KB)
-  share-card.png              # Image OG pour partage social (1200x630)
+  alexandre-lessard.webp      # Personal photo (65KB)
+  share-card.png              # OG image for social sharing (1200x630)
   favicon.ico
   robots.txt
   sitemap.xml
-index.html                    # HTML statique avec meta tags, JSON-LD, GA4
-index.css                     # Theme Tailwind v4, styles globaux
+index.html                    # Static HTML with meta tags, JSON-LD, GA4
+index.css                     # Tailwind v4 theme, global styles
 ```
 
-## Comment fonctionne le contenu
+## How content works
 
-Tout le texte du site est dans `src/i18n.js`. C'est un objet avec deux cles : `fr` et `en`. Chaque section du site a sa propre cle dans l'objet.
+All site text lives in `src/i18n.js`. It's an object with two keys: `fr` and `en`. Each site section has its own key in the object.
 
-Pour modifier du texte, editer `i18n.js`. Les composants lisent directement depuis cet objet via `translations[lang]`.
+To modify text, edit `i18n.js`. Components read directly from this object via `translations[lang]`.
 
-La langue est geree dans `App.jsx` avec un `useState`. Le toggle FR/EN est dans `Nav.jsx`.
+Language is managed in `App.jsx` with `useState`. The FR/EN toggle is in `Nav.jsx`.
 
-## Comment fonctionne le style
+## How styling works
 
-Le theme est defini dans `index.css` via `@theme` (Tailwind v4). Les couleurs principales :
+The theme is defined in `index.css` via `@theme` (Tailwind v4). Main colors:
 - `--color-accent: #ff8b5f` (orange)
-- `--color-bg: #050505` (noir)
-- `--color-surface: rgba(255, 255, 255, 0.03)` (cartes)
+- `--color-bg: #050505` (black)
+- `--color-surface: rgba(255, 255, 255, 0.03)` (cards)
 
-Les classes partagees entre sections sont dans `src/styles.js` :
-- `sectionClasses` : padding, max-width, bordure
-- `containerClasses` : max-width et padding horizontal
+Shared classes between sections are in `src/styles.js`:
+- `sectionClasses`: padding, max-width, border
+- `containerClasses`: max-width and horizontal padding
 
-## Comment fonctionne la navigation
+## How navigation works
 
-`Nav.jsx` utilise :
-- `IntersectionObserver` pour detecter la section active
-- Scroll listener pour hide/show au scroll (down = hide, up = show)
-- `AnimatePresence` de Framer Motion pour le menu mobile
+`Nav.jsx` uses:
+- `IntersectionObserver` to detect the active section
+- Scroll listener for hide/show on scroll (down = hide, up = show)
+- `AnimatePresence` from Framer Motion for the mobile menu
 
 ## SEO
 
-Les meta tags, OG, Twitter et JSON-LD sont dans `index.html` (statique, pas genere par React). C'est important pour le SEO car ces tags sont visibles sans executer JavaScript.
+Meta tags, OG, Twitter and JSON-LD are in `index.html` (static, not generated by React). This is important for SEO since these tags are visible without executing JavaScript.
 
-Le sitemap et robots.txt sont dans `public/`.
+The sitemap and robots.txt are in `public/`.
 
-## Scripts utiles
+## Useful scripts
 
 ```bash
-npm run dev          # Serveur de developpement
-npm run build        # Build production dans dist/
-npm run preview      # Preview du build
-npm run seo:rankings # Verifier les rankings Google (necessite SERPAPI_KEY)
-npm run seo:audit    # Audit SEO technique
-npm run seo:compare  # Comparer avant/apres
+npm run dev          # Development server
+npm run build        # Production build in dist/
+npm run preview      # Preview the build
+npm run seo:rankings # Check Google rankings (requires SERPAPI_KEY)
+npm run seo:audit    # Technical SEO audit
+npm run seo:compare  # Compare before/after
 ```
 
-## Deploiement
+## Deployment
 
-Le site est deploye sur GitHub Pages. Le build (`dist/`) est pousse via GitHub Actions ou manuellement. Cloudflare sert de CDN et gere le DNS pour al-si.com.
+The site is deployed on GitHub Pages. The build (`dist/`) is pushed via GitHub Actions or manually. Cloudflare serves as CDN and manages DNS for al-si.com.
 
-## Systeme d'articles
+## Article system
 
-Le site supporte des articles en pleine page via un routing hash-based (`#article/slug`).
-
-### Structure
-
-```
-src/
-  articles/
-    index.js                  # Registre des articles (slug -> composant)
-    SeoEtudeDeCas.jsx         # Article: etude de cas SEO
-  components/
-    ArticleLayout.jsx         # Layout reutilisable pour les articles
-```
+The site supports full-page articles via hash-based routing (`#article/slug`).
 
 ### Routing
 
-`App.jsx` ecoute les changements de hash via `hashchange`. Un hash de format `#article/slug` active le mode article :
-- La section `<main>` affiche le composant article au lieu des sections homepage
-- `Nav.jsx` passe en mode article (lien retour + toggle langue, pas de liens sections)
-- L'IntersectionObserver est desactive en mode article (`if (articleSlug) return`)
-- Si le slug n'existe pas dans le registre, redirect vers la homepage
+`App.jsx` listens for hash changes via `hashchange`. A hash in the format `#article/slug` activates article mode:
+- The `<main>` section displays the article component instead of homepage sections
+- `Nav.jsx` switches to article mode (back link + language toggle, no section links)
+- IntersectionObserver is disabled in article mode (`if (articleSlug) return`)
+- If the slug doesn't exist in the registry, redirects to the homepage
 
 ### ArticleLayout
 
-Props : `title`, `subtitle`, `date`, `lang`, `onBack`, `badge` (optionnel, pour WipBadge par ex.)
+Props: `title`, `subtitle`, `date`, `lang`, `onBack`, `badge` (optional, e.g. for WipBadge).
 
-Le badge s'affiche dans le header, sous le subtitle. Utilise pour indiquer un article en cours.
+The badge displays in the header, below the subtitle. Used to indicate an in-progress article.
 
-### Ajouter un article
+### Adding an article
 
-1. Creer `src/articles/MonArticle.jsx` avec le contenu FR/EN
-2. L'ajouter dans `src/articles/index.js` : `'mon-slug': lazy(() => import('./MonArticle.jsx'))` ou import direct
-3. Ajouter une entree dans `src/i18n.js` sous `articles.items` avec `slug: 'mon-slug'`
+1. Create `src/articles/MyArticle.jsx` with FR/EN content
+2. Add it to `src/articles/index.js`: `'my-slug': lazy(() => import('./MyArticle.jsx'))` or direct import
+3. Add an entry in `src/i18n.js` under `articles.items` with `slug: 'my-slug'`
 
-## Cartes projets
+## Project cards
 
-Les cartes dans `Projects.jsx` supportent plusieurs modes :
+Cards in `Projects.jsx` support multiple modes:
 
-- **Projet cliquable** : `url` defini → la carte entiere ouvre le lien
-- **GitHub only** : `githubOnly: true` + `github` → la carte ouvre le GitHub
-- **Coming soon** : `comingSoon: true` → carte grisee (opacity-60) avec badge "A venir"
-- **Icone GitHub** : si `github` est defini, une icone GitHub apparait en haut a droite (cliquable independamment)
-- **Image** : `image` pointe vers un fichier dans `public/`. Les SVG sont affiches a 75% avec opacity, les PNG en object-cover.
+- **Clickable project**: `url` defined → the entire card opens the link
+- **GitHub only**: `githubOnly: true` + `github` → the card opens GitHub
+- **Coming soon**: `comingSoon: true` → grayed-out card (opacity-60) with "Coming soon" badge
+- **GitHub icon**: if `github` is defined, a GitHub icon appears in the top right (clickable independently)
+- **Image**: `image` points to a file in `public/`. SVGs are displayed at 75% with opacity, PNGs as object-cover.
 
-## Ajouter une section
+## Adding a section
 
-1. Creer `src/sections/NouvelleSection.jsx`
-2. Ajouter le contenu FR/EN dans `src/i18n.js`
-3. Importer et placer le composant dans `App.jsx`
-4. Si la section doit apparaitre dans la nav, ajouter l'id dans `Nav.jsx` (tableau `ids` dans l'IntersectionObserver et `navLinks`)
+1. Create `src/sections/NewSection.jsx`
+2. Add FR/EN content in `src/i18n.js`
+3. Import and place the component in `App.jsx`
+4. If the section should appear in the nav, add the id in `Nav.jsx` (`ids` array in IntersectionObserver and `navLinks`)
