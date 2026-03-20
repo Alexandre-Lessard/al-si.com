@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { translations } from '../i18n';
 import { containerClasses } from '../styles';
+import LanguageToggle from '../components/LanguageToggle';
 
 const Nav = ({ lang, setLang, articleSlug, onBack }) => {
   const t = translations[lang] || translations.fr;
@@ -10,7 +11,11 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
   const [hidden, setHidden] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const mobileOpenRef = useRef(mobileOpen);
-  mobileOpenRef.current = mobileOpen;
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    mobileOpenRef.current = mobileOpen;
+  }, [mobileOpen]);
 
   // Hide on scroll down, show on scroll up
   useEffect(() => {
@@ -37,7 +42,7 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
           }
         }
       },
-      { rootMargin: '-30% 0px -60% 0px' }
+      { rootMargin: '-30% 0px -60% 0px' },
     );
 
     ids.forEach((id) => {
@@ -64,9 +69,9 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
 
   return (
     <motion.header
-      initial={{ y: -80 }}
+      initial={prefersReducedMotion ? false : { y: -80 }}
       animate={{ y: hidden ? -80 : 0 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeInOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-bg/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.4)]"
     >
       <div className={`${containerClasses} flex items-center justify-between h-16`}>
@@ -84,29 +89,15 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
             >
               <span aria-hidden="true">&larr;</span> {lang === 'en' ? 'Back' : 'Retour'}
             </button>
-            <div className="flex items-center border border-line rounded-full overflow-hidden">
-              <button
-                className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                  lang === 'fr' ? 'bg-white/[0.08] text-text' : 'text-muted'
-                }`}
-                onClick={() => setLang('fr')}
-              >
-                FR
-              </button>
-              <button
-                className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                  lang === 'en' ? 'bg-white/[0.08] text-text' : 'text-muted'
-                }`}
-                onClick={() => setLang('en')}
-              >
-                EN
-              </button>
-            </div>
+            <LanguageToggle lang={lang} setLang={setLang} />
           </nav>
         ) : (
           <>
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8" aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}>
+            <nav
+              className="hidden md:flex items-center gap-8"
+              aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}
+            >
               {navLinks.map(({ id, label }) => (
                 <a
                   key={id}
@@ -121,23 +112,8 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
               ))}
 
               {/* Language toggle */}
-              <div className="flex items-center border border-line rounded-full overflow-hidden ml-2">
-                <button
-                  className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                    lang === 'fr' ? 'bg-white/[0.08] text-text' : 'text-muted'
-                  }`}
-                  onClick={() => setLang('fr')}
-                >
-                  FR
-                </button>
-                <button
-                  className={`border-0 bg-transparent px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                    lang === 'en' ? 'bg-white/[0.08] text-text' : 'text-muted'
-                  }`}
-                  onClick={() => setLang('en')}
-                >
-                  EN
-                </button>
+              <div className="ml-2">
+                <LanguageToggle lang={lang} setLang={setLang} />
               </div>
             </nav>
 
@@ -160,10 +136,10 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
       <AnimatePresence>
         {mobileOpen && !articleSlug && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
+            exit={prefersReducedMotion ? { display: 'none' } : { opacity: 0, height: 0 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
             className="md:hidden bg-bg/95 backdrop-blur-xl border-t border-line/50 overflow-hidden"
             aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}
           >
@@ -173,31 +149,12 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
                   key={id}
                   href={`#${id}`}
                   onClick={(e) => handleNavClick(e, id)}
-                  className={`text-base py-2 font-medium ${
-                    activeSection === id ? 'text-accent' : 'text-muted'
-                  }`}
+                  className={`text-base py-2 font-medium ${activeSection === id ? 'text-accent' : 'text-muted'}`}
                 >
                   {label}
                 </a>
               ))}
-              <div className="flex items-center gap-2 pt-2 border-t border-line/50">
-                <button
-                  className={`border-0 bg-transparent px-3 py-1.5 text-sm font-semibold cursor-pointer ${
-                    lang === 'fr' ? 'text-accent' : 'text-muted'
-                  }`}
-                  onClick={() => { setLang('fr'); setMobileOpen(false); }}
-                >
-                  FR
-                </button>
-                <button
-                  className={`border-0 bg-transparent px-3 py-1.5 text-sm font-semibold cursor-pointer ${
-                    lang === 'en' ? 'text-accent' : 'text-muted'
-                  }`}
-                  onClick={() => { setLang('en'); setMobileOpen(false); }}
-                >
-                  EN
-                </button>
-              </div>
+              <LanguageToggle lang={lang} setLang={setLang} variant="inline" onSelect={() => setMobileOpen(false)} />
             </div>
           </motion.nav>
         )}
