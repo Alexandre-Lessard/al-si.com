@@ -17,7 +17,9 @@ const About = ({ lang }) => {
         <ScrollReveal>
           <div>
             {paragraphs.map((p, i) => (
-              <p key={i} className="text-base text-muted leading-relaxed mb-8">{p}</p>
+              <p key={i} className="text-base text-muted leading-relaxed mb-8">
+                {p}
+              </p>
             ))}
             {recent && (
               <div className="mt-8 pt-8 border-t border-line">

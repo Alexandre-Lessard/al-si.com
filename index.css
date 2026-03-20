@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-bg: #050505;
@@ -40,7 +40,8 @@ a:hover {
 .prose-custom p {
   @apply text-base text-muted leading-relaxed mb-6;
 }
-.prose-custom ul, .prose-custom ol {
+.prose-custom ul,
+.prose-custom ol {
   @apply text-base text-muted leading-relaxed mb-6 pl-6;
 }
 .prose-custom li {

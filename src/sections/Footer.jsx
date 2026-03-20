@@ -5,7 +5,9 @@ const Footer = ({ lang }) => {
 
   return (
     <footer className="py-16 text-center text-muted text-sm border-t border-line">
-      <span>© {new Date().getFullYear()} Alexandre Lessard — {t.footer.text}</span>
+      <span>
+        © {new Date().getFullYear()} Alexandre Lessard — {t.footer.text}
+      </span>
     </footer>
   );
 };
