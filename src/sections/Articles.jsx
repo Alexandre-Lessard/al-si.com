@@ -2,8 +2,9 @@ import { translations } from '../i18n';
 import { sectionClasses } from '../styles';
 import { SectionHeader } from '../components/ui';
 import { ScrollReveal } from '../components/ScrollReveal';
+import Card from '../components/Card';
 
-const readLabel = { fr: 'Lire l\'article', en: 'Read article' };
+const readLabel = { fr: "Lire l'article", en: 'Read article' };
 
 const Articles = ({ lang }) => {
   const t = translations[lang] || translations.fr;
@@ -20,20 +21,28 @@ const Articles = ({ lang }) => {
           const hasContent = !!article.slug;
 
           const card = (
-            <article className={`border border-line rounded-2xl p-6 bg-surface hover:border-accent/30 transition-all duration-300 h-full flex flex-col ${hasContent ? 'opacity-100 cursor-pointer' : 'opacity-60'}`}>
+            <Card dimmed={!hasContent} className={`p-6 flex flex-col ${hasContent ? 'cursor-pointer' : ''}`}>
               <span className="text-xs text-muted mb-3">{article.date}</span>
               <h3 className="text-base font-semibold mb-2 line-clamp-2">{article.title}</h3>
               <p className="text-sm text-muted line-clamp-3 mb-4 flex-1">{article.excerpt}</p>
               <span className="text-accent text-sm font-medium">
                 {hasContent ? readLabel[lang] || readLabel.fr : comingSoon}
               </span>
-            </article>
+            </Card>
           );
 
           return (
             <ScrollReveal key={i} delay={i * 0.1}>
               {hasContent ? (
-                <a href={`#article/${article.slug}`} className="block h-full no-underline text-inherit">
+                <a
+                  href={`/article/${article.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, '', `/article/${article.slug}`);
+                    window.dispatchEvent(new PopStateEvent('popstate'));
+                  }}
+                  className="block h-full no-underline text-inherit"
+                >
                   {card}
                 </a>
               ) : (

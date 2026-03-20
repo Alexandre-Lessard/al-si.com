@@ -49,17 +49,20 @@ Language is managed in `App.jsx` with `useState`. The FR/EN toggle is in `Nav.js
 ## How styling works
 
 The theme is defined in `index.css` via `@theme` (Tailwind v4). Main colors:
+
 - `--color-accent: #ff8b5f` (orange)
 - `--color-bg: #050505` (black)
 - `--color-surface: rgba(255, 255, 255, 0.03)` (cards)
 
 Shared classes between sections are in `src/styles.js`:
+
 - `sectionClasses`: padding, max-width, border
 - `containerClasses`: max-width and horizontal padding
 
 ## How navigation works
 
 `Nav.jsx` uses:
+
 - `IntersectionObserver` to detect the active section
 - Scroll listener for hide/show on scroll (down = hide, up = show)
 - `AnimatePresence` from Framer Motion for the mobile menu
@@ -97,15 +100,19 @@ The custom domain (al-si.com) is configured in the Cloudflare Pages dashboard un
 
 ## Article system
 
-The site supports full-page articles via hash-based routing (`#article/slug`).
+The site supports full-page articles via pathname-based routing (`/article/slug`).
 
 ### Routing
 
-`App.jsx` listens for hash changes via `hashchange`. A hash in the format `#article/slug` activates article mode:
+`App.jsx` listens for `popstate` events. A pathname in the format `/article/slug` activates article mode:
+
 - The `<main>` section displays the article component instead of homepage sections
 - `Nav.jsx` switches to article mode (back link + language toggle, no section links)
 - IntersectionObserver is disabled in article mode (`if (articleSlug) return`)
-- If the slug doesn't exist in the registry, redirects to the homepage
+- If the slug doesn't exist in the registry, redirects to the homepage via `replaceState`
+- Old hash-based URLs (`#article/slug`) are automatically redirected to the pathname format
+- Article components are lazy-loaded with `React.lazy()` and wrapped in `Suspense` + `ErrorBoundary`
+- Cloudflare Pages SPA fallback (`_redirects`) ensures direct URL access works
 
 ### ArticleLayout
 

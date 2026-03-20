@@ -1,5 +1,5 @@
-import SeoEtudeDeCas from './SeoEtudeDeCas.jsx';
+import { lazy } from 'react';
 
 export const articles = {
-  'seo-etude-de-cas': SeoEtudeDeCas,
+  'seo-etude-de-cas': lazy(() => import('./SeoEtudeDeCas.jsx')),
 };
