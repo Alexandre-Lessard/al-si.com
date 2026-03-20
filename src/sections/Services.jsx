@@ -3,6 +3,7 @@ import { sectionClasses } from '../styles';
 import { SectionHeader } from '../components/ui';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { CodeIcon, NetworkIcon, ServerIcon } from '../icons';
+import Card from '../components/Card';
 
 const icons = [CodeIcon, NetworkIcon, ServerIcon];
 
@@ -21,7 +22,7 @@ const Services = ({ lang }) => {
           const Icon = icons[i] || CodeIcon;
           return (
             <ScrollReveal key={i} delay={i * 0.1}>
-              <article className="p-8 border border-line rounded-2xl bg-surface hover:bg-surface-hover hover:border-accent/30 transition-all duration-300 group h-full">
+              <Card className="p-8 hover:bg-surface-hover group">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent-dim text-accent mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Icon />
                 </div>
@@ -34,7 +35,7 @@ const Services = ({ lang }) => {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </Card>
             </ScrollReveal>
           );
         })}

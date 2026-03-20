@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, Component } from 'react';
 import Nav from './sections/Nav.jsx';
 import Hero from './sections/Hero.jsx';
 import About from './sections/About.jsx';
@@ -8,42 +8,76 @@ import Articles from './sections/Articles.jsx';
 import Contact from './sections/Contact.jsx';
 import Footer from './sections/Footer.jsx';
 import { articles } from './articles/index.js';
+import { translations } from './i18n';
+
+class ArticleErrorBoundary extends Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch() {
+    window.history.replaceState({}, '', '/');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }
+
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 function App() {
   const [lang, setLang] = useState('fr');
   const [articleSlug, setArticleSlug] = useState(null);
+  const t = translations[lang] || translations.fr;
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  // Hash-based article navigation
+  // Pathname-based article routing
   useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash;
-      const match = hash.match(/^#article\/(.+)$/);
+    const handleRoute = () => {
+      // Backward compat: redirect old hash URLs to pathname
+      if (window.location.hash.match(/^#article\//)) {
+        const slug = window.location.hash.replace('#article/', '');
+        window.history.replaceState({}, '', `/article/${slug}`);
+      }
+
+      const match = window.location.pathname.match(/^\/article\/(.+)$/);
       setArticleSlug(match ? match[1] : null);
     };
 
-    handleHash();
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
+    handleRoute();
+    window.addEventListener('popstate', handleRoute);
+    return () => window.removeEventListener('popstate', handleRoute);
   }, []);
 
-  // Scroll to top when entering an article
+  // Scroll to top, focus main, and track GA4 page view when entering an article
   useEffect(() => {
-    if (articleSlug) window.scrollTo(0, 0);
+    if (articleSlug) {
+      window.scrollTo(0, 0);
+      document.getElementById('main')?.focus();
+
+      if (window.gtag) {
+        window.gtag('event', 'page_view', { page_path: `/article/${articleSlug}` });
+      }
+    }
   }, [articleSlug]);
 
   const handleBack = () => {
-    window.location.hash = '';
+    window.history.pushState({}, '', '/');
+    window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
   // Validate slug — redirect to homepage if article doesn't exist
   const ArticleComponent = articleSlug ? articles[articleSlug] : null;
   useEffect(() => {
     if (articleSlug && !articles[articleSlug]) {
-      window.location.hash = '';
+      window.history.replaceState({}, '', '/');
+      window.dispatchEvent(new PopStateEvent('popstate'));
     }
   }, [articleSlug]);
 
@@ -58,10 +92,20 @@ function App() {
         `,
       }}
     >
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-accent focus:text-black focus:px-4 focus:py-2 focus:rounded focus:font-medium focus:text-sm focus:outline-none"
+      >
+        {t.nav.skipToContent || (lang === 'en' ? 'Skip to content' : 'Aller au contenu')}
+      </a>
       <Nav lang={lang} setLang={setLang} articleSlug={articleSlug} onBack={handleBack} />
-      <main>
+      <main id="main" tabIndex="-1" className="outline-none">
         {ArticleComponent ? (
-          <ArticleComponent lang={lang} onBack={handleBack} />
+          <ArticleErrorBoundary>
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <ArticleComponent lang={lang} onBack={handleBack} />
+            </Suspense>
+          </ArticleErrorBoundary>
         ) : (
           <>
             <Hero lang={lang} />

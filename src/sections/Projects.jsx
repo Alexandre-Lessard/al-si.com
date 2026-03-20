@@ -2,6 +2,7 @@ import { translations } from '../i18n';
 import { sectionClasses } from '../styles';
 import { SectionHeader } from '../components/ui';
 import { ScrollReveal } from '../components/ScrollReveal';
+import Card from '../components/Card';
 
 const GitHubIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -16,37 +17,50 @@ const ProjectCard = ({ project, lang }) => {
   const linkUrl = project.githubOnly ? project.github : project.url;
   const isClickable = !!linkUrl && !project.comingSoon;
 
-  const handleCardClick = isClickable ? () => window.open(linkUrl, '_blank', 'noopener') : undefined;
-
   return (
-    <article
-      className={`border border-line rounded-2xl overflow-hidden bg-surface transition-all duration-300 group h-full flex flex-col relative ${isClickable ? 'hover:border-accent/30 cursor-pointer' : ''} ${project.comingSoon ? 'opacity-60' : ''}`}
-      onClick={handleCardClick}
-      role={isClickable ? 'link' : undefined}
-      tabIndex={isClickable ? 0 : undefined}
-      onKeyDown={isClickable ? (e) => { if (e.key === 'Enter') handleCardClick(); } : undefined}
-    >
-      {/* GitHub icon - top right corner */}
-      {hasGitHub && (
+    <Card dimmed={project.comingSoon} className="overflow-hidden flex flex-col relative group">
+      {/* Stretched link covers the entire card */}
+      {isClickable && (
         <a
-          href={project.github}
+          href={linkUrl}
           target="_blank"
           rel="noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="absolute top-3 right-3 z-10 text-muted hover:text-text transition-colors duration-200"
+          className="absolute inset-0 z-0"
+          aria-label={project.title}
+        />
+      )}
+
+      {/* Coming soon badge overlay */}
+      {project.comingSoon && (
+        <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-accent/90 text-black px-3 py-1 rounded-full">
+          {comingSoonLabel[lang] || comingSoonLabel.fr}
+        </span>
+      )}
+
+      {/* GitHub icon - above stretched link */}
+      {hasGitHub && (
+        <button
+          onClick={() => window.open(project.github, '_blank', 'noopener')}
+          className="absolute top-3 right-3 z-20 text-muted hover:text-text transition-colors duration-200 bg-transparent border-0 cursor-pointer p-0"
           aria-label="GitHub"
         >
           <GitHubIcon className="w-10 h-10" />
-        </a>
+        </button>
       )}
 
-      {/* Visual area */}
-      <div className={`aspect-video ${project.gradient || ''} flex items-center justify-center overflow-hidden`}>
+      {/* Visual area - pointer-events-none so clicks pass through to stretched link */}
+      <div
+        className={`aspect-video ${project.gradient || ''} flex items-center justify-center overflow-hidden pointer-events-none`}
+      >
         {project.image ? (
           <img
             src={project.image}
             alt={project.title}
-            className={project.image.endsWith('.svg') ? 'w-3/4 h-3/4 opacity-60 object-contain' : 'w-full h-full object-cover object-center'}
+            className={
+              project.image.endsWith('.svg')
+                ? 'w-3/4 h-3/4 opacity-60 object-contain'
+                : 'w-full h-full object-cover object-center'
+            }
           />
         ) : (
           <span className="opacity-20 text-[5rem] leading-none">{project.icon}</span>
@@ -54,7 +68,7 @@ const ProjectCard = ({ project, lang }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-6 flex flex-col flex-1 pointer-events-none">
         <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
         <p className="text-sm text-muted mb-4 flex-1">{project.description}</p>
         <div className="flex flex-wrap gap-2">
@@ -64,13 +78,8 @@ const ProjectCard = ({ project, lang }) => {
             </span>
           ))}
         </div>
-        {project.comingSoon && (
-          <span className="text-accent text-sm font-medium mt-4">
-            {comingSoonLabel[lang] || comingSoonLabel.fr}
-          </span>
-        )}
       </div>
-    </article>
+    </Card>
   );
 };
 

@@ -1,15 +1,16 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { containerClasses } from '../styles';
 
 const ArticleLayout = ({ title, subtitle, date, lang, children, onBack, badge }) => {
   const backLabel = lang === 'en' ? 'Back' : 'Retour';
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <article className={`${containerClasses} pt-28 pb-20`}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeOut' }}
       >
         <button
           onClick={onBack}
@@ -25,9 +26,7 @@ const ArticleLayout = ({ title, subtitle, date, lang, children, onBack, badge })
           {badge && <div className="mt-4">{badge}</div>}
         </header>
 
-        <div className="prose-custom">
-          {children}
-        </div>
+        <div className="prose-custom">{children}</div>
       </motion.div>
     </article>
   );
