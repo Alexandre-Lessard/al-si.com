@@ -13,10 +13,20 @@ fi
 
 PROJECT="${CLOUDFLARE_PROJECT_NAME:-al-si-com}"
 
+# Usage: ./deploy.sh           → production deploy
+#        ./deploy.sh preview   → preview deploy (won't update al-si.com)
+#        ./deploy.sh <branch>  → named preview branch
+MODE="${1:-production}"
+
 echo "Building..."
 npm run build
 
-echo "Deploying to Cloudflare Pages (project: $PROJECT)..."
-npx wrangler pages deploy dist --project-name="$PROJECT" --commit-dirty=true
-
-echo "Done. Remember to purge the Cloudflare cache."
+if [ "$MODE" = "production" ]; then
+  echo "Deploying to PRODUCTION on Cloudflare Pages (project: $PROJECT)..."
+  npx wrangler pages deploy dist --project-name="$PROJECT" --branch=main --commit-dirty=true
+  echo "Done. Remember to purge the Cloudflare cache."
+else
+  echo "Deploying PREVIEW '$MODE' on Cloudflare Pages (project: $PROJECT)..."
+  npx wrangler pages deploy dist --project-name="$PROJECT" --branch="$MODE" --commit-dirty=true
+  echo "Done. Preview URL above. Production (al-si.com) is untouched."
+fi

@@ -1,8 +1,10 @@
 import { useState, useEffect, Suspense, Component } from 'react';
 import Nav from './sections/Nav.jsx';
 import Hero from './sections/Hero.jsx';
+import ProofBand from './sections/ProofBand.jsx';
 import About from './sections/About.jsx';
 import Services from './sections/Services.jsx';
+import HowItWorks from './sections/HowItWorks.jsx';
 import Projects from './sections/Projects.jsx';
 import Testimonials from './sections/Testimonials.jsx';
 import Articles from './sections/Articles.jsx';
@@ -110,10 +112,12 @@ function App() {
         ) : (
           <>
             <Hero lang={lang} />
-            <About lang={lang} />
+            <ProofBand lang={lang} />
             <Services lang={lang} />
+            <HowItWorks lang={lang} />
             <Projects lang={lang} />
             <Testimonials lang={lang} />
+            <About lang={lang} />
             <Articles lang={lang} />
             <Contact lang={lang} />
           </>

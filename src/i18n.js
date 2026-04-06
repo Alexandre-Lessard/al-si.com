@@ -1,18 +1,20 @@
 export const translations = {
   fr: {
     hero: {
-      heading: ['Alexandre Lessard', 'Applications web, SaaS, automatisation & intégrations'],
+      eyebrow: 'Concevoir · Automatiser · Faire évoluer',
+      heading: ['Vos opérations méritent mieux', "qu'Excel et du copier-coller."],
       brand: 'Solutions intégrées',
       subtitle:
-        "J'aide les entreprises à concevoir, automatiser et déployer des solutions web sur mesure — du cadrage initial jusqu'à la mise en production.",
+        'Je conçois, automatise et fais évoluer des applications web sur mesure pour les entreprises qui veulent gagner du temps, structurer leurs opérations ou lancer un nouveau produit.',
+      proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
       alt: 'Alexandre Lessard développeur full-stack',
       cta: {
         primary: {
-          label: 'Planifier un premier échange',
+          label: 'Planifier un appel découverte (30 min)',
           href: 'https://cal.com/alexandre-lessard/premier-echange-projet',
         },
-        secondary: { label: 'Voir mes projets', href: '#projects' },
-        reassurance: 'Réponse en moins de 24 h — sans engagement.',
+        secondary: { label: 'Voir comment je travaille', href: '#how-it-works' },
+        reassurance: 'Sans engagement. On clarifie votre besoin et on voit si je peux vraiment vous aider.',
       },
     },
     about: {
@@ -32,6 +34,55 @@ export const translations = {
         { value: 'Full-stack', label: "Du frontend à l'infrastructure" },
         { value: 'De A à Z', label: 'Cadrage, dev, déploiement' },
       ],
+    },
+    howItWorks: {
+      title: 'Comment je travaille',
+      subtitle:
+        'Un processus simple, transparent, sans surprise. Vous savez exactement à quoi vous attendre à chaque étape.',
+      steps: [
+        {
+          title: 'Discussion initiale',
+          text: '30 minutes pour clarifier votre besoin. Je vous dis honnêtement si je suis la bonne personne pour vous aider.',
+        },
+        {
+          title: 'Cadrage & proposition',
+          text: 'Je vous propose une approche, un échéancier et un budget transparent. Aucune mauvaise surprise.',
+        },
+        {
+          title: 'Réalisation',
+          text: "Je développe, je teste, je vous montre l'avancement régulièrement. Vous gardez le contrôle.",
+        },
+        {
+          title: 'Mise en production & suivi',
+          text: 'Je déploie, je vous forme et je reste disponible pour les ajustements et les évolutions.',
+        },
+      ],
+    },
+    proofBand: {
+      title: 'Trois projets, trois besoins concrets',
+      subtitle:
+        'Des exemples réels du genre de mandats que je prends en charge — du site qui convertit à la plateforme SaaS en production.',
+      cases: [
+        {
+          tag: 'Site qui convertit',
+          client: 'Signé Gagné — Charpentier-menuisier',
+          text: "Refonte d'un site DIY GoDaddy en site professionnel optimisé pour Google Ads. Le client reçoit maintenant de vrais appels.",
+          stack: 'Refonte · SEO · Conversion',
+        },
+        {
+          tag: 'Plateforme SaaS en production',
+          client: 'RNBP Canada',
+          text: "Co-conception et développement complet d'une plateforme SaaS d'enregistrement de biens, du cadrage à la mise en production.",
+          stack: 'SaaS · Cloudflare · Co-fondateur technique',
+        },
+        {
+          tag: 'Outil métier autonome',
+          client: 'Terra Indomita',
+          text: "Site vitrine avec calendrier d'événements dynamique, conçu pour que le client puisse tout gérer sans intervention.",
+          stack: 'Vitrine · API · Autonomie client',
+        },
+      ],
+      footer: '10+ ans en TI · Stack moderne (React, Python, Node) · Du cadrage à la mise en production',
     },
     services: {
       title: 'Services',
@@ -176,7 +227,10 @@ export const translations = {
         "Le plus simple, c'est de planifier un premier échange de 30 minutes. On clarifie votre besoin, je vous dis honnêtement si je suis la bonne personne, et on voit où ça mène — sans engagement.",
       ],
       channels: [
-        { label: 'Planifier un appel', href: 'https://cal.com/alexandre-lessard/premier-echange-projet' },
+        {
+          label: 'Planifier un appel découverte (30 min)',
+          href: 'https://cal.com/alexandre-lessard/premier-echange-projet',
+        },
         { label: 'Courriel', href: 'mailto:alex@al-si.com' },
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alexandre-lessard-3b103991/' },
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },
@@ -195,18 +249,20 @@ export const translations = {
   },
   en: {
     hero: {
-      heading: ['Alexandre Lessard', 'Web apps, SaaS, automation & integrations'],
+      eyebrow: 'Design · Automate · Evolve',
+      heading: ['Your operations deserve better', 'than Excel and copy-paste.'],
       brand: 'Integrated Solutions',
       subtitle:
-        'I help businesses design, automate and deploy custom web solutions — from initial scoping to production.',
+        'I design, automate and evolve custom web applications for businesses that want to save time, structure their operations or launch a new product.',
+      proofAnchor: '10+ years in IT · From scoping to production · Reply within 24 h',
       alt: 'Alexandre Lessard full-stack developer',
       cta: {
         primary: {
-          label: 'Schedule a first call',
+          label: 'Schedule a discovery call (30 min)',
           href: 'https://cal.com/alexandre-lessard/intro-call',
         },
-        secondary: { label: 'View my projects', href: '#projects' },
-        reassurance: 'Reply within 24 hours — no commitment.',
+        secondary: { label: 'See how I work', href: '#how-it-works' },
+        reassurance: "No commitment. We clarify your need and see if I'm really the right fit.",
       },
     },
     about: {
@@ -226,6 +282,54 @@ export const translations = {
         { value: 'Full-stack', label: 'From frontend to infrastructure' },
         { value: 'End-to-end', label: 'Scoping, dev, deployment' },
       ],
+    },
+    howItWorks: {
+      title: 'How I work',
+      subtitle: 'A simple, transparent process — no surprises. You know exactly what to expect at each step.',
+      steps: [
+        {
+          title: 'Initial discussion',
+          text: "30 minutes to clarify your need. I'll tell you honestly if I'm the right person to help you.",
+        },
+        {
+          title: 'Scoping & proposal',
+          text: 'I propose an approach, a timeline and a transparent budget. No bad surprises.',
+        },
+        {
+          title: 'Build',
+          text: 'I develop, I test, I show you progress regularly. You stay in control.',
+        },
+        {
+          title: 'Launch & follow-up',
+          text: 'I deploy, train you and stay available for adjustments and future evolutions.',
+        },
+      ],
+    },
+    proofBand: {
+      title: 'Three projects, three concrete needs',
+      subtitle:
+        'Real examples of the kind of work I take on — from a website that actually converts to a SaaS platform in production.',
+      cases: [
+        {
+          tag: 'Website that converts',
+          client: 'Signé Gagné — Carpenter',
+          text: 'Rebuilt a DIY GoDaddy site into a professional site optimized for Google Ads. The client now gets real calls.',
+          stack: 'Redesign · SEO · Conversion',
+        },
+        {
+          tag: 'SaaS platform in production',
+          client: 'RNBP Canada',
+          text: 'Co-design and full development of a SaaS platform for asset registration, from scoping to production.',
+          stack: 'SaaS · Cloudflare · Technical co-founder',
+        },
+        {
+          tag: 'Self-managed business tool',
+          client: 'Terra Indomita',
+          text: 'Marketing site with a dynamic event calendar, built so the client can manage everything without help.',
+          stack: 'Marketing site · API · Client autonomy',
+        },
+      ],
+      footer: '10+ years in IT · Modern stack (React, Python, Node) · From scoping to production',
     },
     services: {
       title: 'Services',
@@ -365,7 +469,7 @@ export const translations = {
         "The easiest way is to schedule a 30-minute first call. We clarify your need, I tell you honestly whether I'm the right person, and we see where it leads — no commitment.",
       ],
       channels: [
-        { label: 'Schedule a call', href: 'https://cal.com/alexandre-lessard/intro-call' },
+        { label: 'Schedule a discovery call (30 min)', href: 'https://cal.com/alexandre-lessard/intro-call' },
         { label: 'Email', href: 'mailto:alex@al-si.com' },
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alexandre-lessard-3b103991/' },
         { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=100094510380507' },

@@ -9,7 +9,7 @@ describe('App', () => {
 
   it('renders homepage with hero section on /', () => {
     render(<App />);
-    expect(screen.getByText('Alexandre Lessard')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
   });
 
   it('renders skip to content link', () => {
