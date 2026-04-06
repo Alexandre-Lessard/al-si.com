@@ -26,7 +26,8 @@ const Services = ({ lang }) => {
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent-dim text-accent mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Icon />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
+                <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+                {category.description && <p className="text-sm text-muted mb-5">{category.description}</p>}
                 <ul className="space-y-2.5">
                   {category.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2.5 text-sm text-muted">

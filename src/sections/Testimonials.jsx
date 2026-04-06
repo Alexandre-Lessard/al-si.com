@@ -31,6 +31,7 @@ const Testimonials = ({ lang }) => {
               <div className="mt-6 pt-6 border-t border-line">
                 <p className="font-semibold text-sm">{item.name}</p>
                 <p className="text-xs text-muted">{item.role}</p>
+                {item.context && <p className="text-xs text-muted/70 italic mt-2">{item.context}</p>}
               </div>
             </Card>
           </ScrollReveal>

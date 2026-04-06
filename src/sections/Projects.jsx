@@ -70,7 +70,8 @@ const ProjectCard = ({ project, lang }) => {
       {/* Content */}
       <div className="p-6 flex flex-col flex-1 pointer-events-none">
         <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-        <p className="text-sm text-muted mb-4 flex-1">{project.description}</p>
+        <p className="text-sm text-muted mb-3 flex-1">{project.description}</p>
+        {project.outcome && <p className="text-sm text-accent font-medium mb-4">{project.outcome}</p>}
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, j) => (
             <span key={j} className="text-xs bg-surface-hover border border-line rounded-full px-3 py-1 text-muted">

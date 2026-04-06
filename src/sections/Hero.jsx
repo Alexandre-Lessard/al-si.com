@@ -27,13 +27,22 @@ const Hero = ({ lang }) => {
         </h1>
         <p className="text-lg text-muted mb-10 max-w-lg max-[960px]:mx-auto">{subtitle}</p>
         <div className="flex gap-4 max-[960px]:justify-center flex-wrap">
-          <Button href="#contact" variant="primary">
-            {cta.primary}
+          <Button
+            href={cta.primary.href}
+            variant="primary"
+            {...(cta.primary.href.startsWith('http') && { target: '_blank', rel: 'noreferrer' })}
+          >
+            {cta.primary.label}
           </Button>
-          <Button href="#projects" variant="secondary">
-            {cta.secondary}
+          <Button
+            href={cta.secondary.href}
+            variant="secondary"
+            {...(cta.secondary.href.startsWith('http') && { target: '_blank', rel: 'noreferrer' })}
+          >
+            {cta.secondary.label}
           </Button>
         </div>
+        {cta.reassurance && <p className="text-xs text-muted mt-4">{cta.reassurance}</p>}
       </motion.div>
 
       <motion.div
