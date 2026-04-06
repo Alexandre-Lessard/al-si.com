@@ -2,6 +2,7 @@ export const translations = {
   fr: {
     hero: {
       heading: ['Alexandre Lessard', 'Applications web, SaaS & automatisation'],
+      brand: 'Solutions intégrées',
       subtitle: "Je transforme vos besoins d'affaires en solutions techniques concrètes.",
       alt: 'Alexandre Lessard développeur full-stack',
       cta: { primary: 'Discuter de votre projet', secondary: 'Voir mes projets' },
@@ -167,12 +168,13 @@ export const translations = {
       contact: 'Contact',
     },
     footer: {
-      text: 'Services informatiques',
+      text: 'Solutions intégrées',
     },
   },
   en: {
     hero: {
       heading: ['Alexandre Lessard', 'Web apps, SaaS & automation'],
+      brand: 'Integrated Solutions',
       subtitle: 'I turn your business needs into concrete technical solutions.',
       alt: 'Alexandre Lessard full-stack developer',
       cta: { primary: 'Discuss your project', secondary: 'View my projects' },
@@ -336,7 +338,7 @@ export const translations = {
       contact: 'Contact',
     },
     footer: {
-      text: 'IT services',
+      text: 'Integrated Solutions',
     },
   },
 };

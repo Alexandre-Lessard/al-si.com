@@ -5,7 +5,7 @@ import { Button } from '../components/ui';
 
 const Hero = ({ lang }) => {
   const t = translations[lang] || translations.fr;
-  const { heading, subtitle, cta, alt } = t.hero;
+  const { heading, brand, subtitle, cta, alt } = t.hero;
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -20,7 +20,11 @@ const Hero = ({ lang }) => {
         transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeOut' }}
       >
         <p className="text-accent text-sm font-medium uppercase tracking-[0.15em] mb-4">{heading[1]}</p>
-        <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-bold tracking-tight leading-[1.1] mb-6">{heading[0]}</h1>
+        <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-bold tracking-tight leading-[1.1] mb-6">
+          Alexandre Lessard
+          <br />
+          <span className="text-text/60 font-semibold">{brand}</span>
+        </h1>
         <p className="text-lg text-muted mb-10 max-w-lg max-[960px]:mx-auto">{subtitle}</p>
         <div className="flex gap-4 max-[960px]:justify-center flex-wrap">
           <Button href="#contact" variant="primary">
