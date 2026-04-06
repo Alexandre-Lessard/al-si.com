@@ -5,7 +5,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 
 const About = ({ lang }) => {
   const t = translations[lang] || translations.fr;
-  const { title, paragraphs, recent, stats } = t.about;
+  const { title, paragraphs, method, recent, stats } = t.about;
 
   return (
     <section id="about" className={sectionClasses}>
@@ -17,10 +17,23 @@ const About = ({ lang }) => {
         <ScrollReveal>
           <div>
             {paragraphs.map((p, i) => (
-              <p key={i} className="text-base text-muted leading-relaxed mb-8">
+              <p key={i} className="text-base text-muted leading-relaxed mb-6">
                 {p}
               </p>
             ))}
+            {method && (
+              <div className="mt-8 mb-2">
+                <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">{method.title}</h3>
+                <ul className="space-y-3">
+                  {method.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-base text-muted leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {recent && (
               <div className="mt-8 pt-8 border-t border-line">
                 <h3 className="text-lg font-semibold mb-1">{recent.title}</h3>

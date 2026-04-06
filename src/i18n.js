@@ -5,7 +5,7 @@ export const translations = {
       heading: ['Vos opérations méritent mieux', "qu'Excel et du copier-coller."],
       brand: 'Solutions intégrées',
       subtitle:
-        'Je conçois, automatise et fais évoluer des applications web sur mesure pour les entreprises qui veulent gagner du temps, structurer leurs opérations ou lancer un nouveau produit.',
+        'Je vous aide à gagner du temps, structurer vos opérations et lancer vos idées — avec des applications web sur mesure, du cadrage à la mise en production.',
       proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
       alt: 'Alexandre Lessard développeur full-stack',
       cta: {
@@ -20,10 +20,18 @@ export const translations = {
     about: {
       title: 'À propos de moi',
       paragraphs: [
-        "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience en TI. J'aide les entreprises à concevoir et déployer des applications web sur mesure, des plateformes SaaS, des outils internes et des automatisations qui simplifient leurs opérations.",
-        "Mon profil hybride développement + infrastructure me permet de prendre en charge un projet du début à la fin : cadrage du besoin, conception, développement, déploiement et maintenance. Vous traitez avec une seule personne, qui comprend autant le code que l'environnement où il tourne.",
-        "J'aborde chaque mandat avec une vision pragmatique : comprendre rapidement le besoin réel, proposer une solution adaptée à votre contexte, livrer quelque chose de fiable et facile à faire évoluer. Pas de jargon inutile, pas de surdimensionnement — juste une solution qui fonctionne.",
+        "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience en TI. J'aide les entreprises à concevoir, automatiser et faire évoluer des applications web qui simplifient leurs opérations et soutiennent leur croissance.",
+        "Mon profil hybride développement + infrastructure me permet de prendre en charge un projet du début à la fin, sans dépendre d'une équipe entière. Vous traitez avec une seule personne, qui comprend autant le code que l'environnement où il tourne.",
       ],
+      method: {
+        title: 'Ma méthode',
+        items: [
+          "Comprendre votre métier avant d'écrire la moindre ligne de code.",
+          'Proposer une solution adaptée à votre contexte, pas la plus complexe.',
+          "Livrer en continu avec des points réguliers, jamais d'effet tunnel.",
+          'Rester disponible après la mise en production pour les ajustements.',
+        ],
+      },
       recent: {
         title: 'Expérience récente',
         subtitle: 'Plateforme SaaS — secteur construction',
@@ -66,7 +74,7 @@ export const translations = {
         {
           tag: 'Site qui convertit',
           client: 'Signé Gagné — Charpentier-menuisier',
-          text: "Refonte d'un site DIY GoDaddy en site professionnel optimisé pour Google Ads. Le client reçoit maintenant de vrais appels.",
+          text: 'Site DIY GoDaddy remplacé par un vrai site codé sur stack moderne, optimisé pour Google Ads. Le client reçoit maintenant de vrais appels.',
           stack: 'Refonte · SEO · Conversion',
         },
         {
@@ -272,6 +280,15 @@ export const translations = {
         'My hybrid development + infrastructure profile allows me to take a project from start to finish: scoping the need, designing, developing, deploying and maintaining. You deal with a single person, who understands both the code and the environment it runs in.',
         'I approach every project pragmatically: quickly understanding the real need, proposing a solution that fits your context, and delivering something reliable and easy to evolve. No unnecessary jargon, no over-engineering — just a solution that works.',
       ],
+      method: {
+        title: 'My method',
+        items: [
+          'Understand your business before writing a single line of code.',
+          'Propose a solution that fits your context, not the most complex one.',
+          'Deliver continuously with regular check-ins, never a tunnel effect.',
+          'Stay available after launch for adjustments and follow-ups.',
+        ],
+      },
       recent: {
         title: 'Recent experience',
         subtitle: 'SaaS platform — construction industry',
@@ -313,7 +330,7 @@ export const translations = {
         {
           tag: 'Website that converts',
           client: 'Signé Gagné — Carpenter',
-          text: 'Rebuilt a DIY GoDaddy site into a professional site optimized for Google Ads. The client now gets real calls.',
+          text: 'DIY GoDaddy site replaced by a real site built on a modern stack and optimized for Google Ads. The client now gets real calls.',
           stack: 'Redesign · SEO · Conversion',
         },
         {
