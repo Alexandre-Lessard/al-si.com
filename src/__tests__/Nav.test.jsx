@@ -5,7 +5,7 @@ import Nav from '../sections/Nav';
 describe('Nav', () => {
   it('renders logo', () => {
     render(<Nav lang="fr" setLang={() => {}} articleSlug={null} onBack={() => {}} />);
-    expect(screen.getByText('AL-SI')).toBeInTheDocument();
+    expect(screen.getByAltText('AL-SI')).toBeInTheDocument();
   });
 
   it('renders navigation links in homepage mode', () => {

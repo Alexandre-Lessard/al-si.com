@@ -74,10 +74,10 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
       transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeInOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-bg/60 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.4)]"
     >
-      <div className={`${containerClasses} flex items-center justify-between h-16`}>
+      <div className={`${containerClasses} flex items-center justify-between h-20`}>
         {/* Logo */}
-        <a href="#accueil" className="text-lg font-bold tracking-wider hover:text-accent">
-          AL-SI
+        <a href="#accueil" className="hover:opacity-80 transition-opacity -ml-3">
+          <img src="/logo.svg" alt="AL-SI" className="h-24" />
         </a>
 
         {articleSlug ? (

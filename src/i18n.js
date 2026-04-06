@@ -84,6 +84,7 @@ export const translations = {
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
           url: 'https://rnbp.ca/',
+          github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
           title: "Plugin WordPress — Gestion d'abonnements",
@@ -93,6 +94,29 @@ export const translations = {
           gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
           icon: '🥋',
           comingSoon: true,
+        },
+      ],
+    },
+    testimonials: {
+      title: 'Témoignages',
+      items: [
+        {
+          quote:
+            "J'avais fait mon site moi-même sur GoDaddy, puis j'avais essayé Google Ads, mais ça donnait rien — je dépensais pour rien. Alexandre a tout refait au complet : un vrai site professionnel, bien positionné sur Google, et surtout monté pour que mes publicités donnent enfin des résultats. Maintenant, quand quelqu'un clique sur mon annonce, il arrive sur quelque chose de solide et ça paraît. Je reçois des vrais appels.",
+          name: 'Samuel Gagné',
+          role: 'Propriétaire, Signé Gagné',
+        },
+        {
+          quote:
+            "J'avais besoin d'un site pour mon école de survie, avec un calendrier d'événements facile à gérer. Alexandre m'a monté quelque chose de propre, rapide et simple à mettre à jour. Le résultat est vraiment professionnel et ça représente bien ce que je fais. Je le recommande sans hésiter.",
+          name: 'Alex Courchesne',
+          role: 'Fondateur, Terra Indomita',
+        },
+        {
+          quote:
+            "Alexandre, c'est quelqu'un qui comprend vite où tu veux aller avec un projet et qui est capable de le livrer au complet. Développement, infrastructure, mise en ligne — il gère tout ça de A à Z. C'est un gars fiable, autonome et qui trouve toujours une solution.",
+          name: 'Martin Gagné',
+          role: 'Entrepreneur',
         },
       ],
     },
@@ -232,6 +256,7 @@ export const translations = {
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
           url: 'https://rnbp.ca/',
+          github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
           title: 'WordPress Plugin — Membership Management',
@@ -241,6 +266,29 @@ export const translations = {
           gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
           icon: '🥋',
           comingSoon: true,
+        },
+      ],
+    },
+    testimonials: {
+      title: 'Testimonials',
+      items: [
+        {
+          quote:
+            "I had built my website myself on GoDaddy and tried Google Ads, but it wasn't working — I was spending money for nothing. Alexandre rebuilt everything from scratch: a professional site, well ranked on Google, and set up so my ads actually convert. Now when someone clicks my ad, they land on something solid and it shows. I'm getting real calls.",
+          name: 'Samuel Gagné',
+          role: 'Owner, Signé Gagné',
+        },
+        {
+          quote:
+            'I needed a website for my outdoor survival school, with an event calendar that was easy to manage. Alexandre built something clean, fast and simple to update. The result is truly professional and represents what I do perfectly. I recommend him without hesitation.',
+          name: 'Alex Courchesne',
+          role: 'Founder, Terra Indomita',
+        },
+        {
+          quote:
+            "Alexandre quickly understands where you want to go with a project and can deliver the whole thing. Development, infrastructure, deployment — he handles it all from A to Z. He's reliable, autonomous and always finds a solution.",
+          name: 'Martin Gagné',
+          role: 'Entrepreneur',
         },
       ],
     },
