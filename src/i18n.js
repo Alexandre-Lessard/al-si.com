@@ -5,7 +5,7 @@ export const translations = {
       heading: ['Vos opérations méritent mieux', "qu'Excel et du copier-coller."],
       brand: 'Solutions intégrées',
       subtitle:
-        'Je vous aide à gagner du temps, structurer vos opérations et lancer vos idées — avec des applications web sur mesure, du cadrage à la mise en production.',
+        "Je conçois des applications web sur mesure, j'automatise vos opérations et je connecte vos outils — du cadrage à la mise en production.",
       proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
       alt: 'Alexandre Lessard développeur full-stack',
       cta: {
@@ -118,14 +118,14 @@ export const translations = {
           ],
         },
         {
-          title: 'Déploiement & infrastructure',
+          title: 'Déploiement & mise en production',
           description:
-            'Pour vous assurer que vos applications tournent vite, restent stables et sont prêtes à grandir avec vous.',
+            'Inclus dans chaque mandat. Vos applications sont mises en ligne, monitorées et prêtes à grandir avec vous.',
           items: [
             'Mise en production et déploiement automatisé',
-            'Administration de serveurs Linux',
-            'Performance, sécurité et monitoring',
-            'Infrastructure réseau au besoin',
+            'Hébergement performant et sécurisé',
+            'Monitoring et maintenance évolutive',
+            'Pas un service séparé — toujours inclus',
           ],
         },
       ],
@@ -134,20 +134,12 @@ export const translations = {
       title: 'Projets',
       items: [
         {
-          title: 'Portfolio v2',
-          description:
-            "Refonte complète d'un portfolio sur stack moderne (React, Vite, Tailwind v4) avec optimisation SEO et performance documentée comme étude de cas publique.",
-          outcome: 'Étude de cas SEO en cours — résultats publiés sous peu.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
-          image: '/share-card.png',
-          github: 'https://github.com/Alexandre-Lessard/al-si.com',
-          githubOnly: true,
-        },
-        {
           title: 'Terra Indomita',
-          description:
-            "Site vitrine avec calendrier d'événements dynamique pour une école de survie, conçu pour être simple à mettre à jour par le client. Frontend vanilla JS, backend Directus (REST API).",
-          outcome: 'En production sur Cloudflare — autonome côté client.',
+          situation:
+            "École de survie qui voulait gérer son site et son calendrier d'événements en autonomie, sans dépendre d'un prestataire pour chaque mise à jour.",
+          intervention:
+            'Site vitrine avec calendrier dynamique connecté à Directus (REST API), déployé sur Cloudflare.',
+          result: 'En production. Géré en autonomie par le client depuis des mois.',
           tags: ['JavaScript', 'Directus', 'REST API', 'Cloudflare'],
           gradient: 'bg-gradient-to-br from-green-700/20 to-green-900/10',
           image: '/terra-indomita-logo.svg',
@@ -156,22 +148,26 @@ export const translations = {
         },
         {
           title: 'RNBP Canada',
-          description:
-            "Plateforme SaaS permettant d'enregistrer, protéger et retrouver des biens de valeur. Co-fondateur technique et développement complet de la plateforme.",
-          outcome: 'En production — co-fondateur du projet.',
+          situation:
+            "Lancer une plateforme SaaS d'enregistrement et de protection de biens de valeur, du jour 1, sans équipe technique préexistante.",
+          intervention:
+            "Co-conception, développement complet front et back, mise en place de l'infrastructure de production sur Cloudflare.",
+          result: 'En production, utilisée par de vrais clients. Co-fondateur technique du projet.',
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
           url: 'https://rnbp.ca/',
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
-          title: "Plugin WordPress — Gestion d'abonnements",
-          description:
-            "Plugin sur mesure pour la gestion des membres et abonnements d'un dojo d'arts martiaux. Interface d'administration intégrée à WordPress.",
-          tags: ['WordPress', 'PHP', 'Plugin'],
-          gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
-          icon: '🥋',
-          comingSoon: true,
+          title: 'Portfolio v2',
+          situation: 'Mon portfolio précédent était sur un stack vieillissant, peu performant et mal référencé.',
+          intervention:
+            'Refonte complète sur React 19, Vite et Tailwind v4. Audit SEO méthodique, suivi documenté publiquement.',
+          result: "Étude de cas SEO publique en cours. Méthodologie documentée dans l'article.",
+          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          image: '/share-card.png',
+          github: 'https://github.com/Alexandre-Lessard/al-si.com',
+          githubOnly: true,
         },
       ],
     },
@@ -214,18 +210,6 @@ export const translations = {
           wipLabel: 'Étude en cours — résultats finaux à venir',
           slug: 'seo-etude-de-cas',
         },
-        {
-          title: "Apprendre Kotlin en contribuant à l'open source",
-          date: 'À venir',
-          excerpt:
-            "Retour d'expérience sur l'apprentissage de Kotlin à travers la contribution à un mod Minecraft en Java/Kotlin.",
-        },
-        {
-          title: 'Transformer un PC gaming en serveur NAS',
-          date: 'À venir',
-          excerpt:
-            "Documentation du processus de conversion d'un ordinateur de gaming sous Linux en serveur NAS polyvalent.",
-        },
       ],
     },
     contact: {
@@ -261,7 +245,7 @@ export const translations = {
       heading: ['Your operations deserve better', 'than Excel and copy-paste.'],
       brand: 'Integrated Solutions',
       subtitle:
-        'I design, automate and evolve custom web applications for businesses that want to save time, structure their operations or launch a new product.',
+        'I build custom web applications, automate your operations and connect your tools — from scoping to production.',
       proofAnchor: '10+ years in IT · From scoping to production · Reply within 24 h',
       alt: 'Alexandre Lessard full-stack developer',
       cta: {
@@ -373,13 +357,14 @@ export const translations = {
           ],
         },
         {
-          title: 'Deployment & infrastructure',
-          description: 'To make sure your applications run fast, stay stable, and are ready to grow with you.',
+          title: 'Deployment & launch',
+          description:
+            'Included in every project. Your applications are deployed, monitored and ready to grow with you.',
           items: [
             'Production deployment and automation',
-            'Linux server administration',
-            'Performance, security and monitoring',
-            'Network infrastructure when needed',
+            'Performant and secure hosting',
+            'Monitoring and ongoing maintenance',
+            'Not a separate service — always included',
           ],
         },
       ],
@@ -388,20 +373,12 @@ export const translations = {
       title: 'Projects',
       items: [
         {
-          title: 'Portfolio v2',
-          description:
-            'Complete redesign of a developer portfolio on a modern stack (React, Vite, Tailwind v4) with SEO and performance optimization documented as a public case study.',
-          outcome: 'SEO case study in progress — final results coming soon.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
-          image: '/share-card.png',
-          github: 'https://github.com/Alexandre-Lessard/al-si.com',
-          githubOnly: true,
-        },
-        {
           title: 'Terra Indomita',
-          description:
-            'Marketing site with dynamic event calendar for an outdoor survival school, built to be easy for the client to update. Vanilla JS frontend, Directus backend (REST API).',
-          outcome: 'Live on Cloudflare — fully autonomous client side.',
+          situation:
+            'Outdoor survival school that wanted to manage its site and event calendar autonomously, without depending on a vendor for every update.',
+          intervention:
+            'Marketing site with a dynamic event calendar connected to Directus (REST API), deployed on Cloudflare.',
+          result: 'Live in production. Managed autonomously by the client for months.',
           tags: ['JavaScript', 'Directus', 'REST API', 'Cloudflare'],
           gradient: 'bg-gradient-to-br from-green-700/20 to-green-900/10',
           image: '/terra-indomita-logo.svg',
@@ -410,22 +387,25 @@ export const translations = {
         },
         {
           title: 'RNBP Canada',
-          description:
-            'SaaS platform for registering, protecting and recovering valuable possessions. Technical co-founder and full development of the platform.',
-          outcome: 'In production — co-founder of the project.',
+          situation:
+            'Launching a SaaS platform for registering and protecting valuable assets, from day one, with no preexisting technical team.',
+          intervention: 'Co-design, full front and back development, production infrastructure setup on Cloudflare.',
+          result: 'Live in production, used by real customers. Technical co-founder of the project.',
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
           url: 'https://rnbp.ca/',
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
-          title: 'WordPress Plugin — Membership Management',
-          description:
-            'Custom plugin for member and subscription management at a local martial arts dojo. Admin interface integrated into WordPress.',
-          tags: ['WordPress', 'PHP', 'Plugin'],
-          gradient: 'bg-gradient-to-br from-blue-600/15 to-transparent',
-          icon: '🥋',
-          comingSoon: true,
+          title: 'Portfolio v2',
+          situation: 'My previous portfolio was on an aging stack, slow and poorly indexed by search engines.',
+          intervention:
+            'Complete redesign on React 19, Vite and Tailwind v4. Methodical SEO audit, progress documented publicly.',
+          result: 'Public SEO case study in progress. Methodology already documented in the article.',
+          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+          image: '/share-card.png',
+          github: 'https://github.com/Alexandre-Lessard/al-si.com',
+          githubOnly: true,
         },
       ],
     },
@@ -466,16 +446,6 @@ export const translations = {
           excerpt: 'Case study: technical audit, stack modernization and SEO optimization of a developer portfolio.',
           wipLabel: 'Ongoing study — final results coming soon',
           slug: 'seo-etude-de-cas',
-        },
-        {
-          title: 'Learning Kotlin Through Open Source Contributions',
-          date: 'Coming soon',
-          excerpt: 'Experience report on learning Kotlin by contributing to a Minecraft mod built with Java/Kotlin.',
-        },
-        {
-          title: 'Turning a Gaming PC Into a NAS Server',
-          date: 'Coming soon',
-          excerpt: 'Documenting the process of converting a Linux gaming PC into a versatile NAS and gaming server.',
         },
       ],
     },

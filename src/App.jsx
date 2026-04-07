@@ -86,7 +86,7 @@ function App() {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen overflow-x-clip"
       style={{
         background: `
           radial-gradient(at 90% 15%, rgba(255, 123, 84, 0.35), transparent 55%),

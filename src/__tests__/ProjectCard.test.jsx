@@ -5,20 +5,16 @@ import Projects from '../sections/Projects';
 describe('ProjectCard', () => {
   it('renders all project cards', () => {
     render(<Projects lang="fr" />);
-    expect(screen.getByText("Plugin WordPress — Gestion d'abonnements")).toBeInTheDocument();
+    expect(screen.getByText('Terra Indomita')).toBeInTheDocument();
+    expect(screen.getByText('RNBP Canada')).toBeInTheDocument();
+    expect(screen.getByText('Portfolio v2')).toBeInTheDocument();
   });
 
-  it('shows coming soon badge on comingSoon projects', () => {
+  it('renders situation, intervention and result for each card', () => {
     render(<Projects lang="fr" />);
-    expect(screen.getByText('À venir')).toBeInTheDocument();
-  });
-
-  it('does not render a stretched link for comingSoon projects', () => {
-    render(<Projects lang="fr" />);
-    const badge = screen.getByText('À venir');
-    const card = badge.closest('article');
-    const stretchedLink = card.querySelector('a.absolute.inset-0');
-    expect(stretchedLink).toBeNull();
+    expect(screen.getByText(/École de survie qui voulait gérer son site/)).toBeInTheDocument();
+    expect(screen.getByText(/Lancer une plateforme SaaS/)).toBeInTheDocument();
+    expect(screen.getByText(/Mon portfolio précédent/)).toBeInTheDocument();
   });
 
   it('renders a stretched link for clickable projects', () => {

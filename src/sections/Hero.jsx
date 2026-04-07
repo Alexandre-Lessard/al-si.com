@@ -14,7 +14,7 @@ const Hero = ({ lang }) => {
       className={`${containerClasses} flex gap-12 items-center min-h-[85vh] pt-24 pb-20 border-b border-line max-[1450px]:gap-8 max-[1200px]:flex-col max-[1200px]:text-center max-[1200px]:pt-28 max-[1200px]:gap-10`}
     >
       <motion.div
-        className="flex-1 max-[1450px]:max-w-[640px] max-[1200px]:max-w-none"
+        className="flex-1 min-w-0 max-[1450px]:max-w-[640px] max-[1200px]:max-w-none"
         initial={prefersReducedMotion ? false : { opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeOut' }}

@@ -10,16 +10,13 @@ const GitHubIcon = ({ className }) => (
   </svg>
 );
 
-const comingSoonLabel = { fr: 'À venir', en: 'Coming soon' };
-
-const ProjectCard = ({ project, lang }) => {
+const ProjectCard = ({ project }) => {
   const hasGitHub = !!project.github;
   const linkUrl = project.githubOnly ? project.github : project.url;
-  const isClickable = !!linkUrl && !project.comingSoon;
+  const isClickable = !!linkUrl;
 
   return (
-    <Card dimmed={project.comingSoon} className="overflow-hidden flex flex-col relative group">
-      {/* Stretched link covers the entire card */}
+    <Card className="overflow-hidden flex flex-col relative group">
       {isClickable && (
         <a
           href={linkUrl}
@@ -30,14 +27,6 @@ const ProjectCard = ({ project, lang }) => {
         />
       )}
 
-      {/* Coming soon badge overlay */}
-      {project.comingSoon && (
-        <span className="absolute top-3 left-3 z-10 text-xs font-medium bg-accent/90 text-black px-3 py-1 rounded-full">
-          {comingSoonLabel[lang] || comingSoonLabel.fr}
-        </span>
-      )}
-
-      {/* GitHub icon - above stretched link */}
       {hasGitHub && (
         <button
           onClick={() => window.open(project.github, '_blank', 'noopener')}
@@ -48,7 +37,6 @@ const ProjectCard = ({ project, lang }) => {
         </button>
       )}
 
-      {/* Visual area - pointer-events-none so clicks pass through to stretched link */}
       <div
         className={`aspect-video ${project.gradient || ''} flex items-center justify-center overflow-hidden pointer-events-none`}
       >
@@ -67,11 +55,15 @@ const ProjectCard = ({ project, lang }) => {
         )}
       </div>
 
-      {/* Content */}
       <div className="p-6 flex flex-col flex-1 pointer-events-none">
-        <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-        <p className="text-sm text-muted mb-3 flex-1">{project.description}</p>
-        {project.outcome && <p className="text-sm text-accent font-medium mb-4">{project.outcome}</p>}
+        <h3 className="text-lg font-semibold mb-4">{project.title}</h3>
+
+        <div className="space-y-3 flex-1 mb-5">
+          <p className="text-sm text-muted leading-relaxed">{project.situation}</p>
+          <p className="text-sm text-muted leading-relaxed">{project.intervention}</p>
+          <p className="text-sm text-accent font-medium leading-relaxed">{project.result}</p>
+        </div>
+
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, j) => (
             <span key={j} className="text-xs bg-surface-hover border border-line rounded-full px-3 py-1 text-muted">
@@ -94,10 +86,10 @@ const Projects = ({ lang }) => {
         <SectionHeader title={title} />
       </ScrollReveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((project, i) => (
           <ScrollReveal key={i} delay={i * 0.1}>
-            <ProjectCard project={project} lang={lang} />
+            <ProjectCard project={project} />
           </ScrollReveal>
         ))}
       </div>
