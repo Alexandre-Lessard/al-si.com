@@ -5,10 +5,10 @@
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vike dev",
+    "build": "vike build && rm -f dist/client/index.html dist/client/index.pageContext.json && node scripts/generate-sitemap.mjs && cp -r functions dist/client/functions",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vike preview",
     "deploy": "bash scripts/deploy.sh",
     "deploy:preview": "bash scripts/deploy.sh preview",
     "format": "prettier --write .",
@@ -35,7 +35,9 @@
   "dependencies": {
     "framer-motion": "^12.35.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "vike": "^0.4.256",
+    "vike-react": "^0.6.21"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -53,6 +55,7 @@
     "happy-dom": "^20.8.4",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
+    "rollup-plugin-visualizer": "^6.0.11",
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4.2.1",
     "vite": "^7.2.2",

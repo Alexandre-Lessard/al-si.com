@@ -4,7 +4,7 @@ import { translations } from '../i18n';
 import { containerClasses } from '../styles';
 import LanguageToggle from '../components/LanguageToggle';
 
-const Nav = ({ lang, setLang, articleSlug, onBack }) => {
+const Nav = ({ lang, setLang, articleSlug, onBack, homeUrl = '/' }) => {
   const t = translations[lang] || translations.fr;
   const nav = t.nav;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -77,19 +77,20 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
     >
       <div className={`${containerClasses} flex items-center justify-between h-20`}>
         {/* Logo */}
-        <a href="#accueil" className="hover:opacity-80 transition-opacity -ml-3">
-          <img src="/logo.svg" alt="AL-SI" className="h-24" />
+        <a href={homeUrl} className="hover:opacity-80 transition-opacity -ml-3">
+          <img src="/logo.svg" alt="AL-SI" width="180" height="96" className="h-24 w-auto" />
         </a>
 
         {articleSlug ? (
           /* Article mode: back link + lang toggle */
           <nav className="flex items-center gap-6">
-            <button
+            <a
+              href={homeUrl}
               onClick={onBack}
-              className="text-sm text-muted hover:text-accent transition-colors duration-200 bg-transparent border-0 cursor-pointer p-0 flex items-center gap-1.5"
+              className="text-sm text-muted hover:text-accent transition-colors duration-200 flex items-center gap-1.5"
             >
               <span aria-hidden="true">&larr;</span> {lang === 'en' ? 'Back' : 'Retour'}
-            </button>
+            </a>
             <LanguageToggle lang={lang} setLang={setLang} />
           </nav>
         ) : (

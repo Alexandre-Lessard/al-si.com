@@ -23,10 +23,10 @@ npm run build
 
 if [ "$MODE" = "production" ]; then
   echo "Deploying to PRODUCTION on Cloudflare Pages (project: $PROJECT)..."
-  npx wrangler pages deploy dist --project-name="$PROJECT" --branch=main --commit-dirty=true
+  npx wrangler pages deploy dist/client --project-name="$PROJECT" --branch=main --commit-dirty=true
   echo "Done. Remember to purge the Cloudflare cache."
 else
   echo "Deploying PREVIEW '$MODE' on Cloudflare Pages (project: $PROJECT)..."
-  npx wrangler pages deploy dist --project-name="$PROJECT" --branch="$MODE" --commit-dirty=true
+  npx wrangler pages deploy dist/client --project-name="$PROJECT" --branch="$MODE" --commit-dirty=true
   echo "Done. Preview URL above. Production (al-si.com) is untouched."
 fi

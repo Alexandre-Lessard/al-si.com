@@ -44,6 +44,10 @@ const ProjectCard = ({ project }) => {
           <img
             src={project.image}
             alt={project.title}
+            width="1280"
+            height="720"
+            loading="lazy"
+            decoding="async"
             className={
               project.image.endsWith('.svg')
                 ? 'w-3/4 h-3/4 opacity-60 object-contain'

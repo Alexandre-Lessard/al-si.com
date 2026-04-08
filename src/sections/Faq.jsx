@@ -80,11 +80,11 @@ const Faq = ({ lang }) => {
 
       <div className="max-w-3xl mx-auto space-y-4">
         {items.map((item, i) => (
-          <ScrollReveal key={item.question} delay={i * 0.05}>
+          <ScrollReveal key={i} delay={i * 0.05}>
             <FaqItem
               item={item}
-              isOpen={openItems.has(item.question)}
-              onToggle={() => toggle(item.question)}
+              isOpen={openItems.has(i)}
+              onToggle={() => toggle(i)}
               id={`faq-${i}`}
               animate={animate}
             />
