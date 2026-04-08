@@ -57,7 +57,7 @@ const ProjectCard = ({ project }) => {
 
       <div className="p-6 flex flex-col flex-1 pointer-events-none">
         <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-        {project.subtitle && <p className="text-xs text-muted mb-4">{project.subtitle}</p>}
+        <p className="text-xs text-muted mb-4">{project.subtitle}</p>
 
         <div className="space-y-3 flex-1 mb-5">
           <p className="text-sm text-muted leading-relaxed">{project.situation}</p>

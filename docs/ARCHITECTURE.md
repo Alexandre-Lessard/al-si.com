@@ -7,36 +7,57 @@ Internal reference for understanding how the site is built.
 ```
 src/
   main.jsx                    # React entry point
-  App.jsx                     # Main layout, language management
+  App.jsx                     # Main layout, language and routing management
   i18n.js                     # All FR/EN content
   styles.js                   # Shared CSS classes (section, container)
   icons.jsx                   # Inline SVG icons for services
   components/
     ui.jsx                    # Reusable components (Button, SectionHeader)
+    Card.jsx                  # Reusable card wrapper used across sections
     ScrollReveal.jsx          # Framer Motion fade-in on scroll wrapper
+    LanguageToggle.jsx        # FR/EN toggle button (desktop and mobile)
+    ArticleLayout.jsx         # Reusable article layout
   sections/
     Nav.jsx                   # Fixed nav, hide on scroll, mobile hamburger
-    Hero.jsx                  # Hero with photo and CTA
-    About.jsx                 # About + recent experience + stats
-    Services.jsx              # 3-card services grid
-    Projects.jsx              # 4-card projects grid
+    Hero.jsx                  # Hero with promise, photo, CTAs and proof anchor
+    ProofBand.jsx             # 3 mini case archetypes shown right after Hero
+    Services.jsx              # 3-card services grid with descriptions
+    HowItWorks.jsx            # 4-step process (discussion, scoping, build, launch)
+    Projects.jsx              # 3-card projects grid with situation/intervention/result
+    Testimonials.jsx          # 3-card client testimonials grid
+    Faq.jsx                   # Accordion FAQ (multi-open, animated)
+    About.jsx                 # About paragraphs, audience, method, recent, stats
     Articles.jsx              # Articles grid
     Contact.jsx               # CTA banner with contact buttons
     Footer.jsx                # Copyright
   articles/
     index.js                  # Article registry (slug -> component)
     SeoEtudeDeCas.jsx         # Article: SEO case study
-  components/
-    ArticleLayout.jsx         # Reusable article layout
 public/
   alexandre-lessard.webp      # Personal photo (65KB)
-  share-card.png              # OG image for social sharing (1200x630)
+  logo.svg                    # AL-SI logo (SVG, 3 colors)
+  share-card.png              # OG image for social sharing (1536x1024)
   favicon.ico
   robots.txt
   sitemap.xml
 index.html                    # Static HTML with meta tags, JSON-LD, GA4
 index.css                     # Tailwind v4 theme, global styles
 ```
+
+## Homepage section order
+
+Sections are rendered in this order in `App.jsx` (homepage mode):
+
+1. `Hero` — promise, photo, CTAs
+2. `ProofBand` — 3 mini cases for instant credibility
+3. `Services` — 3 service categories with descriptions
+4. `HowItWorks` — 4-step process
+5. `Projects` — 3 project cards with structured situation/intervention/result
+6. `Testimonials` — 3 client testimonials
+7. `Faq` — accordion answering common prospect objections
+8. `About` — paragraphs, audience, method, recent experience, stats
+9. `Articles` — articles grid (currently 1 published article)
+10. `Contact` — final CTA with scheduling link, email, social
 
 ## How content works
 
@@ -128,17 +149,39 @@ The badge displays in the header, below the subtitle. Used to indicate an in-pro
 
 ## Project cards
 
-Cards in `Projects.jsx` support multiple modes:
+Each project in `i18n.js` under `projects.items` has the following fields:
 
-- **Clickable project**: `url` defined → the entire card opens the link
-- **GitHub only**: `githubOnly: true` + `github` → the card opens GitHub
-- **Coming soon**: `comingSoon: true` → grayed-out card (opacity-60) with "Coming soon" badge
-- **GitHub icon**: if `github` is defined, a GitHub icon appears in the top right (clickable independently)
-- **Image**: `image` points to a file in `public/`. SVGs are displayed at 75% with opacity, PNGs as object-cover.
+- `title` — project name
+- `subtitle` — short one-line descriptor shown under the title
+- `situation` — short paragraph describing the starting context and need
+- `intervention` — short paragraph describing what was built
+- `result` — short paragraph describing the outcome (rendered in accent color)
+- `tags` — array of stack/keyword tags
+- `image` — path to a file in `public/` (SVG displayed at 75% with opacity, PNG as object-cover)
+- `url` (optional) — public URL of the project
+- `github` (optional) — GitHub repository URL
+- `githubOnly` (optional) — when true and `url` is absent, the entire card links to `github`
+- `gradient` (optional) — Tailwind classes for the image area background
+
+A GitHub icon appears in the top right of any card with a `github` field, clickable independently from the card's main link.
+
+## FAQ section
+
+`Faq.jsx` renders an accordion of items from `i18n.faq.items`. Multiple items can be opened simultaneously. State is local to the component and keyed by the question text (stable across renders). Animations use Framer Motion's `AnimatePresence` and respect `prefers-reduced-motion`.
+
+## About section
+
+`About.jsx` renders, in order:
+
+- `paragraphs` — general intro paragraphs
+- `audience` — who the audience is, with a label and text
+- `method` — labeled list of working principles
+- `recent` — recent experience block
+- `stats` — sidebar of three stats (value + label)
 
 ## Adding a section
 
 1. Create `src/sections/NewSection.jsx`
-2. Add FR/EN content in `src/i18n.js`
+2. Add FR/EN content in `src/i18n.js` (parity is enforced by `src/__tests__/i18n.test.js`)
 3. Import and place the component in `App.jsx`
-4. If the section should appear in the nav, add the id in `Nav.jsx` (`ids` array in IntersectionObserver and `navLinks`)
+4. If the section should appear in the nav, add the id in `Nav.jsx` (`ids` array in IntersectionObserver, plus an entry in `navLinks`) and a label in `i18n.nav` for both languages

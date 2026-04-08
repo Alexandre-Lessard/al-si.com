@@ -269,6 +269,7 @@ export const translations = {
       about: 'À propos',
       services: 'Services',
       projects: 'Projets',
+      faq: 'FAQ',
       articles: 'Articles',
       contact: 'Contact',
     },
@@ -297,9 +298,8 @@ export const translations = {
     about: {
       title: 'About Me',
       paragraphs: [
-        'Full-stack developer and network administrator with over ten years of experience in IT. I help businesses design and deploy custom web applications, SaaS platforms, internal tools and automations that simplify their operations.',
-        'My hybrid development + infrastructure profile allows me to take a project from start to finish: scoping the need, designing, developing, deploying and maintaining. You deal with a single person, who understands both the code and the environment it runs in.',
-        'I approach every project pragmatically: quickly understanding the real need, proposing a solution that fits your context, and delivering something reliable and easy to evolve. No unnecessary jargon, no over-engineering — just a solution that works.',
+        'Full-stack developer and network administrator with over ten years of experience in IT. I help businesses design, automate and evolve web applications that simplify their operations and support their growth.',
+        'My hybrid development + infrastructure profile allows me to take a project from start to finish, without depending on a full team. You deal with a single person, who understands both the code and the environment it runs in.',
       ],
       audience: {
         label: 'Who I work with',
@@ -540,6 +540,7 @@ export const translations = {
       about: 'About',
       services: 'Services',
       projects: 'Projects',
+      faq: 'FAQ',
       articles: 'Articles',
       contact: 'Contact',
     },

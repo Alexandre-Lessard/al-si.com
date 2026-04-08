@@ -21,32 +21,26 @@ const About = ({ lang }) => {
                 {p}
               </p>
             ))}
-            {audience && (
-              <div className="mt-8">
-                <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">{audience.label}</h3>
-                <p className="text-base text-muted leading-relaxed">{audience.text}</p>
-              </div>
-            )}
-            {method && (
-              <div className="mt-8 mb-2">
-                <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">{method.title}</h3>
-                <ul className="space-y-3">
-                  {method.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-base text-muted leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {recent && (
-              <div className="mt-8 pt-8 border-t border-line">
-                <h3 className="text-lg font-semibold mb-1">{recent.title}</h3>
-                <p className="text-sm text-accent mb-4">{recent.subtitle}</p>
-                <p className="text-base text-muted leading-relaxed">{recent.text}</p>
-              </div>
-            )}
+            <div className="mt-8">
+              <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">{audience.label}</h3>
+              <p className="text-base text-muted leading-relaxed">{audience.text}</p>
+            </div>
+            <div className="mt-8 mb-2">
+              <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">{method.title}</h3>
+              <ul className="space-y-3">
+                {method.items.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-base text-muted leading-relaxed">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-8 pt-8 border-t border-line">
+              <h3 className="text-lg font-semibold mb-1">{recent.title}</h3>
+              <p className="text-sm text-accent mb-4">{recent.subtitle}</p>
+              <p className="text-base text-muted leading-relaxed">{recent.text}</p>
+            </div>
           </div>
         </ScrollReveal>
 

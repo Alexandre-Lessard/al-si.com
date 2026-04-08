@@ -33,7 +33,7 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
   // Track active section via IntersectionObserver (skip in article mode)
   useEffect(() => {
     if (articleSlug) return;
-    const ids = ['about', 'services', 'projects', 'articles', 'contact'];
+    const ids = ['about', 'services', 'projects', 'faq', 'articles', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -57,6 +57,7 @@ const Nav = ({ lang, setLang, articleSlug, onBack }) => {
     { id: 'about', label: nav.about },
     { id: 'services', label: nav.services },
     { id: 'projects', label: nav.projects },
+    { id: 'faq', label: nav.faq },
     { id: 'articles', label: nav.articles },
     { id: 'contact', label: nav.contact },
   ];

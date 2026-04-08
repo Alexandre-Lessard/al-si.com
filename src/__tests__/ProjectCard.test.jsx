@@ -17,6 +17,13 @@ describe('ProjectCard', () => {
     expect(screen.getByText(/Mon portfolio précédent/)).toBeInTheDocument();
   });
 
+  it('renders a short subtitle under each project title', () => {
+    render(<Projects lang="fr" />);
+    expect(screen.getByText(/Site vitrine \+ calendrier d'événements/)).toBeInTheDocument();
+    expect(screen.getByText(/Plateforme en ligne d'enregistrement/)).toBeInTheDocument();
+    expect(screen.getByText(/Refonte de mon propre site/)).toBeInTheDocument();
+  });
+
   it('renders a stretched link for clickable projects', () => {
     render(<Projects lang="fr" />);
     const links = document.querySelectorAll('a[aria-label]');

@@ -13,6 +13,7 @@ describe('Nav', () => {
     expect(screen.getByText('À propos')).toBeInTheDocument();
     expect(screen.getByText('Services')).toBeInTheDocument();
     expect(screen.getByText('Projets')).toBeInTheDocument();
+    expect(screen.getAllByText('FAQ').length).toBeGreaterThan(0);
   });
 
   it('renders back button in article mode', () => {

@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { translations } from '../i18n';
 import { sectionClasses } from '../styles';
 import { SectionHeader } from '../components/ui';
 import { ScrollReveal } from '../components/ScrollReveal';
 
-const ChevronIcon = ({ open }) => (
+const ChevronIcon = ({ open, animate }) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -12,33 +13,45 @@ const ChevronIcon = ({ open }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-5 h-5 shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+    className={`w-5 h-5 shrink-0 ${animate ? 'transition-transform duration-200' : ''} ${open ? 'rotate-180' : ''}`}
     aria-hidden="true"
   >
     <polyline points="6 9 12 15 18 9" />
   </svg>
 );
 
-const FaqItem = ({ item, isOpen, onToggle, index }) => {
-  const id = `faq-${index}`;
+const FaqItem = ({ item, isOpen, onToggle, id, animate }) => {
+  const buttonId = `${id}-button`;
+  const panelId = `${id}-panel`;
   return (
-    <div className="border border-line rounded-2xl bg-surface overflow-hidden">
+    <div className="border border-line rounded-2xl bg-surface hover:border-accent/30 transition-colors duration-300 overflow-hidden">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        aria-controls={`${id}-panel`}
-        id={`${id}-button`}
-        className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200"
+        aria-controls={panelId}
+        id={buttonId}
+        className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
       >
         <span className="text-base font-semibold">{item.question}</span>
-        <ChevronIcon open={isOpen} />
+        <ChevronIcon open={isOpen} animate={animate} />
       </button>
-      {isOpen && (
-        <div id={`${id}-panel`} role="region" aria-labelledby={`${id}-button`} className="px-6 pb-6 -mt-1">
-          <p className="text-sm text-muted leading-relaxed">{item.answer}</p>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={buttonId}
+            initial={animate ? { height: 0, opacity: 0 } : false}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={animate ? { height: 0, opacity: 0 } : { opacity: 0 }}
+            transition={animate ? { duration: 0.2, ease: 'easeOut' } : { duration: 0 }}
+            className="overflow-hidden"
+          >
+            <p className="px-6 pb-6 text-sm text-muted leading-relaxed">{item.answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -46,13 +59,15 @@ const FaqItem = ({ item, isOpen, onToggle, index }) => {
 const Faq = ({ lang }) => {
   const t = translations[lang] || translations.fr;
   const { title, items } = t.faq;
-  const [openSet, setOpenSet] = useState(new Set());
+  const prefersReducedMotion = useReducedMotion();
+  const animate = !prefersReducedMotion;
+  const [openItems, setOpenItems] = useState(() => new Set());
 
-  const toggle = (index) => {
-    setOpenSet((prev) => {
+  const toggle = (key) => {
+    setOpenItems((prev) => {
       const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   };
@@ -65,8 +80,14 @@ const Faq = ({ lang }) => {
 
       <div className="max-w-3xl mx-auto space-y-4">
         {items.map((item, i) => (
-          <ScrollReveal key={i} delay={i * 0.05}>
-            <FaqItem item={item} isOpen={openSet.has(i)} onToggle={() => toggle(i)} index={i} />
+          <ScrollReveal key={item.question} delay={i * 0.05}>
+            <FaqItem
+              item={item}
+              isOpen={openItems.has(item.question)}
+              onToggle={() => toggle(item.question)}
+              id={`faq-${i}`}
+              animate={animate}
+            />
           </ScrollReveal>
         ))}
       </div>

@@ -5,8 +5,17 @@ function getKeys(obj, prefix = '') {
   const keys = [];
   for (const key of Object.keys(obj)) {
     const path = prefix ? `${prefix}.${key}` : key;
-    if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-      keys.push(...getKeys(obj[key], path));
+    const value = obj[key];
+    if (Array.isArray(value)) {
+      value.forEach((item, i) => {
+        if (item !== null && typeof item === 'object') {
+          keys.push(...getKeys(item, `${path}[${i}]`));
+        } else {
+          keys.push(`${path}[${i}]`);
+        }
+      });
+    } else if (typeof value === 'object' && value !== null) {
+      keys.push(...getKeys(value, path));
     } else {
       keys.push(path);
     }
