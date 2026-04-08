@@ -25,17 +25,19 @@ const FaqItem = ({ item, isOpen, onToggle, id, animate }) => {
   const panelId = `${id}-panel`;
   return (
     <div className="border border-line rounded-2xl bg-surface hover:border-accent/30 transition-colors duration-300 overflow-hidden">
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-controls={panelId}
-        id={buttonId}
-        className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
-      >
-        <span className="text-base font-semibold">{item.question}</span>
-        <ChevronIcon open={isOpen} animate={animate} />
-      </button>
+      <h3 className="m-0">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          id={buttonId}
+          className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+        >
+          <span className="text-base font-semibold">{item.question}</span>
+          <ChevronIcon open={isOpen} animate={animate} />
+        </button>
+      </h3>
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div

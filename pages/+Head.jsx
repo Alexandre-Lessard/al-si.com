@@ -21,7 +21,11 @@ export default function Head() {
 
   return (
     <>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" href="/favicon.ico" sizes="32x32" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="theme-color" content="#050505" />
       <link rel="canonical" href={canonical} />
       <link rel="alternate" hrefLang="fr-CA" href={`${SITE}${pathFr}`} />
       <link rel="alternate" hrefLang="en" href={`${SITE}${pathEn}`} />
@@ -43,14 +47,9 @@ export default function Head() {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link
-        rel="preload"
-        as="style"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        crossOrigin="anonymous"
-      />
-      <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        crossOrigin="anonymous"
       />
 
       {/* GA4 */}
