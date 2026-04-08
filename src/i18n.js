@@ -23,6 +23,10 @@ export const translations = {
         "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience en TI. J'aide les entreprises à concevoir, automatiser et faire évoluer des applications web qui simplifient leurs opérations et soutiennent leur croissance.",
         "Mon profil hybride développement + infrastructure me permet de prendre en charge un projet du début à la fin, sans dépendre d'une équipe entière. Vous traitez avec une seule personne, qui comprend autant le code que l'environnement où il tourne.",
       ],
+      audience: {
+        label: 'Pour qui je travaille',
+        text: 'Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance qui veulent structurer leur opérationnel numérique sans monter une équipe technique interne.',
+      },
       method: {
         title: 'Ma méthode',
         items: [
@@ -96,12 +100,12 @@ export const translations = {
       title: 'Services',
       categories: [
         {
-          title: 'Applications web & SaaS',
+          title: 'Applications web & plateformes en ligne',
           description:
             'Pour automatiser vos processus, centraliser vos données ou offrir un service en ligne à vos clients.',
           items: [
             'Applications web sur mesure adaptées à votre métier',
-            'Plateformes SaaS pour vos clients ou votre équipe',
+            'Plateformes en ligne (SaaS) pour vos clients ou votre équipe',
             'Outils internes et tableaux de bord',
             'Interfaces modernes et performantes (React, Tailwind)',
           ],
@@ -114,7 +118,7 @@ export const translations = {
             'Intégration de vos outils existants via API',
             'Automatisation de processus métier',
             'Synchronisation de données entre plateformes',
-            'Scripts et services backend (Node.js, Python)',
+            "Intégration d'outils IA quand c'est pertinent",
           ],
         },
         {
@@ -135,6 +139,7 @@ export const translations = {
       items: [
         {
           title: 'Terra Indomita',
+          subtitle: "Site vitrine + calendrier d'événements pour une école de survie",
           situation:
             "École de survie qui voulait gérer son site et son calendrier d'événements en autonomie, sans dépendre d'un prestataire pour chaque mise à jour.",
           intervention:
@@ -148,6 +153,7 @@ export const translations = {
         },
         {
           title: 'RNBP Canada',
+          subtitle: "Plateforme en ligne d'enregistrement de biens de valeur",
           situation:
             "Lancer une plateforme SaaS d'enregistrement et de protection de biens de valeur, du jour 1, sans équipe technique préexistante.",
           intervention:
@@ -160,6 +166,7 @@ export const translations = {
         },
         {
           title: 'Portfolio v2',
+          subtitle: 'Refonte de mon propre site avec étude de cas SEO',
           situation: 'Mon portfolio précédent était sur un stack vieillissant, peu performant et mal référencé.',
           intervention:
             'Refonte complète sur React 19, Vite et Tailwind v4. Audit SEO méthodique, suivi documenté publiquement.',
@@ -168,6 +175,36 @@ export const translations = {
           image: '/share-card.png',
           github: 'https://github.com/Alexandre-Lessard/al-si.com',
           githubOnly: true,
+        },
+      ],
+    },
+    faq: {
+      title: 'Questions fréquentes',
+      items: [
+        {
+          question: 'Pour qui travaillez-vous typiquement?',
+          answer:
+            "Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance. Mes mandats vont d'ajustements ponctuels de quelques heures jusqu'à des projets de plusieurs mois. Si vous hésitez parce que vous pensez être trop petit ou trop gros, écrivez quand même — c'est exactement le genre de question qu'on clarifie en 5 minutes.",
+        },
+        {
+          question: 'Travaillez-vous seul ou en équipe?',
+          answer:
+            "Je travaille seul sur la grande majorité des mandats, et c'est intentionnel. Vous traitez avec une seule personne du début à la fin — je comprends votre besoin, je code, je déploie, je vous accompagne. Pas de chaîne de sous-traitants, pas de communication qui se perd. Pour les projets plus ambitieux où il faut plus de bras, je m'entoure ponctuellement de collaborateurs de confiance, sans jamais perdre le fil du projet.",
+        },
+        {
+          question: "Et si je ne sais pas exactement ce dont j'ai besoin?",
+          answer:
+            "C'est souvent comme ça que les meilleurs mandats commencent. Vous me racontez votre situation, je pose les bonnes questions, et on clarifie ensemble. Mon travail commence par comprendre votre métier, pas par vous vendre une solution préfabriquée. Si après notre échange je ne suis pas la bonne personne, je vous le dirai honnêtement.",
+        },
+        {
+          question: "Travaillez-vous avec l'IA?",
+          answer:
+            "Oui, quand ça apporte une vraie valeur business — automatisation intelligente, traitement de documents, assistants internes, génération de contenu structuré. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens.",
+        },
+        {
+          question: 'Que se passe-t-il après la mise en production?',
+          answer:
+            'Je ne disparais pas après la livraison. Je reste disponible pour les ajustements, les évolutions et les questions. Beaucoup de mes clients reviennent quelques mois plus tard pour faire évoluer leur outil au fur et à mesure que leur besoin change.',
         },
       ],
     },
@@ -264,6 +301,10 @@ export const translations = {
         'My hybrid development + infrastructure profile allows me to take a project from start to finish: scoping the need, designing, developing, deploying and maintaining. You deal with a single person, who understands both the code and the environment it runs in.',
         'I approach every project pragmatically: quickly understanding the real need, proposing a solution that fits your context, and delivering something reliable and easy to evolve. No unnecessary jargon, no over-engineering — just a solution that works.',
       ],
+      audience: {
+        label: 'Who I work with',
+        text: 'Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams who want to structure their digital operations without building an internal tech team.',
+      },
       method: {
         title: 'My method',
         items: [
@@ -336,12 +377,12 @@ export const translations = {
       title: 'Services',
       categories: [
         {
-          title: 'Web applications & SaaS',
+          title: 'Web applications & online platforms',
           description:
             'To automate your processes, centralize your data, or offer an online service to your customers.',
           items: [
             'Custom web applications tailored to your business',
-            'SaaS platforms for your customers or your team',
+            'Online platforms (SaaS) for your customers or your team',
             'Internal tools and dashboards',
             'Modern, performant interfaces (React, Tailwind)',
           ],
@@ -353,7 +394,7 @@ export const translations = {
             'Integration of your existing tools via API',
             'Business process automation',
             'Data synchronization between platforms',
-            'Backend scripts and services (Node.js, Python)',
+            'AI tools integration when it makes sense',
           ],
         },
         {
@@ -374,6 +415,7 @@ export const translations = {
       items: [
         {
           title: 'Terra Indomita',
+          subtitle: 'Marketing site + event calendar for an outdoor survival school',
           situation:
             'Outdoor survival school that wanted to manage its site and event calendar autonomously, without depending on a vendor for every update.',
           intervention:
@@ -387,6 +429,7 @@ export const translations = {
         },
         {
           title: 'RNBP Canada',
+          subtitle: 'Online platform for registering valuable assets',
           situation:
             'Launching a SaaS platform for registering and protecting valuable assets, from day one, with no preexisting technical team.',
           intervention: 'Co-design, full front and back development, production infrastructure setup on Cloudflare.',
@@ -398,6 +441,7 @@ export const translations = {
         },
         {
           title: 'Portfolio v2',
+          subtitle: 'Redesign of my own site, with a public SEO case study',
           situation: 'My previous portfolio was on an aging stack, slow and poorly indexed by search engines.',
           intervention:
             'Complete redesign on React 19, Vite and Tailwind v4. Methodical SEO audit, progress documented publicly.',
@@ -406,6 +450,36 @@ export const translations = {
           image: '/share-card.png',
           github: 'https://github.com/Alexandre-Lessard/al-si.com',
           githubOnly: true,
+        },
+      ],
+    },
+    faq: {
+      title: 'Frequently asked questions',
+      items: [
+        {
+          question: 'Who do you typically work with?',
+          answer:
+            "Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams. My mandates range from a few hours of focused adjustments up to multi-month projects. If you're hesitating because you think you're too small or too big, reach out anyway — that's exactly the kind of question we sort out in 5 minutes.",
+        },
+        {
+          question: 'Do you work solo or with a team?',
+          answer:
+            "I work solo on the vast majority of projects, and it's intentional. You deal with one person from start to finish — I understand your need, I write the code, I deploy, I support you. No chain of subcontractors, no communication getting lost. For more ambitious projects where extra hands are needed, I bring in trusted collaborators occasionally, without ever losing the thread.",
+        },
+        {
+          question: "What if I don't know exactly what I need?",
+          answer:
+            "That's often how the best projects start. You tell me about your situation, I ask the right questions, and we clarify together. My work starts with understanding your business, not selling you a prepackaged solution. If after our call I'm not the right person, I'll tell you honestly.",
+        },
+        {
+          question: 'Do you work with AI?',
+          answer:
+            "Yes, when it brings real business value — smart automation, document processing, internal assistants, structured content generation. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it.",
+        },
+        {
+          question: 'What happens after launch?',
+          answer:
+            "I don't disappear after delivery. I stay available for adjustments, evolutions and questions. Many of my clients come back a few months later to evolve their tool as their needs change.",
         },
       ],
     },
