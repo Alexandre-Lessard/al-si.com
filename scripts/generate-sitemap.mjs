@@ -19,7 +19,9 @@ function walk(dir) {
 }
 
 function fileToUrl(file) {
-  const rel = relative(DIST, file).replace(/\\/g, '/').replace(/\/?index\.html$/, '');
+  const rel = relative(DIST, file)
+    .replace(/\\/g, '/')
+    .replace(/\/?index\.html$/, '');
   return '/' + rel;
 }
 
