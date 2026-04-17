@@ -31,12 +31,6 @@ Bilingual (FR/EN) showcase site presenting my services, projects and professiona
 
 **Structured SEO**: JSON-LD (schema.org Person), OG/Twitter meta tags, sitemap.xml, robots.txt. Everything is in `index.html` to be accessible without JavaScript.
 
-## SEO case study
-
-This site is the subject of a documented SEO case study. The goal is to measure the impact of technical optimizations on Google rankings.
-
-Read the full article: [al-si.com/article/seo-etude-de-cas](https://al-si.com/article/seo-etude-de-cas)
-
 ## License
 
 Copyright (c) 2026 Alexandre Lessard. All rights reserved. See [LICENSE](LICENSE).

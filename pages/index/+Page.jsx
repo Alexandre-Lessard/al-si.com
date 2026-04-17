@@ -7,7 +7,6 @@ import Projects from '../../src/sections/Projects.jsx';
 import Testimonials from '../../src/sections/Testimonials.jsx';
 import Faq from '../../src/sections/Faq.jsx';
 import About from '../../src/sections/About.jsx';
-import Articles from '../../src/sections/Articles.jsx';
 import Contact from '../../src/sections/Contact.jsx';
 
 export default function Page() {
@@ -24,7 +23,6 @@ export default function Page() {
       <Testimonials lang={lang} />
       <Faq lang={lang} />
       <About lang={lang} />
-      <Articles lang={lang} />
       <Contact lang={lang} />
     </>
   );

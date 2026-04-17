@@ -1,30 +1,13 @@
 import ArticleLayout from '../components/ArticleLayout.jsx';
 import { translations } from '../i18n';
 
-const WipBadge = ({ label }) => (
-  <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/[0.08] px-4 py-1.5 text-sm text-amber-400">
-    <span className="relative flex h-2 w-2">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
-      <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
-    </span>
-    {label}
-  </div>
-);
-
 const SeoEtudeDeCas = ({ lang, onBack }) => {
   const t = translations[lang] || translations.fr;
   const article = t.articles.items.find((a) => a.slug === 'seo-etude-de-cas');
   const isFr = lang === 'fr';
 
   return (
-    <ArticleLayout
-      title={article.title}
-      subtitle={article.subtitle}
-      date={article.date}
-      lang={lang}
-      onBack={onBack}
-      badge={<WipBadge label={article.wipLabel} />}
-    >
+    <ArticleLayout title={article.title} subtitle={article.subtitle} date={article.date} lang={lang} onBack={onBack}>
       {isFr ? <ContentFr /> : <ContentEn />}
     </ArticleLayout>
   );
@@ -86,44 +69,49 @@ const ContentFr = () => (
         <tr>
           <td>Alexandre Lessard</td>
           <td>Non trouvé (top 100)</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>Non trouvé</td>
         </tr>
         <tr>
           <td>Alexandre Lessard développeur</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>#3</td>
         </tr>
         <tr>
           <td>Alexandre Lessard développeur web</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>#2</td>
         </tr>
         <tr>
           <td>Alexandre Lessard Québec</td>
           <td>Non trouvé</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>Non trouvé</td>
         </tr>
         <tr>
           <td>Alexandre Lessard full-stack</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>#1</td>
         </tr>
         <tr>
           <td>développeur full-stack Québec</td>
           <td>Non trouvé</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td>Non trouvé</td>
         </tr>
         <tr>
           <td>al-si.com</td>
           <td>Non trouvé</td>
-          <td className="text-amber-400 italic">À venir</td>
+          <td className="text-accent font-medium">#1</td>
         </tr>
       </tbody>
     </table>
     <p>
-      <strong>Résumé :</strong> 3 mots-clés sur 7 trouvés dans le top 100. Position #1 sur les requêtes de nom + métier,
-      mais absent sur le nom seul et les termes géolocalisés. Les positions finales seront mesurées 2 à 3 semaines après
-      déploiement.
+      <strong>Résumé :</strong> 3 mots-clés sur 7 trouvés dans le top 100 avant les travaux. Position #1 sur les
+      requêtes « nom + métier », mais absent sur le nom seul, les termes géolocalisés et la marque « al-si.com ». Les
+      positions finales ont été mesurées environ 40 jours après le déploiement. Le gain notable : la marque « al-si.com
+      » entre en #1, auparavant introuvable. Les légères baisses sur « développeur » et « développeur web » s'expliquent
+      par la migration ultérieure vers des routes <code>/fr</code> et <code>/en</code>, qui répartit temporairement
+      l'autorité entre la racine et les nouvelles URL. L'absence persistante sur les termes très concurrentiels (nom
+      seul, termes géolocalisés) reste cohérente avec l'écosystème de résultats dominé par des homonymes et des pages
+      entreprises établies.
     </p>
 
     <h3>Audit technique</h3>
@@ -319,6 +307,90 @@ const ContentFr = () => (
       suppression des dépendances inutiles, refactoring des composants et nettoyage du CSS orphelin.
     </p>
 
+    <hr />
+
+    <h2>Résultats mesurés après indexation</h2>
+    <p>
+      Les mesures suivantes ont été capturées environ 40 jours après le déploiement, laissant le temps à Google de
+      recrawler et ré-indexer le site. Entre-temps, plusieurs itérations de copywriting et une migration vers Vike SSG
+      (routes <code>/fr</code> et <code>/en</code>) ont aussi été appliquées. Les chiffres reflètent donc l'état complet
+      du site au moment de la mesure.
+    </p>
+
+    <h3>Google Search Console (3 derniers mois)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Métrique</th>
+          <th>Valeur (17 janv. → 17 avr. 2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Impressions</td>
+          <td>206</td>
+        </tr>
+        <tr>
+          <td>Clics</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>CTR moyen</td>
+          <td>0,97 %</td>
+        </tr>
+        <tr>
+          <td>Position moyenne (page d'accueil)</td>
+          <td>2,32</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Le pic notable : le 6 avril, la page d'accueil a enregistré <strong>145 impressions en position #1</strong> en une
+      seule journée, alors que la moyenne des semaines précédentes oscillait entre 0 et 4 impressions par jour. Search
+      Console a relevé une hausse d'impressions de <strong>+7 250 %</strong> sur la page d'accueil comparée à la période
+      précédente — effet direct du redéploiement après corrections (sitemap propre, JSON-LD valide, cache CDN purgé). La
+      migration Vike a par ailleurs permis à Google d'indexer les pages <code>/fr</code> et <code>/en</code> en moins de
+      4 jours, avec un premier clic organique enregistré sur <code>/fr</code> dès le 15 avril.
+    </p>
+
+    <h3>Audit Lighthouse</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Catégorie</th>
+          <th>Desktop</th>
+          <th>Mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accessibilité</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Bonnes pratiques</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>SEO</td>
+          <td>92</td>
+          <td>92</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Le score <strong>Performance</strong> reste perfectible et n'est volontairement pas affiché ici. Le trade-off a
+      été assumé : les animations (Framer Motion), la modernisation du stack (Vike SSG, Tailwind v4) et le contenu
+      enrichi — dont cet article — ont été priorisés sur l'optimisation micro-performance. Les scores exacts sont
+      accessibles publiquement sur{' '}
+      <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fal-si.com%2F" target="_blank" rel="noreferrer">
+        PageSpeed Insights
+      </a>
+      . Une mise à jour de cet article viendra lorsque ces chiffres évolueront.
+    </p>
+
     <div className="mt-10 p-6 border border-accent/20 rounded-2xl bg-accent/[0.04] text-center">
       <p className="!mb-0 text-lg">
         <strong>Valeur estimée du projet : ~950 $</strong>
@@ -331,36 +403,22 @@ const ContentFr = () => (
 
     <hr />
 
-    <div className="mt-6 p-6 border border-amber-500/20 rounded-2xl bg-amber-500/[0.04]">
-      <h2 className="!mt-0 !text-amber-400">À venir</h2>
-      <p>Les sections suivantes seront ajoutées après le déploiement et un délai d'indexation de 2 à 3 semaines :</p>
-      <ul>
-        <li>
-          <strong>Réanalyse des rankings Google</strong> — comparaison avant/après sur les 7 mots-clés cibles
-        </li>
-        <li>
-          <strong>Audit Lighthouse</strong> — scores Performance, Accessibility, Best Practices, SEO
-        </li>
-        <li>
-          <strong>Analyse Google Search Console</strong> — impressions, clics et couverture de l'index
-        </li>
-        <li>
-          <strong>Bilan final</strong> — retour sur investissement et enseignements
-        </li>
-      </ul>
-    </div>
-
-    <hr />
-
-    <h2>Conclusion provisoire</h2>
+    <h2>Conclusion</h2>
     <p>
-      Cette étude de cas documente un projet en cours. Les gains les plus importants viennent souvent des corrections
-      simples : un JSON-LD valide, une image OG qui existe, un sitemap propre. La modernisation du stack n'était pas
-      strictement nécessaire pour le SEO, mais elle améliore la maintenabilité et l'expérience utilisateur.
+      Les gains les plus importants viennent souvent des corrections les plus simples : un JSON-LD valide, une image OG
+      qui existe, un sitemap propre. La modernisation du stack n'était pas strictement nécessaire pour le SEO, mais elle
+      améliore la maintenabilité, l'expérience utilisateur, et permet d'itérer plus rapidement sur le contenu et la
+      conversion.
     </p>
     <p>
-      Il reste la mise en ligne officielle et le suivi des résultats SEO sur plusieurs semaines. Cet article sera mis à
-      jour avec les données finales une fois le délai d'indexation écoulé.
+      Bilan chiffré : audit technique passé de 6/8 à 8/8, marque « al-si.com » qui entre en #1, hausse d'impressions de
+      +7 250 % sur la page d'accueil au pic, indexation des routes bilingues en moins d'une semaine. Les positions sur
+      certaines requêtes « nom + métier » ont légèrement baissé suite à la migration /fr /en — effet temporaire de
+      redistribution d'autorité qui devrait se résorber à mesure que Google consolide l'index.
+    </p>
+    <p>
+      Au final, le SEO n'est pas une action one-shot : c'est une hygiène technique continue. La bonne nouvelle, c'est
+      que les corrections les plus impactantes sont souvent les plus simples — il faut juste mesurer avant de toucher.
     </p>
 
     <blockquote>
@@ -427,43 +485,48 @@ const ContentEn = () => (
         <tr>
           <td>Alexandre Lessard</td>
           <td>Not found (top 100)</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>Not found</td>
         </tr>
         <tr>
           <td>Alexandre Lessard développeur</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>#3</td>
         </tr>
         <tr>
           <td>Alexandre Lessard développeur web</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>#2</td>
         </tr>
         <tr>
           <td>Alexandre Lessard Québec</td>
           <td>Not found</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>Not found</td>
         </tr>
         <tr>
           <td>Alexandre Lessard full-stack</td>
           <td>#1</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>#1</td>
         </tr>
         <tr>
           <td>développeur full-stack Québec</td>
           <td>Not found</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td>Not found</td>
         </tr>
         <tr>
           <td>al-si.com</td>
           <td>Not found</td>
-          <td className="text-amber-400 italic">Coming soon</td>
+          <td className="text-accent font-medium">#1</td>
         </tr>
       </tbody>
     </table>
     <p>
-      <strong>Summary:</strong> 3 out of 7 keywords found in the top 100. Position #1 on name + profession queries, but
-      absent on name alone and geolocated terms. Final positions will be measured 2 to 3 weeks after deployment.
+      <strong>Summary:</strong> 3 out of 7 keywords found in the top 100 before the work. Position #1 on name +
+      profession queries, but absent on name alone, geolocated terms and the brand term (al-si.com). Final positions
+      were measured about 40 days after deployment. The notable gain: the brand term &ldquo;al-si.com&rdquo; now ranks
+      #1, previously not found. The slight drops on &ldquo;développeur&rdquo; and &ldquo;développeur web&rdquo; are
+      explained by the later migration to <code>/fr</code> and <code>/en</code> routes, which temporarily redistributes
+      authority between the root and the new URLs. The persistent absence on highly competitive terms (name alone,
+      geolocated terms) remains consistent with a results ecosystem dominated by homonyms and established company pages.
     </p>
 
     <h3>Technical audit</h3>
@@ -658,6 +721,90 @@ const ContentEn = () => (
       dependencies, refactoring components and cleaning up orphaned CSS.
     </p>
 
+    <hr />
+
+    <h2>Results measured after indexing</h2>
+    <p>
+      The following measurements were captured about 40 days after deployment, giving Google time to recrawl and
+      re-index the site. In the meantime, several copywriting iterations and a migration to Vike SSG (<code>/fr</code>{' '}
+      and <code>/en</code> routes) were also applied. The numbers therefore reflect the full state of the site at the
+      time of measurement.
+    </p>
+
+    <h3>Google Search Console (last 3 months)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value (Jan 17 → Apr 17, 2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Impressions</td>
+          <td>206</td>
+        </tr>
+        <tr>
+          <td>Clicks</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>Average CTR</td>
+          <td>0.97%</td>
+        </tr>
+        <tr>
+          <td>Average position (homepage)</td>
+          <td>2.32</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      The notable spike: on April 6, the homepage recorded <strong>145 impressions at position #1</strong> in a single
+      day, while the average of preceding weeks sat between 0 and 4 impressions per day. Search Console reported an
+      impression increase of <strong>+7,250%</strong> on the homepage compared to the previous period — a direct effect
+      of the post-fix redeployment (clean sitemap, valid JSON-LD, CDN cache purged). The Vike migration also allowed
+      Google to index the <code>/fr</code> and <code>/en</code> pages in under 4 days, with the first organic click on{' '}
+      <code>/fr</code> recorded as early as April 15.
+    </p>
+
+    <h3>Lighthouse audit</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Desktop</th>
+          <th>Mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accessibility</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Best Practices</td>
+          <td>100</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>SEO</td>
+          <td>92</td>
+          <td>92</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      The <strong>Performance</strong> score remains perfectible and is intentionally not displayed here. The trade-off
+      was assumed: animations (Framer Motion), stack modernization (Vike SSG, Tailwind v4) and enriched content —
+      including this very article — were prioritized over micro-performance optimization. Exact scores are publicly
+      available on{' '}
+      <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fal-si.com%2F" target="_blank" rel="noreferrer">
+        PageSpeed Insights
+      </a>
+      . This article will be updated when these numbers improve.
+    </p>
+
     <div className="mt-10 p-6 border border-accent/20 rounded-2xl bg-accent/[0.04] text-center">
       <p className="!mb-0 text-lg">
         <strong>Estimated project value: ~$950</strong>
@@ -670,36 +817,21 @@ const ContentEn = () => (
 
     <hr />
 
-    <div className="mt-6 p-6 border border-amber-500/20 rounded-2xl bg-amber-500/[0.04]">
-      <h2 className="!mt-0 !text-amber-400">Coming soon</h2>
-      <p>The following sections will be added after deployment and a 2 to 3 week indexing period:</p>
-      <ul>
-        <li>
-          <strong>Google rankings re-analysis</strong> — before/after comparison on all 7 target keywords
-        </li>
-        <li>
-          <strong>Lighthouse audit</strong> — Performance, Accessibility, Best Practices, SEO scores
-        </li>
-        <li>
-          <strong>Google Search Console analysis</strong> — impressions, clicks and index coverage
-        </li>
-        <li>
-          <strong>Final assessment</strong> — return on investment and key takeaways
-        </li>
-      </ul>
-    </div>
-
-    <hr />
-
-    <h2>Interim conclusion</h2>
+    <h2>Conclusion</h2>
     <p>
-      This case study documents an ongoing project. The biggest gains often come from simple fixes: valid JSON-LD, an OG
-      image that exists, a clean sitemap. Modernizing the stack wasn't strictly necessary for SEO, but it improves
-      maintainability and user experience.
+      The biggest gains often come from the simplest fixes: valid JSON-LD, an OG image that exists, a clean sitemap.
+      Modernizing the stack wasn't strictly necessary for SEO, but it improves maintainability, user experience, and
+      makes it possible to iterate faster on content and conversion.
     </p>
     <p>
-      What remains is the official relaunch and tracking SEO results over several weeks. This article will be updated
-      with final data once the indexing period has passed.
+      Numbers summary: technical audit went from 6/8 to 8/8, the brand &ldquo;al-si.com&rdquo; now ranks #1, impressions
+      grew by +7,250% on the homepage at peak, and bilingual routes were indexed in under a week. Positions on certain
+      &ldquo;name + profession&rdquo; queries slightly dropped following the /fr /en migration — a temporary authority
+      redistribution effect that should stabilize as Google consolidates the index.
+    </p>
+    <p>
+      Ultimately, SEO isn't a one-shot action: it's an ongoing technical hygiene. The good news is that the most
+      impactful fixes are often the simplest — you just need to measure before you touch.
     </p>
 
     <blockquote>

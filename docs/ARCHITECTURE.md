@@ -16,7 +16,6 @@ src/
     Card.jsx                  # Reusable card wrapper used across sections
     ScrollReveal.jsx          # Framer Motion fade-in on scroll wrapper
     LanguageToggle.jsx        # FR/EN toggle button (desktop and mobile)
-    ArticleLayout.jsx         # Reusable article layout
   sections/
     Nav.jsx                   # Fixed nav, hide on scroll, mobile hamburger
     Hero.jsx                  # Hero with promise, photo, CTAs and proof anchor
@@ -27,12 +26,8 @@ src/
     Testimonials.jsx          # 3-card client testimonials grid
     Faq.jsx                   # Accordion FAQ (multi-open, animated)
     About.jsx                 # About paragraphs, audience, method, recent, stats
-    Articles.jsx              # Articles grid
     Contact.jsx               # CTA banner with contact buttons
     Footer.jsx                # Copyright
-  articles/
-    index.js                  # Article registry (slug -> component)
-    SeoEtudeDeCas.jsx         # Article: SEO case study
 public/
   alexandre-lessard.webp      # Personal photo (65KB)
   logo.svg                    # AL-SI logo (SVG, 3 colors)
@@ -56,8 +51,7 @@ Sections are rendered in this order in `App.jsx` (homepage mode):
 6. `Testimonials` — 3 client testimonials
 7. `Faq` — accordion answering common prospect objections
 8. `About` — paragraphs, audience, method, recent experience, stats
-9. `Articles` — articles grid (currently 1 published article)
-10. `Contact` — final CTA with scheduling link, email, social
+9. `Contact` — final CTA with scheduling link, email, social
 
 ## How content works
 
@@ -118,34 +112,6 @@ The deploy script (`scripts/deploy.sh`) builds the project and deploys the `dist
 ### Custom domain
 
 The custom domain (al-si.com) is configured in the Cloudflare Pages dashboard under the project's Custom Domains tab. DNS is managed by Cloudflare.
-
-## Article system
-
-The site supports full-page articles via pathname-based routing (`/article/slug`).
-
-### Routing
-
-`App.jsx` listens for `popstate` events. A pathname in the format `/article/slug` activates article mode:
-
-- The `<main>` section displays the article component instead of homepage sections
-- `Nav.jsx` switches to article mode (back link + language toggle, no section links)
-- IntersectionObserver is disabled in article mode (`if (articleSlug) return`)
-- If the slug doesn't exist in the registry, redirects to the homepage via `replaceState`
-- Old hash-based URLs (`#article/slug`) are automatically redirected to the pathname format
-- Article components are lazy-loaded with `React.lazy()` and wrapped in `Suspense` + `ErrorBoundary`
-- Cloudflare Pages SPA fallback (`_redirects`) ensures direct URL access works
-
-### ArticleLayout
-
-Props: `title`, `subtitle`, `date`, `lang`, `onBack`, `badge` (optional, e.g. for WipBadge).
-
-The badge displays in the header, below the subtitle. Used to indicate an in-progress article.
-
-### Adding an article
-
-1. Create `src/articles/MyArticle.jsx` with FR/EN content
-2. Add it to `src/articles/index.js`: `'my-slug': lazy(() => import('./MyArticle.jsx'))` or direct import
-3. Add an entry in `src/i18n.js` under `articles.items` with `slug: 'my-slug'`
 
 ## Project cards
 

@@ -166,12 +166,12 @@ export const translations = {
         },
         {
           title: 'Portfolio v2',
-          subtitle: 'Refonte de mon propre site avec étude de cas SEO',
+          subtitle: 'Refonte de mon propre site sur stack moderne',
           situation: 'Mon portfolio précédent était sur un stack vieillissant, peu performant et mal référencé.',
           intervention:
-            'Refonte complète sur React 19, Vite et Tailwind v4. Audit SEO méthodique, suivi documenté publiquement.',
-          result: "Étude de cas SEO publique en cours. Méthodologie documentée dans l'article.",
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+            'Refonte complète sur React 19, Vite et Tailwind v4. Migration vers Vike SSG pour le pré-rendu bilingue.',
+          result: 'En production. Code source ouvert sur GitHub.',
+          tags: ['React', 'Tailwind CSS', 'Vite', 'Vike'],
           image: '/share-card.jpg',
           github: 'https://github.com/Alexandre-Lessard/al-si.com',
           githubOnly: true,
@@ -234,21 +234,6 @@ export const translations = {
         },
       ],
     },
-    articles: {
-      title: 'Articles',
-      comingSoon: 'Bientôt disponible',
-      items: [
-        {
-          title: "Optimisation SEO et performance d'un site React",
-          subtitle: "Audit, modernisation du stack technique et optimisation SEO d'un portfolio développeur.",
-          date: 'Mars 2026',
-          excerpt:
-            "Étude de cas : audit technique, modernisation du stack et optimisation SEO d'un portfolio développeur.",
-          wipLabel: 'Étude en cours — résultats finaux à venir',
-          slug: 'seo-etude-de-cas',
-        },
-      ],
-    },
     contact: {
       title: 'Discutons de votre projet',
       paragraphs: [
@@ -270,7 +255,6 @@ export const translations = {
       services: 'Services',
       projects: 'Projets',
       faq: 'FAQ',
-      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
@@ -441,12 +425,12 @@ export const translations = {
         },
         {
           title: 'Portfolio v2',
-          subtitle: 'Redesign of my own site, with a public SEO case study',
+          subtitle: 'Redesign of my own site on a modern stack',
           situation: 'My previous portfolio was on an aging stack, slow and poorly indexed by search engines.',
           intervention:
-            'Complete redesign on React 19, Vite and Tailwind v4. Methodical SEO audit, progress documented publicly.',
-          result: 'Public SEO case study in progress. Methodology already documented in the article.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'SEO'],
+            'Complete redesign on React 19, Vite and Tailwind v4. Migration to Vike SSG for bilingual pre-rendering.',
+          result: 'Live in production. Open source on GitHub.',
+          tags: ['React', 'Tailwind CSS', 'Vite', 'Vike'],
           image: '/share-card.jpg',
           github: 'https://github.com/Alexandre-Lessard/al-si.com',
           githubOnly: true,
@@ -509,20 +493,6 @@ export const translations = {
         },
       ],
     },
-    articles: {
-      title: 'Articles',
-      comingSoon: 'Coming soon',
-      items: [
-        {
-          title: 'SEO & Performance Optimization for a React Site',
-          subtitle: 'Audit, technical stack modernization and SEO optimization of a developer portfolio.',
-          date: 'March 2026',
-          excerpt: 'Case study: technical audit, stack modernization and SEO optimization of a developer portfolio.',
-          wipLabel: 'Ongoing study — final results coming soon',
-          slug: 'seo-etude-de-cas',
-        },
-      ],
-    },
     contact: {
       title: "Let's discuss your project",
       paragraphs: [
@@ -541,7 +511,6 @@ export const translations = {
       services: 'Services',
       projects: 'Projects',
       faq: 'FAQ',
-      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
