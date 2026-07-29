@@ -66,6 +66,18 @@ a:hover {
 .prose-custom code {
   @apply bg-surface text-accent px-1.5 py-0.5 rounded text-sm;
 }
+.prose-custom pre {
+  @apply bg-surface border border-line rounded-xl p-4 mb-6 overflow-x-auto text-sm;
+}
+.prose-custom pre code {
+  @apply bg-transparent text-muted p-0 text-sm;
+}
+.prose-custom .table-scroll {
+  @apply overflow-x-auto mb-8;
+}
+.prose-custom .table-scroll table {
+  @apply mb-0;
+}
 .prose-custom blockquote {
   @apply border-l-2 border-accent pl-4 ml-0 my-6;
 }

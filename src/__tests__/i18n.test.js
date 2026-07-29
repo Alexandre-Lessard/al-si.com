@@ -40,4 +40,8 @@ describe('i18n translations', () => {
   it('should have matching array lengths for projects.items', () => {
     expect(translations.fr.projects.items.length).toBe(translations.en.projects.items.length);
   });
+
+  it('should have matching array lengths for articles.items', () => {
+    expect(translations.fr.articles.items.length).toBe(translations.en.articles.items.length);
+  });
 });

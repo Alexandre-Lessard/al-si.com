@@ -234,6 +234,22 @@ export const translations = {
         },
       ],
     },
+    articles: {
+      title: 'Articles',
+      comingSoon: 'Bientôt disponible',
+      items: [
+        {
+          title: 'Faire tourner des LLM modernes sur une Tesla K80 de 2014',
+          subtitle:
+            "Remise en service d'une carte abandonnée par les outils modernes pour servir des modèles de 27B à 35B en local.",
+          date: 'Juillet 2026',
+          excerpt:
+            "Retour technique sur la remise en service d'une Tesla K80 pour exécuter localement des modèles de langage modernes de 27 à 35 milliards de paramètres.",
+          badge: 'Laboratoire personnel — mesures datées du 28 juillet 2026',
+          slug: 'llm-modernes-tesla-k80-2014',
+        },
+      ],
+    },
     contact: {
       title: 'Discutons de votre projet',
       paragraphs: [
@@ -255,6 +271,7 @@ export const translations = {
       services: 'Services',
       projects: 'Projets',
       faq: 'FAQ',
+      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
@@ -493,6 +510,21 @@ export const translations = {
         },
       ],
     },
+    articles: {
+      title: 'Articles',
+      comingSoon: 'Coming soon',
+      items: [
+        {
+          title: 'Running modern LLMs on a 2014 Tesla K80',
+          subtitle: 'Bringing a card abandoned by modern tooling back into service to serve 27B to 35B models locally.',
+          date: 'July 2026',
+          excerpt:
+            'A technical write-up on bringing a Tesla K80 back into service to run modern language models of 27 to 35 billion parameters locally.',
+          badge: 'Personal lab — measurements dated July 28, 2026',
+          slug: 'llm-modernes-tesla-k80-2014',
+        },
+      ],
+    },
     contact: {
       title: "Let's discuss your project",
       paragraphs: [
@@ -511,6 +543,7 @@ export const translations = {
       services: 'Services',
       projects: 'Projects',
       faq: 'FAQ',
+      articles: 'Articles',
       contact: 'Contact',
     },
     footer: {
