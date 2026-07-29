@@ -16,6 +16,7 @@ src/
     Card.jsx                  # Reusable card wrapper used across sections
     ScrollReveal.jsx          # Framer Motion fade-in on scroll wrapper
     LanguageToggle.jsx        # FR/EN toggle button (desktop and mobile)
+    ArticleLayout.jsx         # Reusable article layout (back link, header, prose)
   sections/
     Nav.jsx                   # Fixed nav, hide on scroll, mobile hamburger
     Hero.jsx                  # Hero with promise, photo, CTAs and proof anchor
@@ -26,8 +27,12 @@ src/
     Testimonials.jsx          # 3-card client testimonials grid
     Faq.jsx                   # Accordion FAQ (multi-open, animated)
     About.jsx                 # About paragraphs, audience, method, recent, stats
+    Articles.jsx              # Articles grid
     Contact.jsx               # CTA banner with contact buttons
     Footer.jsx                # Copyright
+  articles/
+    index.js                  # Article registry (slug -> component)
+    LlmTeslaK80.jsx           # Article: running modern LLMs on a 2014 Tesla K80
 public/
   alexandre-lessard.webp      # Personal photo (65KB)
   logo.svg                    # AL-SI logo (SVG, 3 colors)
@@ -51,7 +56,8 @@ Sections are rendered in this order in `App.jsx` (homepage mode):
 6. `Testimonials` — 3 client testimonials
 7. `Faq` — accordion answering common prospect objections
 8. `About` — paragraphs, audience, method, recent experience, stats
-9. `Contact` — final CTA with scheduling link, email, social
+9. `Articles` — articles grid (currently 1 published article)
+10. `Contact` — final CTA with scheduling link, email, social
 
 ## How content works
 
@@ -112,6 +118,36 @@ The deploy script (`scripts/deploy.sh`) builds the project and deploys the `dist
 ### Custom domain
 
 The custom domain (al-si.com) is configured in the Cloudflare Pages dashboard under the project's Custom Domains tab. DNS is managed by Cloudflare.
+
+## Article system
+
+The site supports full-page articles at `/{fr|en}/article/{slug}`, pre-rendered at build time like every other page.
+
+### Routing
+
+Routing is file-based, under `pages/article/@slug/`:
+
+- `+Page.jsx` — reads `pageContext.routeParams.slug`, resolves the component from the registry and renders it. An unknown slug renders nothing (in practice unreachable, since only registered slugs are pre-rendered).
+- `+onBeforePrerenderStart.js` — emits `/fr/article/<slug>` and `/en/article/<slug>` for every slug in the registry. **An article is only pre-rendered if it is in the registry.**
+- `+title.js` / `+description.js` — page title and meta description, read from `i18n.articles.items` for the current locale.
+
+The `/fr` or `/en` prefix is stripped by `pages/+onBeforeRoute.js` and exposed as `pageContext.locale`. `pages/+Layout.jsx` reads `routeParams.slug` and switches `Nav.jsx` into article mode (back link + language toggle, no section links, IntersectionObserver disabled).
+
+Canonical and hreflang tags in `pages/+Head.jsx` are derived from the path, so article pages get correct SEO tags with no per-article work. `scripts/generate-sitemap.mjs` walks `dist/client/` after the build, so article URLs land in `sitemap.xml` automatically.
+
+### ArticleLayout
+
+Props: `title`, `subtitle`, `date`, `lang`, `backHref`, `badge` (optional).
+
+The badge displays in the header, below the subtitle — used to frame the context of an article (e.g. an experimental lab). Article body content is wrapped in `.prose-custom`, styled in `index.css` (headings, tables, code blocks, blockquotes).
+
+### Adding an article
+
+1. Create `src/articles/MyArticle.jsx` with FR and EN content, rendered through `ArticleLayout`
+2. Register it in `src/articles/index.js`: `'my-slug': MyArticle`
+3. Add an entry in `src/i18n.js` under `articles.items` (both FR and EN) with `slug: 'my-slug'`
+
+`src/__tests__/articles.test.js` enforces that registry and i18n entries stay in sync in both directions.
 
 ## Project cards
 

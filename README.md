@@ -31,6 +31,12 @@ Bilingual (FR/EN) showcase site presenting my services, projects and professiona
 
 **Structured SEO**: JSON-LD (schema.org Person), OG/Twitter meta tags, sitemap.xml, robots.txt. Everything is in `index.html` to be accessible without JavaScript.
 
+## Articles
+
+The site hosts long-form technical articles, pre-rendered in FR and EN.
+
+Latest: [Running modern LLMs on a 2014 Tesla K80](https://al-si.com/en/article/llm-modernes-tesla-k80-2014) — bringing an out-of-support Kepler card back into service to serve 27B–35B models locally, with benchmarks and documented failures.
+
 ## License
 
 Copyright (c) 2026 Alexandre Lessard. All rights reserved. See [LICENSE](LICENSE).
