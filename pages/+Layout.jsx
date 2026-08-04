@@ -6,7 +6,13 @@ import '../index.css';
 
 export default function Layout({ children }) {
   const pageContext = usePageContext();
-  const lang = pageContext.locale || 'fr';
+  // The error page is pre-rendered once, in French, and Cloudflare serves that
+  // single 404.html for unknown URLs under both locales. Deriving the chrome's
+  // language from the URL would make the client hydrate English nav/footer over
+  // French server markup, so it stays pinned to the pre-rendered locale. The
+  // page body itself is bilingual and offers a way home in either language.
+  const isErrorPage = pageContext.is404 === true || pageContext.abortStatusCode !== undefined;
+  const lang = isErrorPage ? 'fr' : pageContext.locale || 'fr';
   const t = translations[lang] || translations.fr;
   const articleSlug = pageContext.routeParams?.slug || null;
   const homeUrl = lang === 'en' ? '/en' : '/fr';
