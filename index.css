@@ -94,6 +94,208 @@ a:hover {
   @apply text-accent underline underline-offset-2 hover:text-text transition-colors;
 }
 
+.article-byline {
+  @apply mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted;
+}
+
+.prose-custom [id] {
+  scroll-margin-top: 6rem;
+}
+
+.prose-custom .article-summary {
+  @apply mb-8 rounded-2xl border border-accent/25 bg-accent/[0.04] p-6 md:p-8;
+}
+
+.prose-custom .article-eyebrow {
+  @apply mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent;
+}
+
+.prose-custom .article-summary h2,
+.prose-custom .article-toc h2,
+.prose-custom .article-cta h2 {
+  @apply mt-0;
+}
+
+.prose-custom .article-summary h2 {
+  @apply mb-6 text-2xl md:text-3xl;
+}
+
+.article-summary-grid {
+  @apply grid gap-4 md:grid-cols-2;
+}
+
+.article-summary-grid > div {
+  @apply rounded-xl border border-line bg-black/15 p-4;
+}
+
+.article-summary-grid dt {
+  @apply mb-1 text-sm font-semibold text-text;
+}
+
+.article-summary-grid dd {
+  @apply m-0 text-sm leading-relaxed text-muted;
+}
+
+.prose-custom .article-verdict {
+  @apply mb-0 mt-5 border-l-2 border-accent pl-4 text-text;
+}
+
+.article-toc {
+  @apply mb-10 rounded-xl border border-line bg-surface p-5 md:p-6;
+}
+
+.prose-custom .article-toc h2 {
+  @apply mb-4 text-lg;
+}
+
+.prose-custom .article-toc ol {
+  @apply mb-0 grid gap-x-8 gap-y-2 pl-5 md:grid-cols-2;
+}
+
+.prose-custom .article-toc li {
+  @apply mb-0 pl-1 text-sm;
+}
+
+.prose-custom .article-toc a {
+  @apply text-muted no-underline hover:text-accent;
+}
+
+.article-figure {
+  @apply my-8 rounded-2xl border border-line bg-surface p-5 md:p-7;
+}
+
+.article-figure figcaption {
+  @apply mb-6 flex flex-col gap-1;
+}
+
+.article-figure figcaption strong {
+  @apply text-lg text-text;
+}
+
+.article-figure figcaption span {
+  @apply text-sm leading-relaxed text-muted;
+}
+
+.architecture-map {
+  @apply flex flex-col items-center;
+}
+
+.architecture-node {
+  @apply flex min-h-28 flex-col justify-center rounded-xl border border-line bg-black/20 p-4;
+}
+
+.architecture-node > span {
+  @apply mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-accent;
+}
+
+.architecture-node > strong {
+  @apply text-base text-text;
+}
+
+.architecture-node > small {
+  @apply mt-1 text-sm leading-relaxed text-muted;
+}
+
+.architecture-controller {
+  @apply w-full max-w-md text-center;
+}
+
+.architecture-connector {
+  @apply flex h-20 flex-col items-center justify-center text-xs uppercase tracking-[0.12em] text-muted;
+}
+
+.architecture-connector span {
+  @apply block h-8 w-px bg-accent/50;
+}
+
+.architecture-connector strong {
+  @apply mt-2 font-medium text-muted;
+}
+
+.architecture-workers {
+  @apply grid w-full gap-3 md:grid-cols-3;
+}
+
+.benchmark-bars {
+  @apply space-y-5;
+}
+
+.benchmark-label {
+  @apply mb-2 flex items-end justify-between gap-4 text-sm;
+}
+
+.benchmark-label span {
+  @apply text-muted;
+}
+
+.benchmark-label strong {
+  @apply shrink-0 tabular-nums text-text;
+}
+
+.benchmark-track {
+  @apply h-3 overflow-hidden rounded-full bg-black/25;
+}
+
+.benchmark-track span {
+  @apply block h-full rounded-full bg-accent;
+}
+
+.prose-custom .article-figure-note {
+  @apply mb-0 mt-6 text-sm italic;
+}
+
+.article-evidence {
+  @apply my-8 rounded-2xl border border-line bg-surface p-5 md:p-7;
+}
+
+.prose-custom .article-evidence h3 {
+  @apply mt-0 text-xl;
+}
+
+.prose-custom .article-evidence h4 {
+  @apply mb-3 mt-7 font-semibold text-text;
+}
+
+.prose-custom .article-evidence ul {
+  @apply mb-0;
+}
+
+.prose-custom .article-reference-links {
+  @apply grid gap-x-8 md:grid-cols-2;
+}
+
+.prose-custom .article-evidence-note {
+  @apply mb-0 mt-6 border-t border-line pt-5 text-sm italic;
+}
+
+.article-cta {
+  @apply my-10 rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/[0.10] to-transparent p-6 md:p-8;
+}
+
+.prose-custom .article-cta h2 {
+  @apply mb-4 text-2xl md:text-3xl;
+}
+
+.prose-custom .article-cta > p:not(.article-eyebrow) {
+  @apply mb-6 max-w-2xl;
+}
+
+.article-cta-actions {
+  @apply flex flex-col gap-3 sm:flex-row;
+}
+
+.prose-custom .article-cta-actions a {
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold no-underline;
+}
+
+.prose-custom .article-cta-primary {
+  @apply bg-accent text-bg hover:bg-text hover:text-bg;
+}
+
+.prose-custom .article-cta-secondary {
+  @apply border border-line bg-surface text-text hover:border-accent/40 hover:text-accent;
+}
+
 /* Hamburger lines for mobile nav */
 .hamburger-line {
   @apply w-[22px] h-[2px] bg-text rounded-full block transition-transform duration-300;

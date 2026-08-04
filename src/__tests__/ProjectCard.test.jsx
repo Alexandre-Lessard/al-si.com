@@ -6,7 +6,7 @@ describe('ProjectCard', () => {
   it('renders all project cards', () => {
     render(<Projects lang="fr" />);
     expect(screen.getByText('Terra Indomita')).toBeInTheDocument();
-    expect(screen.getByText('RNBP Canada')).toBeInTheDocument();
+    expect(screen.getByText('Badge')).toBeInTheDocument();
     expect(screen.getByText('Portfolio v2')).toBeInTheDocument();
   });
 

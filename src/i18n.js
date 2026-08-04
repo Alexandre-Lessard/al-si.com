@@ -83,7 +83,7 @@ export const translations = {
         },
         {
           tag: 'Plateforme SaaS en production',
-          client: 'RNBP Canada',
+          client: 'Badge (anciennement RNBP Canada)',
           text: "Co-conception et développement complet d'une plateforme SaaS d'enregistrement de biens, du cadrage à la mise en production.",
           stack: 'SaaS · Cloudflare · Co-fondateur technique',
         },
@@ -152,8 +152,8 @@ export const translations = {
           github: 'https://github.com/Alexandre-Lessard/terra-indomita.ca',
         },
         {
-          title: 'RNBP Canada',
-          subtitle: "Plateforme en ligne d'enregistrement de biens de valeur",
+          title: 'Badge',
+          subtitle: "Plateforme en ligne d'enregistrement de biens de valeur (anciennement RNBP Canada)",
           situation:
             "Lancer une plateforme SaaS d'enregistrement et de protection de biens de valeur, du jour 1, sans équipe technique préexistante.",
           intervention:
@@ -161,7 +161,7 @@ export const translations = {
           result: 'En production, utilisée par de vrais clients. Co-fondateur technique du projet.',
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
-          url: 'https://rnbp.ca/',
+          url: 'https://badgeid.ca/',
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
@@ -246,6 +246,9 @@ export const translations = {
           excerpt:
             "Retour technique sur la remise en service d'une Tesla K80 pour exécuter localement des modèles de langage modernes de 27 à 35 milliards de paramètres.",
           badge: 'Laboratoire personnel — mesures datées du 28 juillet 2026',
+          author: 'Alexandre Lessard — Consultant en intégration de systèmes et solutions IA',
+          readingTime: '24 min de lecture',
+          datePublished: '2026-07-28',
           slug: 'llm-modernes-tesla-k80-2014',
         },
       ],
@@ -361,7 +364,7 @@ export const translations = {
         },
         {
           tag: 'SaaS platform in production',
-          client: 'RNBP Canada',
+          client: 'Badge (formerly RNBP Canada)',
           text: 'Co-design and full development of a SaaS platform for asset registration, from scoping to production.',
           stack: 'SaaS · Cloudflare · Technical co-founder',
         },
@@ -429,15 +432,15 @@ export const translations = {
           github: 'https://github.com/Alexandre-Lessard/terra-indomita.ca',
         },
         {
-          title: 'RNBP Canada',
-          subtitle: 'Online platform for registering valuable assets',
+          title: 'Badge',
+          subtitle: 'Online platform for registering valuable assets (formerly RNBP Canada)',
           situation:
             'Launching a SaaS platform for registering and protecting valuable assets, from day one, with no preexisting technical team.',
           intervention: 'Co-design, full front and back development, production infrastructure setup on Cloudflare.',
           result: 'Live in production, used by real customers. Technical co-founder of the project.',
           tags: ['Web app', 'SaaS', 'Cloudflare'],
           image: '/rnbp-preview.png',
-          url: 'https://rnbp.ca/',
+          url: 'https://badgeid.ca/',
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
@@ -516,11 +519,15 @@ export const translations = {
       items: [
         {
           title: 'Running modern LLMs on a 2014 Tesla K80',
-          subtitle: 'Bringing a card abandoned by modern tooling back into service to serve 27B to 35B models locally.',
+          subtitle:
+            'Bringing a card no longer supported by modern tooling back into service to serve 27B to 35B models locally.',
           date: 'July 2026',
           excerpt:
-            'A technical write-up on bringing a Tesla K80 back into service to run modern language models of 27 to 35 billion parameters locally.',
+            'A technical write-up on bringing a Tesla K80 back into service to run modern language models with 27 to 35 billion parameters on local hardware.',
           badge: 'Personal lab — measurements dated July 28, 2026',
+          author: 'Alexandre Lessard — Systems integration and AI solutions consultant',
+          readingTime: '22 min read',
+          datePublished: '2026-07-28',
           slug: 'llm-modernes-tesla-k80-2014',
         },
       ],
