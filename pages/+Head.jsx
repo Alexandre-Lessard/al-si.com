@@ -1,4 +1,5 @@
 import { usePageContext } from 'vike-react/usePageContext';
+import { translations } from '../src/i18n.js';
 
 const SITE = 'https://al-si.com';
 
@@ -18,6 +19,19 @@ export default function Head() {
   const pathFr = barePath === '/' ? '/fr' : `/fr${barePath}`;
   const pathEn = barePath === '/' ? '/en' : `/en${barePath}`;
   const canonical = locale === 'en' ? `${SITE}${pathEn}` : `${SITE}${pathFr}`;
+  const articleSlug = barePath.match(/^\/article\/([^/]+)\/?$/)?.[1];
+  const localizedContent = translations[locale] || translations.fr;
+  const article = articleSlug ? localizedContent.articles.items.find((item) => item.slug === articleSlug) : undefined;
+  const title = article
+    ? `${article.title} — AL-SI`
+    : locale === 'en'
+      ? 'Alexandre Lessard – Integrated solutions | Full-stack developer | AL-SI'
+      : 'Alexandre Lessard – Solutions intégrées | Développeur full-stack | AL-SI';
+  const description = article?.excerpt || ogDescriptions[locale] || ogDescriptions.fr;
+  // The error page is pre-rendered as a single /404.html served on any unknown
+  // URL, so a canonical or hreflang pointing at /fr/404 would advertise a page
+  // that doesn't exist. It must stay out of the index entirely.
+  const isErrorPage = pageContext.is404 === true || pageContext.abortStatusCode !== undefined || barePath === '/404';
 
   return (
     <>
@@ -26,21 +40,30 @@ export default function Head() {
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#050505" />
-      <link rel="canonical" href={canonical} />
-      <link rel="alternate" hrefLang="fr-CA" href={`${SITE}${pathFr}`} />
-      <link rel="alternate" hrefLang="en" href={`${SITE}${pathEn}`} />
-      <link rel="alternate" hrefLang="x-default" href={`${SITE}${pathFr}`} />
-      <meta name="robots" content="index, follow" />
+      {!isErrorPage && (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hrefLang="fr-CA" href={`${SITE}${pathFr}`} />
+          <link rel="alternate" hrefLang="en" href={`${SITE}${pathEn}`} />
+          <link rel="alternate" hrefLang="x-default" href={`${SITE}${pathFr}`} />
+        </>
+      )}
+      <meta name="robots" content={isErrorPage ? 'noindex, follow' : 'index, follow'} />
 
       {/* Open Graph */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={canonical} />
+      <meta property="og:type" content={article ? 'article' : 'website'} />
+      <meta property="og:url" content={isErrorPage ? SITE : canonical} />
+      <meta property="og:title" content={title} />
       <meta property="og:image" content={`${SITE}/share-card.jpg`} />
       <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'fr_CA'} />
-      <meta property="og:description" content={ogDescriptions[locale] || ogDescriptions.fr} />
+      <meta property="og:description" content={description} />
+      {article?.datePublished && <meta property="article:published_time" content={article.datePublished} />}
+      {article && <meta property="article:author" content="https://www.linkedin.com/in/alexandre-lessard-3b103991/" />}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`${SITE}/share-card.jpg`} />
 
       {/* Fonts — non-blocking via media swap pattern */}
@@ -109,6 +132,37 @@ export default function Head() {
           }),
         }}
       />
+      {article && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'TechArticle',
+              headline: article.title,
+              description,
+              datePublished: article.datePublished,
+              inLanguage: locale === 'en' ? 'en' : 'fr-CA',
+              mainEntityOfPage: canonical,
+              image: `${SITE}/share-card.jpg`,
+              author: {
+                '@type': 'Person',
+                name: 'Alexandre Lessard',
+                url: 'https://www.linkedin.com/in/alexandre-lessard-3b103991/',
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Alexandre Lessard – Solutions intégrées',
+                url: SITE,
+                logo: {
+                  '@type': 'ImageObject',
+                  url: `${SITE}/logo.svg`,
+                },
+              },
+            }),
+          }}
+        />
+      )}
     </>
   );
 }

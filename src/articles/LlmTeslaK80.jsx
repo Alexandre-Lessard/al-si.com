@@ -21,6 +21,345 @@ cmake --build build --config Release -j`}</code>
   </pre>
 );
 
+const quickRead = {
+  fr: {
+    eyebrow: 'Étude de cas technique',
+    title: 'Le projet en 60 secondes',
+    items: [
+      {
+        label: 'Contrainte',
+        value: 'Une Tesla K80 de 2014, encore fonctionnelle, mais abandonnée par les piles logicielles modernes.',
+      },
+      {
+        label: 'Objectif',
+        value:
+          'Déterminer si elle pouvait servir utilement des modèles récents de 27B à 35B dans un laboratoire local.',
+      },
+      {
+        label: 'Intervention',
+        value: 'Compilation ciblée, répartition sur deux GPU, requantification, profilage et stabilisation du service.',
+      },
+      {
+        label: 'Résultats',
+        value: '3,25 à 6,30 t/s en dense standard, environ 13,5 t/s avec un MoE 35B stable, contexte 64k.',
+      },
+    ],
+    verdictLabel: 'Verdict',
+    verdict:
+      "La K80 n'est pas redevenue une carte moderne. Elle est toutefois passée de matériel hors support à nœud de calcul spécialisé, utile et mesuré.",
+  },
+  en: {
+    eyebrow: 'Technical case study',
+    title: 'The project in 60 seconds',
+    items: [
+      {
+        label: 'Constraint',
+        value: 'A functional 2014 Tesla K80 that modern software stacks no longer support.',
+      },
+      {
+        label: 'Objective',
+        value: 'Determine whether it could usefully serve recent 27B to 35B models in a local AI lab.',
+      },
+      {
+        label: 'Intervention',
+        value: 'Targeted compilation, dual-GPU splitting, requantization, profiling and service stabilization.',
+      },
+      {
+        label: 'Results',
+        value: '3.25 to 6.30 t/s for standard dense inference and about 13.5 t/s for a stable 35B MoE at 64k context.',
+      },
+    ],
+    verdictLabel: 'Verdict',
+    verdict:
+      'The K80 did not become a modern GPU. It did move from unsupported hardware to a useful, measured specialist worker.',
+  },
+};
+
+const toc = {
+  fr: {
+    title: 'Dans cet article',
+    items: [
+      ['Contexte et architecture du laboratoire', 'context'],
+      ['Contraintes propres à la K80', 'k80-constraints'],
+      ['Compilation et début des essais', 'build'],
+      ['Goulot mémoire et optimisations', 'memory-bottleneck'],
+      ['Résultats consolidés', 'results'],
+      ['Méthode, traçabilité et limites', 'method'],
+      ['Capacités transférables aux mandats clients', 'client-value'],
+      ['Encadré technique', 'technical-summary'],
+    ],
+  },
+  en: {
+    title: 'In this article',
+    items: [
+      ['Lab context and architecture', 'context'],
+      ['K80-specific constraints', 'k80-constraints'],
+      ['Compilation and initial experiments', 'build'],
+      ['Memory bottleneck and optimizations', 'memory-bottleneck'],
+      ['Consolidated results', 'results'],
+      ['Method, traceability and limitations', 'method'],
+      ['Capabilities transferable to client work', 'client-value'],
+      ['Technical summary', 'technical-summary'],
+    ],
+  },
+};
+
+const architectureCopy = {
+  fr: {
+    title: 'Architecture du laboratoire par rôles',
+    description: "Le poste de pilotage accède à des nœuds de calcul spécialisés par des points d'entrée cohérents.",
+    controllerLabel: 'Pilotage',
+    controller: 'Ordinateur portable',
+    controllerDetail: 'Développement, routage explicite et inférence CPU',
+    workersLabel: 'Nœuds spécialisés',
+    workers: [
+      ['RTX 2070', 'Transcription locale'],
+      ['RTX 3060', 'Inférence GPU rapide'],
+      ['Dell R730 + Tesla K80', 'Modèles 27B à 35B dans une VM Proxmox'],
+    ],
+  },
+  en: {
+    title: 'Role-based lab architecture',
+    description: 'The control workstation reaches specialist workers through consistent endpoints.',
+    controllerLabel: 'Control',
+    controller: 'Laptop',
+    controllerDetail: 'Development, explicit routing and CPU inference',
+    workersLabel: 'Specialist workers',
+    workers: [
+      ['RTX 2070', 'Local transcription'],
+      ['RTX 3060', 'Fast GPU inference'],
+      ['Dell R730 + Tesla K80', '27B to 35B models in a Proxmox VM'],
+    ],
+  },
+};
+
+const progressionCopy = {
+  fr: {
+    title: 'Progression du débit dense standard',
+    description: 'Même campagne de modèle dense, génération mesurée sans speculative decoding.',
+    rows: [
+      ['Q4_K_M · répartition par couches', '3,25 t/s', '52%'],
+      ['Q4_K_M · répartition parallèle', '4,87 t/s', '77%'],
+      ['Q4_0 · répartition parallèle', '6,30 t/s', '100%'],
+    ],
+    note: 'Le débit de 13 à 29 t/s avec speculative decoding est présenté séparément, car il dépend fortement du contenu.',
+  },
+  en: {
+    title: 'Standard dense-model throughput progression',
+    description: 'Same dense-model campaign, measured generation without speculative decoding.',
+    rows: [
+      ['Q4_K_M · layer split', '3.25 t/s', '52%'],
+      ['Q4_K_M · parallel row split', '4.87 t/s', '77%'],
+      ['Q4_0 · parallel row split', '6.30 t/s', '100%'],
+    ],
+    note: 'The 13 to 29 t/s achieved with speculative decoding is shown separately because it depends heavily on the content.',
+  },
+};
+
+const evidenceCopy = {
+  fr: {
+    title: 'Repères de méthode et de traçabilité',
+    points: [
+      'Mesures datées du 28 juillet 2026.',
+      'Prefill et génération rapportés séparément dans les comparaisons principales.',
+      "Essais prolongés jusqu'à 800 tokens pour distinguer les configurations MoE stables des OOM tardifs.",
+      "Six essais d'usage réel consignés pour la génération dense assistée par n-grammes.",
+      "Résultats propres au matériel, aux modèles et aux versions testées; aucune généralisation à d'autres environnements.",
+    ],
+    referencesTitle: 'Références techniques',
+    references: [
+      ['Caractéristiques officielles de la Tesla K80', 'https://www.nvidia.com/en-gb/data-center/tesla-k80/'],
+      ['Modèle de base Qwen3.6-27B', 'https://huggingface.co/Qwen/Qwen3.6-27B'],
+      ['Modèle de base Qwen3.6-35B-A3B', 'https://huggingface.co/Qwen/Qwen3.6-35B-A3B'],
+      ['Speculative decoding dans llama.cpp', 'https://github.com/ggml-org/llama.cpp/blob/master/docs/speculative.md'],
+    ],
+    note: "Les journaux bruts, la révision exacte du moteur et les scripts nettoyés ne sont pas encore publiés. L'article documente les résultats observés, mais ne prétend pas constituer à lui seul un benchmark entièrement reproductible.",
+  },
+  en: {
+    title: 'Method and traceability notes',
+    points: [
+      'Measurements dated July 28, 2026.',
+      'Prompt processing and generation reported separately in the main comparisons.',
+      'Tests extended to 800 tokens to distinguish stable MoE configurations from late OOM failures.',
+      'Six real-world samples recorded for n-gram-assisted dense generation.',
+      'Results are specific to the hardware, models and versions tested and are not generalized to other environments.',
+    ],
+    referencesTitle: 'Technical references',
+    references: [
+      ['Official Tesla K80 specifications', 'https://www.nvidia.com/en-gb/data-center/tesla-k80/'],
+      ['Qwen3.6-27B base model', 'https://huggingface.co/Qwen/Qwen3.6-27B'],
+      ['Qwen3.6-35B-A3B base model', 'https://huggingface.co/Qwen/Qwen3.6-35B-A3B'],
+      ['Speculative decoding in llama.cpp', 'https://github.com/ggml-org/llama.cpp/blob/master/docs/speculative.md'],
+    ],
+    note: 'Raw logs, the exact engine revision and cleaned-up scripts are not published yet. This article documents the observed results, but does not claim to be a fully reproducible benchmark on its own.',
+  },
+};
+
+const ctaCopy = {
+  fr: {
+    eyebrow: 'Mandats complexes et hors standard',
+    title: 'Vous avez un système difficile à intégrer ou une architecture IA à valider?',
+    body: "J'interviens pour cadrer le problème, mesurer les options et construire une solution défendable avant un investissement plus important.",
+    primary: 'Planifier un premier échange',
+    primaryHref: 'https://cal.com/alexandre-lessard/premier-echange-projet',
+    secondary: 'Voir les autres services',
+    secondaryHref: '/fr#services',
+  },
+  en: {
+    eyebrow: 'Complex and non-standard engagements',
+    title: 'Do you have a difficult integration or an AI architecture to validate?',
+    body: 'I help scope the problem, measure the options and build a defensible solution before a larger investment is made.',
+    primary: 'Schedule an introductory call',
+    primaryHref: 'https://cal.com/alexandre-lessard/intro-call',
+    secondary: 'View other services',
+    secondaryHref: '/en#services',
+  },
+};
+
+const QuickRead = ({ lang }) => {
+  const copy = quickRead[lang];
+
+  return (
+    <section className="article-summary" aria-labelledby="quick-read">
+      <p className="article-eyebrow">{copy.eyebrow}</p>
+      <h2 id="quick-read">{copy.title}</h2>
+      <dl className="article-summary-grid">
+        {copy.items.map((item) => (
+          <div key={item.label}>
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="article-verdict">
+        <strong>{copy.verdictLabel} :</strong> {copy.verdict}
+      </p>
+    </section>
+  );
+};
+
+const ArticleToc = ({ lang }) => {
+  const copy = toc[lang];
+
+  return (
+    <nav className="article-toc" aria-labelledby="article-toc-title">
+      <h2 id="article-toc-title">{copy.title}</h2>
+      <ol>
+        {copy.items.map(([label, id]) => (
+          <li key={id}>
+            <a href={`#${id}`}>{label}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+};
+
+const ArchitectureDiagram = ({ lang }) => {
+  const copy = architectureCopy[lang];
+
+  return (
+    <figure className="article-figure architecture-figure">
+      <figcaption>
+        <strong>{copy.title}</strong>
+        <span>{copy.description}</span>
+      </figcaption>
+      <div className="architecture-map">
+        <div className="architecture-node architecture-controller">
+          <span>{copy.controllerLabel}</span>
+          <strong>{copy.controller}</strong>
+          <small>{copy.controllerDetail}</small>
+        </div>
+        <div className="architecture-connector" aria-hidden="true">
+          <span />
+          <strong>{copy.workersLabel}</strong>
+        </div>
+        <div className="architecture-workers">
+          {copy.workers.map(([title, detail]) => (
+            <div className="architecture-node" key={title}>
+              <strong>{title}</strong>
+              <small>{detail}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </figure>
+  );
+};
+
+const DenseProgression = ({ lang }) => {
+  const copy = progressionCopy[lang];
+
+  return (
+    <figure className="article-figure benchmark-figure">
+      <figcaption>
+        <strong>{copy.title}</strong>
+        <span>{copy.description}</span>
+      </figcaption>
+      <div className="benchmark-bars">
+        {copy.rows.map(([label, value, width]) => (
+          <div className="benchmark-row" key={label}>
+            <div className="benchmark-label">
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+            <div className="benchmark-track" aria-hidden="true">
+              <span style={{ width }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="article-figure-note">{copy.note}</p>
+    </figure>
+  );
+};
+
+const EvidencePanel = ({ lang }) => {
+  const copy = evidenceCopy[lang];
+
+  return (
+    <aside className="article-evidence" aria-labelledby="evidence-title">
+      <h3 id="evidence-title">{copy.title}</h3>
+      <ul>
+        {copy.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+      <h4>{copy.referencesTitle}</h4>
+      <ul className="article-reference-links">
+        {copy.references.map(([label, href]) => (
+          <li key={href}>
+            <a href={href} target="_blank" rel="noreferrer">
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p className="article-evidence-note">{copy.note}</p>
+    </aside>
+  );
+};
+
+const ArticleCta = ({ lang }) => {
+  const copy = ctaCopy[lang];
+
+  return (
+    <aside className="article-cta" aria-labelledby="article-cta-title">
+      <p className="article-eyebrow">{copy.eyebrow}</p>
+      <h2 id="article-cta-title">{copy.title}</h2>
+      <p>{copy.body}</p>
+      <div className="article-cta-actions">
+        <a className="article-cta-primary" href={copy.primaryHref}>
+          {copy.primary}
+        </a>
+        <a className="article-cta-secondary" href={copy.secondaryHref}>
+          {copy.secondary}
+        </a>
+      </div>
+    </aside>
+  );
+};
+
 const LlmTeslaK80 = ({ lang, backHref }) => {
   const t = translations[lang] || translations.fr;
   const article = t.articles.items.find((a) => a.slug === SLUG);
@@ -32,6 +371,8 @@ const LlmTeslaK80 = ({ lang, backHref }) => {
       subtitle={article.subtitle}
       date={article.date}
       badge={article.badge}
+      author={article.author}
+      readingTime={article.readingTime}
       lang={lang}
       backHref={backHref}
     >
@@ -42,6 +383,9 @@ const LlmTeslaK80 = ({ lang, backHref }) => {
 
 const ContentFr = () => (
   <>
+    <QuickRead lang="fr" />
+    <ArticleToc lang="fr" />
+
     <p>
       Faire fonctionner un grand modèle de langage récent sur du matériel moderne est aujourd'hui relativement
       accessible. Les outils sont nombreux, les cartes graphiques sont prises en charge et les configurations courantes
@@ -93,7 +437,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Le contexte : construire une infrastructure d'IA locale avec le matériel déjà disponible</h2>
+    <h2 id="context">Le contexte : construire une infrastructure d'IA locale avec le matériel déjà disponible</h2>
     <p>Le projet K80 s'inscrit dans un laboratoire plus large consacré à l'IA locale.</p>
     <p>
       Le point de départ était simple : plusieurs machines étaient déjà disponibles sur mon réseau, mais elles étaient
@@ -103,13 +447,14 @@ const ContentFr = () => (
     <p>Le laboratoire repose sur quatre types de ressources :</p>
     <ul>
       <li>un ordinateur portable utilisé comme poste de pilotage et pour certaines inférences CPU;</li>
-      <li>un poste équipé d'une RTX 2070 pour des tâches GPU rapides;</li>
-      <li>un autre poste équipé d'une RTX 3060, notamment utilisé pour la transcription;</li>
+      <li>un poste équipé d'une RTX 2070, notamment utilisé pour la transcription;</li>
+      <li>un autre poste équipé d'une RTX 3060 pour des tâches GPU rapides;</li>
       <li>
         un serveur Dell R730 sous Proxmox, qui héberge différents services, dont une machine virtuelle avec la Tesla K80
         en passthrough PCI.
       </li>
     </ul>
+    <ArchitectureDiagram lang="fr" />
     <p>
       L'objectif à long terme est un environnement <strong>local-first</strong>, privé, modulaire et progressif. Il ne
       s'agit pas d'un produit fini ni d'un cluster automatisé au sens strict. La distribution des tâches LLM se fait
@@ -148,7 +493,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Pourquoi la Tesla K80 pose un problème particulier</h2>
+    <h2 id="k80-constraints">Pourquoi la Tesla K80 pose un problème particulier</h2>
     <p>La Tesla K80 est une carte atypique.</p>
     <p>
       Elle contient deux processeurs graphiques GK210 sur une seule carte, chacun avec environ 12 Go de mémoire. Dans la
@@ -186,7 +531,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Recompiler llama.cpp pour Kepler</h2>
+    <h2 id="build">Recompiler llama.cpp pour Kepler</h2>
     <p>
       La solution retenue repose sur <strong>llama.cpp</strong>, compilé spécifiquement pour l'architecture sm_37.
     </p>
@@ -462,7 +807,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Identifier le vrai mur : la bande passante mémoire</h2>
+    <h2 id="memory-bottleneck">Identifier le vrai mur : la bande passante mémoire</h2>
     <p>
       Les mesures ont progressivement montré que la génération était principalement <strong>memory-bound</strong>.
     </p>
@@ -635,8 +980,9 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Résultats consolidés</h2>
+    <h2 id="results">Résultats consolidés</h2>
     <p>Voici la progression principale du chantier dense :</p>
+    <DenseProgression lang="fr" />
     <Table>
       <thead>
         <tr>
@@ -757,8 +1103,8 @@ const ContentFr = () => (
     <p>Le laboratoire héberge aussi une chaîne de transcription basée sur WhisperX, CTranslate2, pyannote et ffmpeg.</p>
     <p>Un script sélectionne automatiquement une machine disponible :</p>
     <ol>
-      <li>worker avec RTX 3060;</li>
       <li>worker avec RTX 2070;</li>
+      <li>worker avec RTX 3060;</li>
       <li>repli CPU si aucun GPU n'est disponible.</li>
     </ol>
     <p>Le pipeline gère notamment :</p>
@@ -831,7 +1177,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Une méthode de travail assistée par IA, mais vérifiée par la mesure</h2>
+    <h2 id="method">Une méthode de travail assistée par IA, mais vérifiée par la mesure</h2>
     <p>
       Le projet a été construit en dirigeant des assistants IA sur les différentes machines et dans les différents
       dépôts.
@@ -860,6 +1206,7 @@ const ContentFr = () => (
       <li>une ancienne carte pouvait battre un CPU moderne lorsqu'elle était utilisée dans le bon rôle.</li>
     </ul>
     <p>L'IA a accéléré l'exploration. Les mesures ont décidé de ce qui était vrai.</p>
+    <EvidencePanel lang="fr" />
 
     <hr />
 
@@ -885,7 +1232,7 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Ce que ce projet démontre</h2>
+    <h2 id="client-value">Ce que ce projet démontre</h2>
     <p>Au-delà des chiffres, ce chantier démontre plusieurs capacités transférables à des projets clients.</p>
 
     <h3>Intégrer des systèmes hétérogènes</h3>
@@ -932,10 +1279,12 @@ const ContentFr = () => (
 
     <hr />
 
-    <h2>Applications possibles en entreprise</h2>
+    <h2>Ce que cette étude permet de valider avant un investissement</h2>
     <p>
-      Ce laboratoire n'est pas présenté comme un produit prêt à vendre. Il démontre toutefois des approches qui peuvent
-      être appliquées à des besoins réels.
+      L'intérêt pour un client n'est pas de reproduire une Tesla K80. Il est de réduire l'incertitude avant d'investir :
+      vérifier ce que l'infrastructure existante peut réellement faire, identifier le goulot dominant et valider une
+      architecture par la mesure. Ce laboratoire n'est pas un produit prêt à vendre, mais sa méthode se transfère à des
+      besoins réels.
     </p>
 
     <h3>Traitement local de données sensibles</h3>
@@ -1019,7 +1368,7 @@ const ContentFr = () => (
     <ul>
       <li>mesurer systématiquement la qualité des réponses sur un ensemble de tâches réelles;</li>
       <li>stabiliser davantage le service K80;</li>
-      <li>produire des graphiques publics à partir des benchmarks;</li>
+      <li>publier les données brutes et le protocole détaillé des benchmarks;</li>
       <li>comparer les coûts d'exploitation avec différentes options infonuagiques;</li>
       <li>ajouter des tâches de fond;</li>
       <li>explorer le RAG local;</li>
@@ -1062,17 +1411,11 @@ const ContentFr = () => (
       pas naturellement compatibles, peu de réponses toutes faites et un résultat qui doit être démontré plutôt que
       simplement annoncé.
     </p>
-    <p>
-      Je me positionne comme <strong>consultant en intégration de systèmes et solutions IA</strong>.
-    </p>
-    <p>
-      J'interviens lorsque le projet est complexe, hors standard ou difficile à cadrer, avec une approche axée sur
-      l'intégration, la mesure et la mise en œuvre concrète.
-    </p>
+    <ArticleCta lang="fr" />
 
     <hr />
 
-    <h2>Encadré technique</h2>
+    <h2 id="technical-summary">Encadré technique</h2>
     <Table>
       <thead>
         <tr>
@@ -1115,7 +1458,7 @@ const ContentFr = () => (
         </tr>
         <tr>
           <td>Modèles</td>
-          <td>Qwen récents, dense 27B et MoE jusqu'à 35B</td>
+          <td>Qwen3.6-27B (dense) et Qwen3.6-35B-A3B (MoE)</td>
         </tr>
         <tr>
           <td>Meilleur dense standard</td>
@@ -1144,33 +1487,36 @@ const ContentFr = () => (
 
 const ContentEn = () => (
   <>
+    <QuickRead lang="en" />
+    <ArticleToc lang="en" />
+
     <p>
-      Running a recent large language model on modern hardware is relatively accessible today. The tooling is abundant,
-      graphics cards are supported, and common configurations are extensively documented.
+      Running a recent large language model on modern hardware is relatively straightforward today. Tools are plentiful,
+      graphics cards are well supported, and common configurations are extensively documented.
     </p>
     <p>
       The challenge becomes far more interesting when the hardware in question is an <strong>NVIDIA Tesla K80</strong>,
-      a card released in 2014, based on the Kepler architecture, dropped by modern software stacks and absent from the
-      officially supported configurations of most current inference engines.
+      a card released in 2014, based on the Kepler architecture, no longer supported by modern software stacks and
+      absent from the officially supported configurations of most current inference engines.
     </p>
     <p>That is exactly the project I took on as part of my personal local AI lab.</p>
     <p>
       The goal was not simply to get a few tokens printed in a terminal. I wanted to determine, in a measurable way,
-      whether this card could still play a useful role in a modern local AI infrastructure, serve models of{' '}
+      whether this card could still play a useful role in a modern local AI infrastructure, serve models with{' '}
       <strong>27 to 35 billion parameters</strong>, outperform my laptop and integrate cleanly into a multi-machine
       environment.
     </p>
     <p>The result is more nuanced and more interesting than a simple &ldquo;yes, it works&rdquo;.</p>
     <p>
-      A Tesla K80 can indeed run modern models, but only by accepting to work below the usual tooling layer, compiling
-      the right components, methodically testing several strategies and, above all, abandoning the optimizations that do
-      not survive measurement.
+      A Tesla K80 can indeed run modern models, but doing so requires working below the usual tooling layer, compiling
+      the right components, methodically testing several strategies and, above all, discarding optimizations that do not
+      hold up under measurement.
     </p>
 
     <blockquote>
       <p>
-        <strong>Headline result:</strong> a 2014 graphics card, unrecognized by modern runtimes, managed to serve recent
-        Qwen models from 27B to 35B. The best measured results reach about{' '}
+        <strong>Headline result:</strong> a 2014 graphics card, unrecognized by modern runtimes, successfully served
+        recent Qwen models ranging from 27B to 35B. The best measured results reached about{' '}
         <strong>13.5 tokens per second for a 35B MoE model with a 64k context</strong>, and up to{' '}
         <strong>13 to 29 tokens per second in certain speculative decoding scenarios</strong>.
       </p>
@@ -1186,23 +1532,24 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>The context: building a local AI infrastructure with hardware already on hand</h2>
+    <h2 id="context">The context: building a local AI infrastructure with hardware already on hand</h2>
     <p>The K80 project is part of a broader lab dedicated to local AI.</p>
     <p>
       The starting point was simple: several machines were already available on my network, but they were underused.
-      Rather than centralizing the entire load on an expensive new workstation or systematically depending on cloud
+      Rather than concentrating the entire workload on an expensive new workstation or systematically depending on cloud
       services, I wanted to distribute the workloads according to each device's strengths.
     </p>
-    <p>The lab rests on four types of resources:</p>
+    <p>The lab uses four types of resources:</p>
     <ul>
       <li>a laptop used as the control station and for some CPU inference;</li>
-      <li>a workstation with an RTX 2070 for fast GPU tasks;</li>
-      <li>another workstation with an RTX 3060, mainly used for transcription;</li>
+      <li>a workstation with an RTX 2070, mainly used for transcription;</li>
+      <li>another workstation with an RTX 3060 for fast GPU tasks;</li>
       <li>
         a Dell R730 server running Proxmox, hosting various services including a virtual machine with the Tesla K80 in
         PCI passthrough.
       </li>
     </ul>
+    <ArchitectureDiagram lang="en" />
     <p>
       The long-term goal is a <strong>local-first</strong> environment: private, modular and incremental. It is not a
       finished product, nor an automated cluster in the strict sense. LLM task distribution is mostly handled through
@@ -1210,8 +1557,8 @@ const ContentEn = () => (
     </p>
     <p>
       That distinction matters: I am not trying to present a generalized orchestration that does not exist. The project
-      rather demonstrates real integration capability across several tools, several hardware generations and several
-      types of workloads.
+      instead demonstrates practical integration across several tools, several hardware generations and several types of
+      workloads.
     </p>
 
     <h3>Guiding principles</h3>
@@ -1221,16 +1568,16 @@ const ContentEn = () => (
         <strong>Local-first</strong> — core operation must not depend on a cloud service.
       </li>
       <li>
-        <strong>Privacy</strong> — private code, documents, transcripts and working data must be able to stay inside the
-        local network.
+        <strong>Privacy</strong> — private code, documents, transcripts and working data must be able to remain within
+        the local network.
       </li>
       <li>
         <strong>Modularity</strong> — each machine must be able to play a role suited to its capabilities without
         forcing a monolithic architecture.
       </li>
       <li>
-        <strong>Measured progress</strong> — each new building block must be tested and documented before adding the
-        next.
+        <strong>Measured progress</strong> — each new building block must be tested and documented before the next is
+        added.
       </li>
     </ol>
     <p>
@@ -1240,7 +1587,7 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>Why the Tesla K80 is a particular problem</h2>
+    <h2 id="k80-constraints">Why the Tesla K80 poses a unique challenge</h2>
     <p>The Tesla K80 is an unusual card.</p>
     <p>
       It contains two GK210 graphics processors on a single board, each with roughly 12 GB of memory. In practice, with
@@ -1248,7 +1595,7 @@ const ContentEn = () => (
     </p>
     <p>
       On paper, that amount of memory is attractive for local inference. It allows loading quantized models far larger
-      than an 8 or 12 GB consumer card would normally accept.
+      than an 8 or 12 GB consumer card could normally accommodate.
     </p>
     <p>So the problem is not memory capacity alone.</p>
     <p>
@@ -1263,25 +1610,25 @@ const ContentEn = () => (
     <h3>Main constraints</h3>
     <ul>
       <li>Kepler sm_37 is deprecated;</li>
-      <li>recent CUDA no longer compiles for this architecture;</li>
+      <li>recent CUDA releases no longer compile for this architecture;</li>
       <li>modern PyTorch does not recognize the card;</li>
-      <li>Ollama provides no directly compatible path;</li>
+      <li>Ollama provides no directly compatible execution path;</li>
       <li>some modern kernels assume instructions introduced after Kepler;</li>
       <li>the card has two separate dies, which adds a constraint on how the model is distributed;</li>
-      <li>freeing VRAM between two models can be slow;</li>
-      <li>available memory is significant, but bandwidth and architecture remain dated.</li>
+      <li>freeing VRAM when switching models can be slow;</li>
+      <li>memory capacity is substantial, but bandwidth and architecture remain dated.</li>
     </ul>
     <p>
-      The only realistic path was therefore to go back to a compatible stack, then compile the inference engine myself.
+      The only realistic path was therefore to use a compatible legacy stack, then compile the inference engine myself.
     </p>
 
     <hr />
 
-    <h2>Recompiling llama.cpp for Kepler</h2>
+    <h2 id="build">Recompiling llama.cpp for Kepler</h2>
     <p>
       The chosen solution relies on <strong>llama.cpp</strong>, compiled specifically for the sm_37 architecture.
     </p>
-    <p>The combination used was:</p>
+    <p>The setup used:</p>
     <ul>
       <li>
         <strong>CUDA 11.8</strong>;
@@ -1292,28 +1639,26 @@ const ContentEn = () => (
       <li>
         compilation with <code>CMAKE_CUDA_ARCHITECTURES=37</code>;
       </li>
-      <li>execution in a dedicated virtual machine under Proxmox;</li>
+      <li>a dedicated virtual machine running under Proxmox;</li>
       <li>PCI passthrough of both K80 dies.</li>
     </ul>
     <p>
-      CUDA 11.8 still accepts compiling for sm_37, but refuses GCC versions that are too recent. The build chain
-      therefore had to be controlled precisely rather than simply installing the system's default packages.
+      CUDA 11.8 can still compile for sm_37, but it rejects GCC versions that are too recent. The build chain therefore
+      had to be controlled precisely rather than simply installing the system's default packages.
     </p>
-    <p>Simplified example of the build intent:</p>
+    <p>Simplified example of the build configuration:</p>
     <BuildCommand />
+    <p>This step makes the engine compatible with the card, but it does not guarantee practical performance.</p>
     <p>
-      This step makes the engine compatible with the card, but it does not guarantee that performance will be useful.
-    </p>
-    <p>
-      A card capable of loading a model may still produce tokens too slowly to be interesting. The rest of the work
-      therefore consisted of measuring the various configurations and finding the levers that had a real effect.
+      A card capable of loading a model may still produce tokens too slowly to be useful. The rest of the work therefore
+      focused on benchmarking the various configurations and identifying changes with a measurable impact.
     </p>
 
     <hr />
 
     <h2>First result: the model runs, but the baseline configuration is limited</h2>
-    <p>The first model used for the main campaign was a dense 27B Qwen3.6 model quantized in Q4.</p>
-    <p>With a classic split between the two dies, the starting configuration gave roughly:</p>
+    <p>The first model used in the primary benchmark campaign was a dense 27B Qwen3.6 model quantized to Q4.</p>
+    <p>With a conventional split between the two dies, the starting configuration delivered roughly:</p>
     <Table>
       <thead>
         <tr>
@@ -1331,8 +1676,8 @@ const ContentEn = () => (
       </tbody>
     </Table>
     <p>
-      Prefill was already reasonable, but generation at <strong>3.25 tokens per second</strong> stayed too close to what
-      my laptop CPU could reach.
+      Prefill was already reasonable, but generation at <strong>3.25 tokens per second</strong> remained too close to
+      what my laptop CPU could reach.
     </p>
     <p>The card worked. The challenge now was to make it genuinely useful.</p>
 
@@ -1348,7 +1693,7 @@ const ContentEn = () => (
       <li>a row split, where both dies work in parallel on each layer.</li>
     </ul>
     <p>
-      Switching to a <code>row</code> strategy produced a clear gain:
+      Switching to a <code>row</code> strategy produced a clear improvement:
     </p>
     <Table>
       <thead>
@@ -1381,14 +1726,14 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>Requantizing the model for an old architecture</h2>
+    <h2>Requantizing the model for an older architecture</h2>
     <p>
-      Modern K-quant style quantizations are generally a good choice on recent hardware. They offer an attractive
-      trade-off between quality, size and performance.
+      Modern K-quant formats are generally a good choice on recent hardware. They offer an attractive trade-off between
+      quality, size and performance.
     </p>
     <p>On Kepler, however, that choice was not optimal.</p>
     <p>
-      I therefore tested a local requantization to the <strong>Q4_0</strong> format, older and simpler. The associated
+      I therefore tested a local requantization to <strong>Q4_0</strong>, an older and simpler format. The associated
       dequantization kernels are less complex and better suited to this GPU generation.
     </p>
     <p>The result:</p>
@@ -1418,12 +1763,11 @@ const ContentEn = () => (
       nearly double the starting configuration.
     </p>
     <p>
-      One limitation must be stated transparently: the Q4_0 file was produced by requantizing an already quantized
-      model. This double quantization is valid for measuring speed, but its effect on quality was not systematically
-      evaluated.
+      To be transparent, the Q4_0 file was produced by requantizing an already quantized model. This double quantization
+      is valid for measuring speed, but its effect on quality was not systematically evaluated.
     </p>
     <p>
-      I therefore do not present this result as a universal production recommendation. It rather demonstrates that a
+      I therefore do not present this result as a universal production recommendation. Instead, it demonstrates that a
       simpler quantization can be much better suited to an older architecture.
     </p>
 
@@ -1431,8 +1775,8 @@ const ContentEn = () => (
 
     <h2>Comparison with the laptop</h2>
     <p>
-      To determine whether the K80 still had real value, I compared it to my laptop's CPU and iGPU on the same order of
-      magnitude of model.
+      To determine whether the K80 still had real value, I compared it with my laptop's CPU and iGPU using models of
+      comparable size.
     </p>
     <Table>
       <thead>
@@ -1460,7 +1804,7 @@ const ContentEn = () => (
         </tr>
       </tbody>
     </Table>
-    <p>The K80 wins on both metrics:</p>
+    <p>The K80 outperforms the laptop on both metrics:</p>
     <ul>
       <li>
         about <strong>3.2 times faster than the CPU on prefill</strong>;
@@ -1476,26 +1820,26 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>A logical hypothesis that does not work: going back to the old CUDA paths</h2>
+    <h2>A reasonable hypothesis that did not pan out: returning to legacy CUDA paths</h2>
     <p>
-      Once the model was running at 6.30 tokens per second, the next question was obvious: can we go further by
-      reactivating historical optimizations designed for Kepler?
+      Once the model was running at 6.30 tokens per second, the next question was obvious: could performance be improved
+      further by re-enabling legacy optimizations designed for Kepler?
     </p>
-    <p>Several old flags and compute paths were examined.</p>
+    <p>Several legacy flags and compute paths were examined.</p>
     <p>
-      The problem is that the DMMV path used in older versions of llama.cpp has been removed. Modern generation goes
-      through MMVQ instead, which relies on strategies optimized for more recent architectures.
+      The problem is that the DMMV path used in older versions of llama.cpp has been removed. Modern token generation
+      uses MMVQ instead, which relies on strategies optimized for more recent architectures.
     </p>
     <p>
       Some operations in particular use instructions that are not natively available on Kepler and must be emulated.
     </p>
     <p>The initial hypothesis was therefore that this emulation was the main bottleneck.</p>
-    <p>Recompilations with various old parameters produced no significant gain, however.</p>
+    <p>Recompiling with various legacy settings produced no significant gain, however.</p>
     <p>
-      One tested configuration gave <strong>6.32 tokens per second</strong>, practically the same result as the
+      One tested configuration gave <strong>6.32 tokens per second</strong>, essentially the same result as the
       reference <strong>6.30 tokens per second</strong>.
     </p>
-    <p>The conclusion was clear: these flags were no longer a relevant lever in the modern version of the engine.</p>
+    <p>The conclusion was clear: these flags were no longer a useful optimization path in the modern engine.</p>
 
     <hr />
 
@@ -1506,9 +1850,9 @@ const ContentEn = () => (
     </p>
     <p>
       Its goal was to perform Q4_0 to FP32 dequantization followed by a matrix-vector multiplication, without relying on
-      the modern path presumed unfavourable to Kepler.
+      the modern path assumed to perform poorly on Kepler.
     </p>
-    <p>Technically, the kernel worked. In terms of performance, it was clearly inferior.</p>
+    <p>Technically, the kernel worked, but its performance was far worse.</p>
     <Table>
       <thead>
         <tr>
@@ -1533,13 +1877,13 @@ const ContentEn = () => (
     <p>This failure was particularly instructive.</p>
     <p>
       Emulating certain modern instructions was not the main problem. The standard llama.cpp kernel remained extremely
-      optimized: coalesced memory access, better GPU occupancy and more efficient work organization.
+      optimized: coalesced memory access, better GPU occupancy and more efficient work scheduling.
     </p>
     <p>
-      The custom kernel, despite simpler arithmetic logic, performed less efficient reads. On a memory-dominated
+      The custom kernel, despite simpler arithmetic logic, used less efficient memory accesses. On a memory-bound
       workload, that weakness cost more than the emulation I was trying to avoid.
     </p>
-    <p>The effort was therefore stopped.</p>
+    <p>Work on it was therefore discontinued.</p>
     <p>
       That decision is an integral part of the project. An optimization only has value if it genuinely improves the
       system. A well-measured negative result is preferable to an elegant but false intuition.
@@ -1547,37 +1891,37 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>Identifying the real wall: memory bandwidth</h2>
+    <h2 id="memory-bottleneck">Identifying the real bottleneck: memory bandwidth</h2>
     <p>
-      Measurements progressively showed that generation was primarily <strong>memory-bound</strong>.
+      Measurements gradually showed that generation was primarily <strong>memory-bound</strong>.
     </p>
     <p>
-      In other words, the GPU was not short on arithmetic operations. It spent most of its time moving and re-reading
+      In other words, compute throughput was not the bottleneck. The GPU spent most of its time moving and re-reading
       the model weights.
     </p>
-    <p>Several indicators converged:</p>
+    <p>Several indicators pointed to the same conclusion:</p>
     <ul>
       <li>
         profiling attributed about <strong>78.6% of the time</strong> to the <code>MUL_MAT[q4_0]</code> operation;
       </li>
       <li>
-        a significant increase in GPU clock brought only about <strong>2.7%</strong> of gain;
+        a significant increase in GPU clock produced a gain of only about <strong>2.7%</strong>;
       </li>
       <li>targeted arithmetic optimizations changed almost nothing;</li>
-      <li>the simpler quantization improved results by reducing read and dequantization cost.</li>
+      <li>the simpler quantization improved results by reducing read and dequantization costs.</li>
     </ul>
     <p>Once that was established, continuing to look only at kernels became pointless.</p>
-    <p>The goal instead had to be reducing how many times the model weights were re-read.</p>
+    <p>Instead, the goal was to reduce how many times the model weights were re-read.</p>
 
     <hr />
 
     <h2>Speculative decoding: exploiting the memory wall instead of fighting it</h2>
     <p>
-      <strong>Speculative decoding</strong> based on an n-gram cache became the next lever.
+      <strong>Speculative decoding</strong> based on an n-gram cache became the next optimization to explore.
     </p>
     <p>
-      The principle is to propose several candidate tokens from the existing context, then verify them as a group with
-      the main model.
+      The idea is to propose several candidate tokens from the existing context, then verify them as a group with the
+      main model.
     </p>
     <p>
       On a machine limited by memory bandwidth, this approach is attractive: the verification pass can validate several
@@ -1587,7 +1931,7 @@ const ContentEn = () => (
       Results on real-world content were highly variable, but clearly superior to standard generation when the context
       contained enough reusable patterns.
     </p>
-    <p>Effective throughput observed:</p>
+    <p>Observed effective throughput:</p>
     <Table>
       <thead>
         <tr>
@@ -1614,7 +1958,7 @@ const ContentEn = () => (
       All six recorded runs exceeded <strong>10 tokens per second</strong>, compared to about{' '}
       <strong>6.47 tokens per second</strong> in the reference dense configuration used for this series.
     </p>
-    <p>In the best cases, throughput was multiplied by two to four.</p>
+    <p>In the best cases, throughput doubled or even quadrupled.</p>
 
     <h3>An important limitation</h3>
     <p>N-gram speculative decoding depends heavily on repetition in the context.</p>
@@ -1623,8 +1967,8 @@ const ContentEn = () => (
       <strong>7 to 9 tokens per second</strong>.
     </p>
     <p>
-      It is therefore not a universal multiplier. It is a contextual optimization that is particularly useful for code,
-      technical documentation, rewriting and other structured workloads.
+      It is therefore not a universal multiplier. It is a workload-dependent optimization that is particularly useful
+      for code, technical documentation, rewriting and other structured workloads.
     </p>
 
     <hr />
@@ -1634,10 +1978,10 @@ const ContentEn = () => (
       The lab also uses <strong>Mixture of Experts</strong>, or MoE, models.
     </p>
     <p>
-      These models can offer a good ratio between total capacity and the number of parameters activated per token. On
+      These models can offer a good balance between total capacity and the number of parameters activated per token. On
       the available hardware, they proved particularly interesting.
     </p>
-    <p>However, adding speculative decoding to MoE models created a deceptive problem.</p>
+    <p>However, adding speculative decoding to MoE models introduced a misleading failure mode.</p>
     <p>The model could:</p>
     <ul>
       <li>load correctly;</li>
@@ -1647,7 +1991,7 @@ const ContentEn = () => (
     </ul>
     <p>Then, after several hundred tokens, the compute buffer grew enough to trigger an out-of-memory error.</p>
     <p>The problem therefore did not show up in a quick test.</p>
-    <p>Runs at 800 tokens made it possible to distinguish stable configurations from fragile ones.</p>
+    <p>Generation tests at 800 tokens made it possible to distinguish stable configurations from fragile ones.</p>
     <Table>
       <thead>
         <tr>
@@ -1662,7 +2006,7 @@ const ContentEn = () => (
         </tr>
         <tr>
           <td>MoE, reduced context, speculative decoding</td>
-          <td>sometimes stable, but less advantageous</td>
+          <td>sometimes stable, but less beneficial</td>
         </tr>
         <tr>
           <td>MoE, 64k context, without speculative decoding</td>
@@ -1685,13 +2029,13 @@ const ContentEn = () => (
     </blockquote>
     <p>
       This step is a reminder of an important rule: a benchmark of a few dozen tokens does not validate a service. A
-      configuration can pass every superficial check and fail only during a long generation.
+      configuration can pass every superficial check and fail only during a long generation run.
     </p>
 
     <hr />
 
     <h2>Handling slow VRAM release</h2>
-    <p>Another problem appeared when switching models.</p>
+    <p>Another problem emerged when switching models.</p>
     <p>
       After stopping a model, the K80's memory did not become available again immediately. The new server could start,
       pass its initial check, then crash on the first generation because the previous model's VRAM had not yet been
@@ -1705,16 +2049,17 @@ const ContentEn = () => (
       <li>checks at regular intervals;</li>
       <li>then launches the new server.</li>
     </ol>
-    <p>This small piece of integration made model switching far more reliable.</p>
+    <p>This small integration layer made model switching far more reliable.</p>
     <p>
-      It illustrates the nature of the project well: the difficulty was not only in the compilation or in the models. It
-      was also in the operational details that separate a one-off benchmark from a genuinely usable service.
+      It illustrates the nature of the project well: the challenge lay not only in compilation or model behaviour, but
+      also in the operational details that separate a one-off benchmark from a genuinely usable service.
     </p>
 
     <hr />
 
-    <h2>Consolidated results</h2>
-    <p>Here is the main progression of the dense track:</p>
+    <h2 id="results">Consolidated results</h2>
+    <p>Here is the main progression for the dense model:</p>
+    <DenseProgression lang="en" />
     <Table>
       <thead>
         <tr>
@@ -1761,18 +2106,17 @@ const ContentEn = () => (
       </tbody>
     </Table>
     <p>
-      The K80 does not become a modern card. It remains limited by its architecture, its bandwidth, its energy
-      efficiency and its lack of official support.
+      These results do not turn the K80 into a modern GPU. It remains limited by its architecture, its bandwidth, its
+      energy efficiency and its lack of official support.
     </p>
     <p>
-      But it moves from the status of theoretically obsolete hardware to that of a genuinely useful worker for certain
-      local workloads.
+      They do, however, turn nominally obsolete hardware into a genuinely useful worker for certain local workloads.
     </p>
 
     <hr />
 
-    <h2>Beyond the K80: a local AI environment distributed by roles</h2>
-    <p>The K80 track is the most technical part of the lab, but it does not exist in isolation.</p>
+    <h2>Beyond the K80: a distributed local AI environment organized by role</h2>
+    <p>The K80 project is the most technical part of the lab, but it does not exist in isolation.</p>
     <p>
       The local environment uses several existing components, configured and integrated according to hardware
       capabilities.
@@ -1789,7 +2133,7 @@ const ContentEn = () => (
       <li>
         <strong>llama-swap</strong> to load and unload models;
       </li>
-      <li>OpenAI-compatible APIs to standardize the access points.</li>
+      <li>OpenAI-compatible APIs to provide consistent endpoints.</li>
     </ul>
 
     <h3>Development agents</h3>
@@ -1800,23 +2144,21 @@ const ContentEn = () => (
       Continue.dev was not rewritten. It was integrated and configured to use the local models available on different
       machines.
     </p>
-    <p>The work notably surfaced several non-obvious behaviours:</p>
+    <p>This work surfaced several non-obvious behaviours:</p>
     <ul>
       <li>Continue's context length setting did not propagate to Ollama as expected;</li>
-      <li>custom models had to explicitly declare their ability to use tools;</li>
+      <li>custom models had to explicitly declare tool-use support;</li>
       <li>too small a context caused loops;</li>
-      <li>a model's name could wrongly influence capability detection;</li>
-      <li>
-        some observed limitations came from the model's behaviour rather than from a bug in how tools were transmitted.
-      </li>
+      <li>a model's name could incorrectly affect capability detection;</li>
+      <li>some observed limitations came from the model's behaviour rather than from a bug in tool-call forwarding.</li>
     </ul>
     <p>
-      Derived Ollama models were therefore created with the context fixed at 16k, and behaviour rules were added to the
-      configuration.
+      Custom Ollama model variants were therefore created with a fixed 16k context window, and behaviour rules were
+      added to the configuration.
     </p>
     <p>
-      A real case that previously required about ten manual retries was brought down to a single pass after analyzing
-      telemetry and adjusting the rules.
+      A real-world case that previously required about ten manual retries was brought down to a single pass after
+      analyzing telemetry and adjusting the rules.
     </p>
 
     <h3>Local web search</h3>
@@ -1825,40 +2167,40 @@ const ContentEn = () => (
     </p>
     <p>
       A self-hosted <strong>SearXNG</strong> service was therefore integrated over MCP to provide locally controlled web
-      search, without depending on an external API key.
+      search without requiring an external API key.
     </p>
 
     <h3>Local transcription</h3>
-    <p>The lab also hosts a transcription chain based on WhisperX, CTranslate2, pyannote and ffmpeg.</p>
+    <p>The lab also hosts a transcription pipeline based on WhisperX, CTranslate2, pyannote and ffmpeg.</p>
     <p>A script automatically selects an available machine:</p>
     <ol>
-      <li>RTX 3060 worker;</li>
       <li>RTX 2070 worker;</li>
+      <li>RTX 3060 worker;</li>
       <li>CPU fallback if no GPU is available.</li>
     </ol>
     <p>The pipeline handles, among other things:</p>
     <ul>
       <li>machine selection;</li>
       <li>serialization of GPU tasks;</li>
-      <li>temporarily unloading an Ollama model when it conflicts with transcription;</li>
+      <li>temporary unloading of an Ollama model when it conflicts with transcription;</li>
       <li>audio normalization;</li>
       <li>channel extraction;</li>
       <li>timestamping;</li>
       <li>diarization;</li>
       <li>glossary injection;</li>
-      <li>producing an execution manifest.</li>
+      <li>execution manifest generation.</li>
     </ul>
     <p>
-      A real test processed <strong>42 minutes of audio in 2 minutes 15 seconds</strong>, roughly{' '}
+      In a real-world test, the pipeline processed <strong>42 minutes of audio in 2 minutes 15 seconds</strong>, roughly{' '}
       <strong>24 times faster than real time</strong>, with timestamps and speaker attribution.
     </p>
-    <p>Transcription is currently the part closest to a deliverable directly reusable by another project.</p>
+    <p>The transcription pipeline is currently the component closest to a reusable deliverable for another project.</p>
 
     <hr />
 
-    <h2>What was integrated, and what comes from existing tools</h2>
+    <h2>What I integrated, and what came from existing tools</h2>
     <p>
-      To present this project correctly, it is important to distinguish integration work from third-party components.
+      To describe this project accurately, it is important to distinguish integration work from third-party components.
     </p>
     <p>I did not create:</p>
     <ul>
@@ -1872,52 +2214,52 @@ const ContentEn = () => (
       <li>an inference engine;</li>
       <li>a new large language model.</li>
     </ul>
-    <p>The work done lies in:</p>
+    <p>My work covered:</p>
     <ul>
       <li>architecture design;</li>
-      <li>assigning roles to machines;</li>
+      <li>machine role assignment;</li>
       <li>service configuration;</li>
       <li>targeted compilation for out-of-support hardware;</li>
       <li>network and API integration;</li>
-      <li>writing automation scripts;</li>
+      <li>automation script development;</li>
       <li>transcription routing;</li>
       <li>model and context configuration;</li>
-      <li>tooling diagnosis;</li>
+      <li>tool troubleshooting;</li>
       <li>benchmarking;</li>
       <li>profiling;</li>
       <li>documentation;</li>
       <li>hypothesis validation;</li>
-      <li>reasoned abandonment of ineffective paths.</li>
+      <li>deliberate abandonment of ineffective approaches.</li>
     </ul>
     <p>
-      This is exactly what I aim to put forward in my work as a systems integration consultant:{' '}
+      This is exactly what I aim to highlight in my work as a systems integration consultant:{' '}
       <strong>I do not need to reinvent every component to create a solution that did not exist in this form.</strong>
     </p>
     <p>
-      The value lies in understanding the need, choosing the building blocks, adapting them, integrating them and being
-      able to prove that the result works.
+      The value lies in understanding the need, choosing the building blocks, adapting and integrating them, and proving
+      that the result works.
     </p>
 
     <hr />
 
-    <h2>An AI-assisted working method, verified by measurement</h2>
-    <p>The project was built by directing AI assistants across the different machines and repositories.</p>
-    <p>I consider it important to say so clearly.</p>
+    <h2 id="method">An AI-assisted workflow, validated through measurement</h2>
+    <p>I built the project by directing AI assistants working across different machines and repositories.</p>
+    <p>That distinction is worth stating clearly.</p>
     <p>
-      The agents contributed to producing scripts, documentation, diagnostic commands and experimental directions. My
-      role was to define the objectives, organize the work, decide on directions, launch the runs, compare the results,
-      correct the hypotheses and validate what was worth keeping.
+      The agents helped produce scripts, documentation, diagnostic commands and avenues for experimentation. My role was
+      to define the objectives, organize the work, choose the direction, run the tests, compare the results, revise the
+      hypotheses and decide what was worth keeping.
     </p>
     <p>Using agents does not replace technical validation.</p>
     <p>On the contrary, this project reinforced a simple discipline:</p>
     <blockquote>
       <p>
-        <strong>Assert nothing about a system's behaviour before measuring it.</strong>
+        <strong>Make no claims about a system's behaviour before measuring it.</strong>
       </p>
     </blockquote>
     <p>Several proposed or intuitively appealing ideas turned out to be false:</p>
     <ul>
-      <li>increasing all CPU threads could slow down inference;</li>
+      <li>increasing the CPU thread count could slow down inference;</li>
       <li>the apparent format of tool calls did not predict an agent's quality;</li>
       <li>emulating a modern instruction was not the K80's main bottleneck;</li>
       <li>a simpler CUDA kernel could be much slower;</li>
@@ -1926,41 +2268,42 @@ const ContentEn = () => (
       <li>an old card could beat a modern CPU when used in the right role.</li>
     </ul>
     <p>AI accelerated exploration. Measurements decided what was true.</p>
+    <EvidencePanel lang="en" />
 
     <hr />
 
     <h2>Current limitations of the lab</h2>
-    <p>The project remains a personal lab, not a production platform intended for the public.</p>
-    <p>Some limitations are accepted:</p>
+    <p>The project remains a personal lab, not a production platform for public use.</p>
+    <p>Some limitations are acknowledged:</p>
     <ul>
       <li>LLM distribution is not generally automated;</li>
       <li>some workers are powered on only when needed;</li>
       <li>the K80 service still has to be monitored and restarted in certain scenarios;</li>
       <li>model response quality has not yet been evaluated as systematically as speed;</li>
-      <li>some documented directions are not implemented yet;</li>
-      <li>advanced multi-agent setups and RAG are not currently in service;</li>
+      <li>some documented avenues are not implemented yet;</li>
+      <li>advanced multi-agent setups and RAG are not currently in use;</li>
       <li>performance data is tied to the hardware, models and versions tested;</li>
       <li>measurements must be dated and must not be generalized to other environments without validation.</li>
     </ul>
     <p>
-      These limitations do not diminish the interest of the project. They simply define what was actually built and what
-      remains to be explored.
+      These limitations do not diminish the project's value. They simply define what was actually built and what remains
+      to be explored.
     </p>
 
     <hr />
 
-    <h2>What this project demonstrates</h2>
-    <p>Beyond the numbers, this work demonstrates several capabilities transferable to client projects.</p>
+    <h2 id="client-value">What this project demonstrates</h2>
+    <p>Beyond the numbers, this work demonstrates several capabilities that transfer directly to client projects.</p>
 
     <h3>Integrating heterogeneous systems</h3>
     <p>
-      Making machines from different generations work together, along with distinct APIs, GPUs with incompatible
-      constraints and services developed by several teams.
+      Making machines from different generations, distinct APIs, GPUs with incompatible constraints and services
+      developed by several teams work together.
     </p>
 
     <h3>Working with out-of-support hardware</h3>
     <p>
-      Finding a compatible software chain, compiling the necessary tools and determining whether the result actually
+      Finding a compatible software toolchain, compiling the necessary tools and determining whether the result actually
       justifies the effort.
     </p>
 
@@ -1969,8 +2312,8 @@ const ContentEn = () => (
 
     <h3>Knowing when to abandon a bad path</h3>
     <p>
-      The experimental CUDA kernel was kept as a trace, but removed from the solution because it was 3.8 times slower. A
-      serious solution is not about defending work already invested; it is about keeping what works.
+      The experimental CUDA kernel was retained as a record, but removed from the solution because it was 3.8 times
+      slower. A serious solution is not about defending sunk effort; it is about keeping what works.
     </p>
 
     <h3>Designing for controlled degradation</h3>
@@ -1981,8 +2324,8 @@ const ContentEn = () => (
 
     <h3>Documenting reusable interfaces</h3>
     <p>
-      The transcription chain is consumed by another project through a documented interface contract. The caller does
-      not need to know the hardware topology.
+      Another project uses the transcription pipeline through a documented interface contract. The caller does not need
+      to know the hardware topology.
     </p>
 
     <h3>Directing and verifying AI agents</h3>
@@ -1993,10 +2336,12 @@ const ContentEn = () => (
 
     <hr />
 
-    <h2>Possible business applications</h2>
+    <h2>What this work can de-risk for a business</h2>
     <p>
-      This lab is not presented as a ready-to-sell product. It does, however, demonstrate approaches that can be applied
-      to real needs.
+      The value for a client is not in reproducing a Tesla K80. It lies in reducing uncertainty before investing:
+      establishing what the existing infrastructure can actually do, identifying the dominant bottleneck and validating
+      an architecture through measurement. This lab is not a market-ready product, but its method transfers to
+      real-world needs.
     </p>
 
     <h3>Local processing of sensitive data</h3>
@@ -2004,7 +2349,7 @@ const ContentEn = () => (
       <li>transcription of meetings or interviews;</li>
       <li>analysis of confidential documents;</li>
       <li>internal assistants;</li>
-      <li>search across a private document base;</li>
+      <li>search across a private document repository;</li>
       <li>processing data that must not be sent to an external provider.</li>
     </ul>
 
@@ -2012,14 +2357,14 @@ const ContentEn = () => (
     <ul>
       <li>assessing whether hardware already owned can be repurposed;</li>
       <li>distributing workloads according to available resources;</li>
-      <li>avoiding a premature purchase before validating the needs;</li>
+      <li>avoiding a premature purchase before validating the requirements;</li>
       <li>objectively determining the limits of the hardware.</li>
     </ul>
 
     <h3>Integrating AI solutions</h3>
     <ul>
       <li>connecting local models to existing tools;</li>
-      <li>standardizing access with compatible APIs;</li>
+      <li>standardizing access through compatible APIs;</li>
       <li>integrating internal or web search;</li>
       <li>adding transcription;</li>
       <li>automating service selection based on availability.</li>
@@ -2039,31 +2384,31 @@ const ContentEn = () => (
 
     <h3>1. Old hardware is not necessarily useless</h3>
     <p>
-      An out-of-support card can still be relevant if it has a useful characteristic — here, a large amount of VRAM
-      spread across two dies.
+      An unsupported card can still be relevant if it offers a useful advantage — here, a large amount of VRAM spread
+      across two dies.
     </p>
 
     <h3>2. Compatibility is not enough</h3>
     <p>
-      Getting a model to load is only the beginning. You have to measure generation, prefill, stability on long
+      Getting a model to load is only the beginning. You have to measure generation, prefill, stability over long
       responses and behaviour during model switches.
     </p>
 
     <h3>3. The best optimization depends on the real bottleneck</h3>
     <p>
-      When the system is memory-limited, raising the clock or simplifying an arithmetic operation can have very little
-      effect.
+      When the system is memory-bound, raising the clock speed or simplifying an arithmetic operation can have very
+      little effect.
     </p>
 
     <h3>4. An optimization can be specific to the model type</h3>
     <p>
-      Speculative decoding proved very effective in certain dense scenarios, but problematic on the MoE models tested.
+      Speculative decoding proved very effective in certain dense scenarios, but problematic for the MoE models tested.
     </p>
 
     <h3>5. Failures are results</h3>
     <p>
-      The slower kernel, the late OOMs and the recompilations with no effect all helped avoid pursuing useless
-      directions.
+      The slower kernel, the late OOMs and the recompilations with no effect all helped avoid pursuing unproductive
+      avenues.
     </p>
 
     <h3>6. Integration is a skill in itself</h3>
@@ -2075,20 +2420,20 @@ const ContentEn = () => (
     <hr />
 
     <h2>Possible next steps</h2>
-    <p>The lab opens several directions, without claiming they are already built:</p>
+    <p>This work points to several possible directions, without implying that they are already implemented:</p>
     <ul>
       <li>systematically measuring response quality on a set of real tasks;</li>
       <li>further stabilizing the K80 service;</li>
-      <li>producing public charts from the benchmarks;</li>
+      <li>publishing the raw benchmark data and detailed protocol;</li>
       <li>comparing operating costs against various cloud options;</li>
       <li>adding background tasks;</li>
       <li>exploring local RAG;</li>
       <li>testing Continue.dev's native sub-agents;</li>
-      <li>eventually integrating additional accelerators;</li>
+      <li>potentially integrating additional accelerators;</li>
       <li>publishing a cleaned-up selection of scripts and results;</li>
-      <li>turning the transcription chain into a standalone demonstration.</li>
+      <li>turning the transcription pipeline into a standalone demonstration.</li>
     </ul>
-    <p>The priority stays the same: progress one building block at a time and keep only what has been validated.</p>
+    <p>The priority remains the same: progress one building block at a time and keep only what has been validated.</p>
 
     <hr />
 
@@ -2097,12 +2442,12 @@ const ContentEn = () => (
     <blockquote>
       <p>
         <strong>
-          A 2014 Tesla K80, officially abandoned by modern tooling, was brought back into service to run recent language
-          models of 27 to 35 billion parameters locally.
+          A 2014 Tesla K80, no longer supported by modern tooling, was brought back into service to run recent language
+          models with 27 to 35 billion parameters on local hardware.
         </strong>
       </p>
     </blockquote>
-    <p>But the real interest of the project lies in the approach.</p>
+    <p>But the project's real value lies in the approach.</p>
     <p>It required:</p>
     <ul>
       <li>understanding the limits of the architecture;</li>
@@ -2110,7 +2455,7 @@ const ContentEn = () => (
       <li>using both dies correctly;</li>
       <li>comparing several quantizations;</li>
       <li>profiling the real bottlenecks;</li>
-      <li>writing then rejecting an experimental kernel;</li>
+      <li>writing and then discarding an experimental kernel;</li>
       <li>testing speculative decoding;</li>
       <li>identifying late OOMs;</li>
       <li>stabilizing model switches;</li>
@@ -2118,21 +2463,15 @@ const ContentEn = () => (
       <li>documenting the results honestly.</li>
     </ul>
     <p>
-      This project is a good representation of the kind of engagement that interests me: an atypical problem, several
-      systems that are not naturally compatible, few ready-made answers and a result that has to be demonstrated rather
-      than simply announced.
+      This project reflects the kind of engagement that interests me: an atypical problem, several systems that are not
+      naturally compatible, few ready-made answers and a result that has to be demonstrated rather than simply
+      announced.
     </p>
-    <p>
-      I position myself as a <strong>systems integration and AI solutions consultant</strong>.
-    </p>
-    <p>
-      I step in when a project is complex, non-standard or hard to scope, with an approach focused on integration,
-      measurement and concrete implementation.
-    </p>
+    <ArticleCta lang="en" />
 
     <hr />
 
-    <h2>Technical summary</h2>
+    <h2 id="technical-summary">Technical summary</h2>
     <Table>
       <thead>
         <tr>
@@ -2143,7 +2482,7 @@ const ContentEn = () => (
       <tbody>
         <tr>
           <td>Main card</td>
-          <td>NVIDIA Tesla K80, dual GK210 GPU</td>
+          <td>NVIDIA Tesla K80, dual GK210 GPUs</td>
         </tr>
         <tr>
           <td>Architecture</td>
@@ -2155,7 +2494,7 @@ const ContentEn = () => (
         </tr>
         <tr>
           <td>Environment</td>
-          <td>VM under Proxmox with PCI passthrough</td>
+          <td>Proxmox VM with PCI passthrough</td>
         </tr>
         <tr>
           <td>Build stack</td>
@@ -2175,10 +2514,10 @@ const ContentEn = () => (
         </tr>
         <tr>
           <td>Models</td>
-          <td>Recent Qwen, dense 27B and MoE up to 35B</td>
+          <td>Qwen3.6-27B (dense) and Qwen3.6-35B-A3B (MoE)</td>
         </tr>
         <tr>
-          <td>Best standard dense</td>
+          <td>Best standard dense-model result</td>
           <td>About 6.30 t/s</td>
         </tr>
         <tr>

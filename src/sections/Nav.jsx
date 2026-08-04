@@ -4,6 +4,10 @@ import { translations } from '../i18n';
 import { containerClasses } from '../styles';
 import LanguageToggle from '../components/LanguageToggle';
 
+// Duration of the mobile dropdown collapse. Shared between the exit transition
+// and handleNavClick, which has to wait it out before scrolling.
+const MOBILE_MENU_EXIT_MS = 200;
+
 const Nav = ({ lang, setLang, articleSlug, onBack, homeUrl = '/' }) => {
   const t = translations[lang] || translations.fr;
   const nav = t.nav;
@@ -64,8 +68,19 @@ const Nav = ({ lang, setLang, articleSlug, onBack, homeUrl = '/' }) => {
 
   const handleNavClick = useCallback((e, id) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileOpen(false);
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    // Collapsing the mobile dropdown aborts a smooth scroll that is already in
+    // flight — it dies a few dozen pixels in. So when the menu is open, close it
+    // first and only start scrolling once the exit animation is done.
+    if (mobileOpenRef.current) {
+      setMobileOpen(false);
+      window.setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), MOBILE_MENU_EXIT_MS + 40);
+      return;
+    }
+
+    target.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   return (
@@ -141,7 +156,7 @@ const Nav = ({ lang, setLang, articleSlug, onBack, homeUrl = '/' }) => {
             initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={prefersReducedMotion ? { display: 'none' } : { opacity: 0, height: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: MOBILE_MENU_EXIT_MS / 1000 }}
             className="md:hidden bg-bg/95 backdrop-blur-xl border-t border-line/50 overflow-hidden"
             aria-label={lang === 'en' ? 'Main navigation' : 'Navigation principale'}
           >

@@ -21,7 +21,7 @@ const Contact = ({ lang }) => {
             <Button href={channels[0].href} variant="primary" target="_blank" rel="noreferrer">
               {channels[0].label}
             </Button>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               {channels.slice(1).map(({ label, href }, i) => (
                 <Button key={i} href={href} variant="secondary" target="_blank" rel="noreferrer">
                   {label}

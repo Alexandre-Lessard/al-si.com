@@ -30,7 +30,9 @@ const FaqItem = ({ item, isOpen, onToggle, id, animate }) => {
           type="button"
           onClick={onToggle}
           aria-expanded={isOpen}
-          aria-controls={panelId}
+          // The panel is unmounted while collapsed, so pointing aria-controls at
+          // it would leave a dangling idref for assistive tech.
+          aria-controls={isOpen ? panelId : undefined}
           id={buttonId}
           className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
         >
