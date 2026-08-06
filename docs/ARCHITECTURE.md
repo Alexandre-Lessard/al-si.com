@@ -114,6 +114,14 @@ That makes the trailing slash load-bearing: a canonical tag pointing at a URL th
 
 Anything that builds a URL by hand needs the slash too — `href="/fr/"`, not `href="/fr"`.
 
+### Ce que ce dépôt ne contrôle pas
+
+Deux règles au niveau de la zone Cloudflare décident quels hôtes de `al-si.com`
+Google a le droit d'indexer, et redirigent `www` vers l'apex. Elles ne vivent que
+dans le dashboard — rien ici ne les produit. Voir
+[CLOUDFLARE-ZONE.md](CLOUDFLARE-ZONE.md) avant de créer un sous-domaine ou de
+s'étonner qu'il ne soit pas indexé.
+
 ## Useful scripts
 
 ```bash
