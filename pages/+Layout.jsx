@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   const lang = isErrorPage ? 'fr' : pageContext.locale || 'fr';
   const t = translations[lang] || translations.fr;
   const articleSlug = pageContext.routeParams?.slug || null;
-  const homeUrl = lang === 'en' ? '/en' : '/fr';
+  const homeUrl = lang === 'en' ? '/en/' : '/fr/';
 
   return (
     <div

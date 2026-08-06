@@ -34,7 +34,7 @@ const Articles = ({ lang }) => {
           return (
             <ScrollReveal key={i} delay={i * 0.1}>
               {hasContent ? (
-                <a href={`/${lang}/article/${article.slug}`} className="block h-full no-underline text-inherit">
+                <a href={`/${lang}/article/${article.slug}/`} className="block h-full no-underline text-inherit">
                   {card}
                 </a>
               ) : (

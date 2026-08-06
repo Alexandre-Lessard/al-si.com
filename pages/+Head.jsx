@@ -1,5 +1,6 @@
 import { usePageContext } from 'vike-react/usePageContext';
 import { translations } from '../src/i18n.js';
+import { barePath as toBarePath, localePath } from '../src/urls.js';
 
 const SITE = 'https://al-si.com';
 
@@ -14,10 +15,9 @@ export default function Head() {
 
   // Strip /fr or /en prefix to get the bare path, then build both prefixed URLs
   const url = pageContext.urlPathname || '/';
-  const bareMatch = url.match(/^\/(fr|en)(\/.*)?$/);
-  const barePath = bareMatch ? bareMatch[2] || '/' : url;
-  const pathFr = barePath === '/' ? '/fr' : `/fr${barePath}`;
-  const pathEn = barePath === '/' ? '/en' : `/en${barePath}`;
+  const barePath = toBarePath(url);
+  const pathFr = localePath('fr', barePath);
+  const pathEn = localePath('en', barePath);
   const canonical = locale === 'en' ? `${SITE}${pathEn}` : `${SITE}${pathFr}`;
   const articleSlug = barePath.match(/^\/article\/([^/]+)\/?$/)?.[1];
   const localizedContent = translations[locale] || translations.fr;
@@ -31,7 +31,8 @@ export default function Head() {
   // The error page is pre-rendered as a single /404.html served on any unknown
   // URL, so a canonical or hreflang pointing at /fr/404 would advertise a page
   // that doesn't exist. It must stay out of the index entirely.
-  const isErrorPage = pageContext.is404 === true || pageContext.abortStatusCode !== undefined || barePath === '/404';
+  const isErrorPage =
+    pageContext.is404 === true || pageContext.abortStatusCode !== undefined || barePath.replace(/\/$/, '') === '/404';
 
   return (
     <>
