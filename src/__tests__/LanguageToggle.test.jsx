@@ -9,10 +9,10 @@ describe('LanguageToggle', () => {
     expect(screen.getByText('EN')).toBeInTheDocument();
   });
 
-  it('FR link points to /fr and EN link to /en when on home', () => {
+  it('FR link points to /fr/ and EN link to /en/ when on home', () => {
     render(<LanguageToggle lang="fr" />);
-    expect(screen.getByText('FR').closest('a')).toHaveAttribute('href', '/fr');
-    expect(screen.getByText('EN').closest('a')).toHaveAttribute('href', '/en');
+    expect(screen.getByText('FR').closest('a')).toHaveAttribute('href', '/fr/');
+    expect(screen.getByText('EN').closest('a')).toHaveAttribute('href', '/en/');
   });
 
   it('calls onSelect callback when provided', () => {

@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { containerClasses } from '../styles';
 
-const ArticleLayout = ({ title, subtitle, date, lang, children, backHref = '/fr', badge, author, readingTime }) => {
+const ArticleLayout = ({ title, subtitle, date, lang, children, backHref = '/fr/', badge, author, readingTime }) => {
   const backLabel = lang === 'en' ? 'Back' : 'Retour';
   const prefersReducedMotion = useReducedMotion();
 

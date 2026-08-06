@@ -9,5 +9,5 @@ export default function Page() {
 
   if (!ArticleComponent) return null;
 
-  return <ArticleComponent lang={lang} backHref={lang === 'en' ? '/en' : '/fr'} />;
+  return <ArticleComponent lang={lang} backHref={lang === 'en' ? '/en/' : '/fr/'} />;
 }

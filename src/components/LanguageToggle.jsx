@@ -1,12 +1,9 @@
 import { usePageContext } from 'vike-react/usePageContext';
+import { barePath, localePath } from '../urls.js';
 
 // Build the URL of the same page in the requested locale, with explicit prefix.
 function getAlternateUrl(currentUrl, targetLocale) {
-  const path = currentUrl || '/';
-  const match = path.match(/^\/(fr|en)(\/.*)?$/);
-  const barePath = match ? match[2] || '/' : path;
-  const prefix = `/${targetLocale}`;
-  return barePath === '/' ? prefix : `${prefix}${barePath}`;
+  return localePath(targetLocale, barePath(currentUrl || '/'));
 }
 
 // Persist the user's manual language choice for one year. The Cloudflare

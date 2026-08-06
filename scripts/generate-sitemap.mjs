@@ -3,6 +3,7 @@
 // All URLs are explicitly prefixed with /fr or /en — there is no bare-locale URL.
 import { readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { barePath, localePath } from '../src/urls.js';
 
 const SITE = 'https://al-si.com';
 const DIST = 'dist/client';
@@ -27,12 +28,9 @@ function fileToUrl(file) {
 
 function pairForUrl(url) {
   // Returns { fr, en } prefixed URLs for any /fr or /en URL
-  const match = url.match(/^\/(fr|en)(\/.*)?$/);
-  if (!match) return null;
-  const bare = match[2] || '/';
-  const fr = bare === '/' ? '/fr' : `/fr${bare}`;
-  const en = bare === '/' ? '/en' : `/en${bare}`;
-  return { fr, en };
+  if (!/^\/(fr|en)(\/|$)/.test(url)) return null;
+  const bare = barePath(url);
+  return { fr: localePath('fr', bare), en: localePath('en', bare) };
 }
 
 const files = walk(DIST);

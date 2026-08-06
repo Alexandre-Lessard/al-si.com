@@ -27,8 +27,11 @@ export async function onRequest(context) {
     locale = acceptLang.startsWith('fr') ? 'fr' : 'en';
   }
 
-  // Build the prefixed redirect target
-  const newPath = path === '/' ? `/${locale}` : `/${locale}${path}`;
+  // Build the prefixed redirect target. It carries a trailing slash because
+  // that is the form Pages serves — landing on the slashless variant would
+  // cost the visitor (and Googlebot) a second, 308 hop.
+  const inner = path.replace(/^\/+|\/+$/g, '');
+  const newPath = inner ? `/${locale}/${inner}/` : `/${locale}/`;
   const target = new URL(newPath + url.search, url.origin);
 
   // 302: temporary, because the response varies by user (cookie + Accept-Language).

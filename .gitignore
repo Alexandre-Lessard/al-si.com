@@ -25,6 +25,11 @@ dist-ssr
 
 notes/
 
+# Local agent/tooling config (kept out of the public repo)
+.claude/
+.agents/
+.codex
+
 # Environment
 .env
 

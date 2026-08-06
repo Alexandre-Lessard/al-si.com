@@ -56,14 +56,14 @@ export default function ErrorPage() {
 
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         <a
-          href="/fr"
+          href="/fr/"
           lang="fr-CA"
           className={`${ctaClasses} bg-accent text-black hover:bg-white border border-transparent hover:border-accent`}
         >
           {fr.cta}
         </a>
         <a
-          href="/en"
+          href="/en/"
           lang="en"
           className={`${ctaClasses} border border-text/30 text-text hover:border-accent hover:text-accent`}
         >
