@@ -114,6 +114,25 @@ That makes the trailing slash load-bearing: a canonical tag pointing at a URL th
 
 Anything that builds a URL by hand needs the slash too — `href="/fr/"`, not `href="/fr"`.
 
+### The root redirect decides which homepage URL Google indexes
+
+`functions/_middleware.js` sends every bare URL — starting with `/` itself — to a locale prefix, picking the language from the `lang` cookie, then from the `Accept-Language` header. That redirect is a **302** on purpose: the response varies per visitor, and a 301 would be cached and then serve every later visitor whatever language the first one happened to ask for.
+
+Googlebot crawls without an `Accept-Language` header, so it lands on `/en/`. And because a temporary redirect tells Google to keep the **source** URL rather than the target, the index ends up shaped like this — expected behaviour, not a bug to fix:
+
+- `https://al-si.com/` is indexed, carrying the English homepage.
+- `https://al-si.com/en/` is reported in Search Console as _Duplicate, Google chose a different canonical than the user_: the page declares `/en/`, Google picks `/`.
+- `https://al-si.com/fr/` and both article URLs are indexed under their own URLs.
+
+So nothing is missing from the index — the English homepage simply lives at `/`. Only the root is affected: the bare form of an article URL redirects the same way, but nothing links to it, so Google never crawls it and never has a competing candidate to choose from.
+
+Promoting the 302 to a 301 would trade that one cosmetic line in the report for a broken language detection. Leave it alone.
+
+```bash
+# What Googlebot sees at the root: 302 to /en/
+curl -sI https://al-si.com/ | grep -iE '^HTTP/|^location'
+```
+
 ### Ce que ce dépôt ne contrôle pas
 
 Deux règles au niveau de la zone Cloudflare décident quels hôtes de `al-si.com`

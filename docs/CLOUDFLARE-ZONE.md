@@ -113,6 +113,22 @@ curl -s "https://api.certspotter.com/v1/issuances?domain=al-si.com&include_subdo
 À lancer avant de se demander si un sous-domaine est discret : la réponse y est
 déjà.
 
+## Un sous-domaine retiré met des semaines à quitter les rapports
+
+Quand un sous-domaine disparaît — enregistrement DNS supprimé, préprod client
+rendue —, ses URL restent dans Search Console longtemps après, et elles s'y
+rangent sous des motifs qui ont l'air alarmants : « Introuvable (404) », « Page
+en double », « Explorée, actuellement non indexée ». L'hôte ne résout plus
+depuis des semaines que le rapport le compte encore.
+
+Rien à faire : Google les retire de lui-même en les recrawlant. Avant de partir
+en chasse sur un motif du rapport d'indexation, vérifier que l'hôte existe
+encore — c'est souvent là que l'enquête s'arrête :
+
+```bash
+dig +short <sous-domaine>.al-si.com   # silence = l'hôte n'existe plus
+```
+
 ## Vérification
 
 ```bash
