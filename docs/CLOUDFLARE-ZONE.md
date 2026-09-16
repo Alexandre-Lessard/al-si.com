@@ -75,6 +75,44 @@ ailleurs.
 Pour que la règle 1 fonctionne, les sous-domaines doivent rester **explorables**.
 Le `noindex` fait le travail ; le `Disallow` l'en empêche.
 
+## Le noindex cache une page, il ne cache pas un nom d'hôte
+
+Les deux règles ci-dessus décident ce que Google affiche. Elles ne décident pas
+ce que la zone **publie**, et la distinction compte dès qu'un sous-domaine est
+censé rester discret — une préproduction client, un outil interne.
+
+Cloudflare émet un **certificat par nom d'hôte** sur cette zone : le certificat
+servi pour `fi.al-si.com` porte ce seul nom en `Subject Alternative Name`, pas
+un joker. Or tout certificat publiquement approuvé est inscrit dans les
+**journaux de transparence** (Certificate Transparency), qui sont publics,
+append-only et interrogeables sans authentification — l'API de Cert Spotter rend
+la liste complète des sous-domaines de la zone en un appel, sans clé.
+
+Conséquence, à traiter comme une donnée de départ et non comme un réglage :
+
+- **Créer un sous-domaine, c'est le publier.** Quelques minutes après l'émission
+  du certificat, le nom est connu du monde entier, et il l'est définitivement.
+  Le `noindex` de la règle 1 empêche Google de l'afficher ; il n'empêche ni
+  l'inscription au journal, ni les scanners qui le lisent d'aller frapper à la
+  porte.
+- **Un domaine personnalisé R2 se comporte pareil** : il provisionne un
+  certificat pour l'hôte choisi, donc il se publie aussi.
+- **Un chemin ne se publie pas.** `al-si.com/quelque-chose` n'apparaît dans aucun
+  certificat, aucun enregistrement DNS, aucun journal de transparence. Pour ce
+  qui doit rester introuvable, un chemin sur l'apex bat un sous-domaine dédié.
+- **Rien de tout cela n'est un contrôle d'accès.** Ce qui doit rester privé se
+  protège — Cloudflare Access, un mot de passe —, pas par la discrétion du nom.
+
+### Voir ce que la zone a déjà publié
+
+```bash
+curl -s "https://api.certspotter.com/v1/issuances?domain=al-si.com&include_subdomains=true&expand=dns_names" \
+  | python3 -c 'import sys,json;print("\n".join(sorted({n for e in json.load(sys.stdin) for n in e["dns_names"]})))'
+```
+
+À lancer avant de se demander si un sous-domaine est discret : la réponse y est
+déjà.
+
 ## Vérification
 
 ```bash
