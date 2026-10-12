@@ -217,9 +217,9 @@ export const translations = {
             "C'est souvent comme ça que les meilleurs mandats commencent. Vous me racontez votre situation, je pose les bonnes questions, et on clarifie ensemble. Mon travail commence par comprendre votre métier, pas par vous vendre une solution préfabriquée. Si après notre échange je ne suis pas la bonne personne, je vous le dirai honnêtement.",
         },
         {
-          question: "Travaillez-vous avec l'IA?",
+          question: "Pouvez-vous intégrer l'IA dans nos systèmes?",
           answer:
-            "Oui, quand ça apporte une vraie valeur d'affaires — interroger vos propres documents, transcrire vos réunions, brancher un modèle de langage sur vos systèmes. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens. Et quand vos données ne doivent pas sortir de l'entreprise, elle peut être hébergée chez vous, hors nuage.",
+            "Oui, quand elle apporte une vraie valeur d'affaires : interroger vos propres documents, transcrire vos réunions, brancher un modèle de langage sur vos systèmes. Je ne l'ajoute pas pour faire moderne ; je la propose quand elle règle un vrai problème. Et quand vos données ne doivent pas sortir de l'entreprise, elle peut être hébergée chez vous, hors nuage.",
         },
         {
           question: 'Que se passe-t-il après la mise en production?',
@@ -518,9 +518,9 @@ export const translations = {
             "That's often how the best projects start. You tell me about your situation, I ask the right questions, and we clarify together. My work starts with understanding your business, not selling you a prepackaged solution. If after our call I'm not the right person, I'll tell you honestly.",
         },
         {
-          question: 'Do you work with AI?',
+          question: 'Can you bring AI into our systems?',
           answer:
-            "Yes, when it brings real business value — searching your own documents, transcribing your meetings, connecting a language model to your systems. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it. And when your data can't leave the company, it can be hosted on your premises, off the cloud.",
+            "Yes, when it brings real business value: searching your own documents, transcribing your meetings, connecting a language model to your systems. I don't add it to look modern; I propose it when it solves a real problem. And when your data can't leave the company, it can be hosted on your premises, off the cloud.",
         },
         {
           question: 'What happens after launch?',
