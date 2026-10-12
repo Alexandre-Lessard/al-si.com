@@ -132,7 +132,7 @@ export const translations = {
           items: [
             'Reprise de systèmes existants, même sans documentation ni code source',
             "Mises à niveau de serveurs et d'infrastructure en pleine exploitation",
-            'Sauvegardes et reprise après sinistre, testées par restauration',
+            'Sauvegardes et reprise après sinistre, avec tests de restauration au besoin',
             'Hébergement et déploiement — toujours inclus',
           ],
         },
@@ -435,7 +435,7 @@ export const translations = {
           items: [
             'Takeover of existing systems, even without documentation or source code',
             'Server and infrastructure upgrades while in full operation',
-            'Backups and disaster recovery, tested by restore',
+            'Backups and disaster recovery, with restore tests when needed',
             'Hosting and deployment — always included',
           ],
         },
