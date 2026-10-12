@@ -37,9 +37,15 @@ const About = ({ lang }) => {
               </ul>
             </div>
             <div className="mt-8 pt-8 border-t border-line">
-              <h3 className="text-lg font-semibold mb-1">{recent.title}</h3>
-              <p className="text-sm text-accent mb-4">{recent.subtitle}</p>
-              <p className="text-base text-muted leading-relaxed">{recent.text}</p>
+              <h3 className="text-lg font-semibold mb-4">{recent.title}</h3>
+              <ul className="space-y-4">
+                {recent.items.map((item, i) => (
+                  <li key={i}>
+                    <p className="text-sm text-accent mb-1">{item.title}</p>
+                    <p className="text-base text-muted leading-relaxed">{item.text}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </ScrollReveal>

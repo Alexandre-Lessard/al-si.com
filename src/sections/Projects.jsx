@@ -14,14 +14,15 @@ const ProjectCard = ({ project }) => {
   const hasGitHub = !!project.github;
   const linkUrl = project.githubOnly ? project.github : project.url;
   const isClickable = !!linkUrl;
+  // Internal pages (the article) open in place; external sites in a new tab.
+  const isInternal = isClickable && linkUrl.startsWith('/');
 
   return (
     <Card className="overflow-hidden flex flex-col relative group">
       {isClickable && (
         <a
           href={linkUrl}
-          target="_blank"
-          rel="noreferrer"
+          {...(!isInternal && { target: '_blank', rel: 'noreferrer' })}
           className="absolute inset-0 z-0"
           aria-label={project.title}
         />

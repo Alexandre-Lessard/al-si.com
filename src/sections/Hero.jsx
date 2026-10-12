@@ -21,8 +21,11 @@ const Hero = ({ lang }) => {
       >
         <p className="text-accent text-sm font-medium uppercase tracking-[0.15em] mb-4">{eyebrow}</p>
         <h1 className="text-[clamp(2rem,3.6vw,3rem)] font-bold tracking-tight leading-[1.15] mb-6 max-w-3xl max-[1450px]:text-[2.4rem] max-[1200px]:mx-auto max-[480px]:text-[1.6rem] max-[480px]:leading-[1.2] max-[480px]:mb-4 max-[400px]:text-[1.35rem]">
-          <span className="block whitespace-nowrap max-[1200px]:whitespace-normal">{heading[0]}</span>
-          <span className="block whitespace-nowrap max-[1200px]:whitespace-normal">{heading[1]}</span>
+          {heading.map((line, i) => (
+            <span key={i} className="block whitespace-nowrap max-[1200px]:whitespace-normal">
+              {line}
+            </span>
+          ))}
         </h1>
         <p className="text-lg text-muted mb-6 max-w-xl max-[1200px]:mx-auto max-[480px]:text-base max-[480px]:mb-4">
           {subtitle}

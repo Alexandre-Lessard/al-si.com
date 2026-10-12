@@ -36,4 +36,13 @@ describe('About', () => {
       expect(screen.getByText(stat.label)).toBeInTheDocument();
     }
   });
+
+  it('renders the other recent engagements as a list', () => {
+    render(<About lang="fr" />);
+    expect(screen.getByRole('heading', { level: 3, name: translations.fr.about.recent.title })).toBeInTheDocument();
+    for (const item of translations.fr.about.recent.items) {
+      expect(screen.getByText(item.title)).toBeInTheDocument();
+      expect(screen.getByText(item.text)).toBeInTheDocument();
+    }
+  });
 });

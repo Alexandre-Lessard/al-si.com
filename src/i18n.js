@@ -1,13 +1,13 @@
 export const translations = {
   fr: {
     hero: {
-      eyebrow: 'Concevoir · Automatiser · Faire évoluer',
-      heading: ['Vos opérations méritent mieux', "qu'Excel et du copier-coller."],
+      eyebrow: 'Consultant en intégration de systèmes',
+      heading: ['Quand votre projet', 'ne rentre dans aucune case,', "c'est là que j'interviens."],
       brand: 'Solutions intégrées',
       subtitle:
-        "Je conçois des applications web sur mesure, j'automatise vos opérations et je connecte vos outils — du cadrage à la mise en production.",
+        "On m'appelle quand vos logiciels ne se parlent pas, quand une plateforme critique doit évoluer sans documentation, quand une vieille machine doit dialoguer avec des outils modernes, ou quand la solution n'existe pas sur le marché. Un besoin plus classique? Même rigueur, sans complexité inutile.",
       proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
-      alt: 'Alexandre Lessard développeur full-stack',
+      alt: 'Alexandre Lessard, consultant en intégration de systèmes',
       cta: {
         primary: {
           label: 'Planifier un appel découverte (30 min)',
@@ -20,8 +20,8 @@ export const translations = {
     about: {
       title: 'À propos de moi',
       paragraphs: [
-        "Développeur full-stack et administrateur réseau avec plus de dix ans d'expérience en TI. J'aide les entreprises à concevoir, automatiser et faire évoluer des applications web qui simplifient leurs opérations et soutiennent leur croissance.",
-        "Mon profil hybride développement + infrastructure me permet de prendre en charge un projet du début à la fin, sans dépendre d'une équipe entière. Vous traitez avec une seule personne, qui comprend autant le code que l'environnement où il tourne.",
+        "Je suis consultant en intégration de systèmes, avec plus de dix ans en TI, en développement comme en administration de réseaux. Ma force : saisir rapidement un problème qui touche plusieurs mondes — logiciel, données, serveurs, réseau, jusqu'à l'équipement physique — et en tirer une solution qui tourne en production, mesurée et documentée.",
+        "Je comprends votre réalité d'affaires avant de parler technologie. Vous traitez avec un seul interlocuteur du début à la fin : celui qui conçoit, construit et met en ligne. Et quand le besoin est plus classique — une application, un outil interne, un site —, vous profitez de la même rigueur, sans complexité inutile.",
       ],
       audience: {
         label: 'Pour qui je travaille',
@@ -30,21 +30,29 @@ export const translations = {
       method: {
         title: 'Ma méthode',
         items: [
-          "Comprendre votre métier avant d'écrire la moindre ligne de code.",
-          'Proposer une solution adaptée à votre contexte, pas la plus complexe.',
-          "Livrer en continu avec des points réguliers, jamais d'effet tunnel.",
+          "Comprendre votre réalité d'affaires avant de parler technologie.",
+          "Mesurer avant d'affirmer, tester avant de recommander.",
+          "Vous dire franchement ce qui ne vaut pas l'investissement.",
           'Rester disponible après la mise en production pour les ajustements.',
         ],
       },
       recent: {
-        title: 'Expérience récente',
-        subtitle: 'Plateforme SaaS — secteur construction',
-        text: "Dernièrement, j'ai travaillé en mode full-stack sur une plateforme SaaS destinée au domaine de la construction. J'ai contribué autant au backend (Python) qu'au frontend (React, Vite, Tailwind), en développant de nouvelles fonctionnalités, en améliorant l'architecture du système et en livrant des fonctionnalités fiables, performantes et prêtes pour la production.",
+        title: 'Autres mandats récents',
+        items: [
+          {
+            title: 'Firme de courtage',
+            text: 'Plateforme métier complète : site public, portails administrateur et courtier.',
+          },
+          {
+            title: 'Logiciel de gestion pour le secteur de la construction',
+            text: "Fonctionnalités et architecture, du serveur à l'interface.",
+          },
+        ],
       },
       stats: [
-        { value: '10+', label: "Années d'expérience en TI" },
-        { value: 'Full-stack', label: "Du frontend à l'infrastructure" },
-        { value: 'De A à Z', label: 'Cadrage, dev, déploiement' },
+        { value: '10+', label: 'Années en TI, en développement comme en réseaux' },
+        { value: '1', label: 'Seul interlocuteur, du cadrage à la mise en production' },
+        { value: 'En production', label: 'Des solutions mesurées et documentées' },
       ],
     },
     howItWorks: {
@@ -71,65 +79,72 @@ export const translations = {
       ],
     },
     proofBand: {
-      title: 'Trois projets, trois besoins concrets',
+      title: 'Quelques mandats récents',
       subtitle:
-        'Des exemples réels du genre de mandats que je prends en charge — du site qui convertit à la plateforme SaaS en production.',
+        "Des problèmes qui touchaient plusieurs mondes à la fois, réglés jusqu'en production. Les clients sont présentés sans leur nom, par discrétion.",
       cases: [
         {
-          tag: 'Site qui convertit',
-          client: 'Signé Gagné — Charpentier-menuisier',
-          text: 'Site DIY GoDaddy remplacé par un vrai site codé sur stack moderne, optimisé pour Google Ads. Le client reçoit maintenant de vrais appels.',
-          stack: 'Refonte · SEO · Conversion',
+          tag: 'Reprise et modernisation',
+          client: 'Place de marché en ligne, en production',
+          text: "Reprise du développement et de l'infrastructure d'une plateforme dont l'interface n'était plus modifiable à la source. Nouvelles fonctionnalités greffées sans y toucher, serveurs mis à niveau en pleine exploitation, reprise après sinistre testée par restauration, intégration d'un partenaire technologique européen.",
+          stack: 'Reprise · Infrastructure · Intégration',
+        },
+        {
+          tag: 'Intégration de systèmes',
+          client: 'Producteur agroalimentaire',
+          text: "Rapports d'inventaire branchés directement sur l'ERP, via le réseau sécurisé de l'intégrateur, pour le compte d'une firme d'intelligence d'affaires.",
+          stack: 'ERP · Données · Réseau sécurisé',
         },
         {
           tag: 'Plateforme SaaS en production',
           client: 'Badge (anciennement RNBP Canada)',
-          text: "Co-conception et développement complet d'une plateforme SaaS d'enregistrement de biens, du cadrage à la mise en production.",
-          stack: 'SaaS · Cloudflare · Co-fondateur technique',
+          text: "Cofondateur technique d'une plateforme SaaS d'enregistrement de biens de valeur : conception, développement complet et infrastructure de production.",
+          stack: 'SaaS · Cofondateur technique',
         },
         {
-          tag: 'Outil métier autonome',
-          client: 'Terra Indomita',
-          text: "Site vitrine avec calendrier d'événements dynamique, conçu pour que le client puisse tout gérer sans intervention.",
-          stack: 'Vitrine · API · Autonomie client',
+          tag: 'IA locale',
+          client: 'Laboratoire personnel',
+          text: 'Un GPU de centre de données hors support, remis en service pour des modèles de langage récents; transcription de réunions 24 fois plus rapide que le temps réel, hors nuage.',
+          stack: 'IA locale · Mesures · Hors nuage',
+          link: { label: "Lire l'étude de cas", href: '/fr/article/llm-modernes-tesla-k80-2014/' },
         },
       ],
-      footer: '10+ ans en TI · Stack moderne (React, Python, Node) · Du cadrage à la mise en production',
+      footer: '10+ ans en TI · Logiciel, données, serveurs, réseau · Du cadrage à la mise en production',
     },
     services: {
       title: 'Services',
       categories: [
         {
-          title: 'Applications web & plateformes en ligne',
+          title: 'Applications et plateformes sur mesure',
           description:
-            'Pour automatiser vos processus, centraliser vos données ou offrir un service en ligne à vos clients.',
+            'Pour offrir un service en ligne, structurer vos opérations ou remplacer un outil qui ne suffit plus — du cadrage à la mise en production.',
           items: [
-            'Applications web sur mesure adaptées à votre métier',
+            'Applications web adaptées à votre métier',
             'Plateformes en ligne (SaaS) pour vos clients ou votre équipe',
             'Outils internes et tableaux de bord',
-            'Interfaces modernes et performantes (React, Tailwind)',
+            'Un besoin classique? Même rigueur, sans complexité inutile',
           ],
         },
         {
-          title: 'Automatisation & intégrations',
+          title: 'Intégration de systèmes et automatisation',
           description:
-            'Pour éliminer les tâches répétitives, connecter vos outils et faire circuler vos données automatiquement.',
+            'Pour que vos logiciels travaillent ensemble et que vos données circulent toutes seules, sans copier-coller.',
           items: [
-            'Intégration de vos outils existants via API',
+            'Vos logiciels, bases de données et API branchés ensemble',
             'Automatisation de processus métier',
-            'Synchronisation de données entre plateformes',
-            "Intégration d'outils IA quand c'est pertinent",
+            'Rapports et données tirés directement de vos systèmes',
+            'IA appliquée, hébergée chez vous quand vos données ne doivent pas sortir',
           ],
         },
         {
-          title: 'Déploiement & mise en production',
+          title: 'Infrastructure, reprise et modernisation',
           description:
-            'Inclus dans chaque mandat. Vos applications sont mises en ligne, monitorées et prêtes à grandir avec vous.',
+            'Pour reprendre en main un système existant et le faire tourner de façon fiable. Le déploiement est inclus dans chaque mandat.',
           items: [
-            'Mise en production et déploiement automatisé',
-            'Hébergement performant et sécurisé',
-            'Monitoring et maintenance évolutive',
-            'Pas un service séparé — toujours inclus',
+            'Reprise et modernisation de systèmes existants, même sans documentation ni code source',
+            'Infrastructure, hébergement et mises à niveau',
+            'Sauvegardes et reprise après sinistre',
+            'Déploiement et suivi — pas un service séparé, toujours inclus',
           ],
         },
       ],
@@ -165,16 +180,18 @@ export const translations = {
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
-          title: 'Portfolio v2',
-          subtitle: 'Refonte de mon propre site sur stack moderne',
-          situation: 'Mon portfolio précédent était sur un stack vieillissant, peu performant et mal référencé.',
+          title: "Laboratoire d'IA locale",
+          subtitle: 'Un GPU de centre de données de 2014 remis en service pour des modèles de langage récents',
+          situation:
+            "Des machines sous-utilisées sur mon réseau, dont une Tesla K80 abandonnée par les outils modernes. L'objectif : une IA privée, hors nuage, avec le matériel déjà disponible.",
           intervention:
-            'Refonte complète sur React 19, Vite et Tailwind v4. Migration vers Vike SSG pour le pré-rendu bilingue.',
-          result: 'En production. Code source ouvert sur GitHub.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'Vike'],
-          image: '/share-card.jpg',
-          github: 'https://github.com/Alexandre-Lessard/al-si.com',
-          githubOnly: true,
+            "Composants compilés sous la couche des outils habituels, quatre machines réparties selon leurs forces, chaque optimisation mesurée avant d'être retenue.",
+          result:
+            'Des modèles de 27 à 35 milliards de paramètres servis en local, une transcription 24 fois plus rapide que le temps réel. Laboratoire personnel, documenté dans une étude de cas.',
+          tags: ['IA locale', 'LLM', 'Proxmox', 'Mesures'],
+          gradient: 'bg-gradient-to-br from-accent/20 to-accent/5',
+          icon: 'K80',
+          url: '/fr/article/llm-modernes-tesla-k80-2014/',
         },
       ],
     },
@@ -185,6 +202,11 @@ export const translations = {
           question: 'Pour qui travaillez-vous typiquement?',
           answer:
             "Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance. Mes mandats vont d'ajustements ponctuels de quelques heures jusqu'à des projets de plusieurs mois. Si vous hésitez parce que vous pensez être trop petit ou trop gros, écrivez quand même — c'est exactement le genre de question qu'on clarifie en 5 minutes.",
+        },
+        {
+          question: 'Mon projet est-il trop simple pour vous?',
+          answer:
+            'Non. Une application, un outil interne, un site : la même rigueur sert les besoins classiques. Je vous propose la solution à la mesure de votre besoin, jamais plus grosse que nécessaire — et si un outil existant fait déjà le travail, je vous le dis.',
         },
         {
           question: 'Travaillez-vous seul ou en équipe?',
@@ -199,7 +221,7 @@ export const translations = {
         {
           question: "Travaillez-vous avec l'IA?",
           answer:
-            "Oui, quand ça apporte une vraie valeur business — automatisation intelligente, traitement de documents, assistants internes, génération de contenu structuré. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens.",
+            "Oui, quand ça apporte une vraie valeur business — automatisation intelligente, traitement de documents, assistants internes, génération de contenu structuré. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens. Et quand vos données ne doivent pas sortir de l'entreprise, elle peut être hébergée chez vous, hors nuage.",
         },
         {
           question: 'Que se passe-t-il après la mise en production?',
@@ -246,7 +268,7 @@ export const translations = {
           excerpt:
             "Retour technique sur la remise en service d'une Tesla K80 pour exécuter localement des modèles de langage modernes de 27 à 35 milliards de paramètres.",
           badge: 'Laboratoire personnel — mesures datées du 28 juillet 2026',
-          author: 'Alexandre Lessard — Consultant en intégration de systèmes et solutions IA',
+          author: 'Alexandre Lessard — Consultant en intégration de systèmes',
           readingTime: '24 min de lecture',
           datePublished: '2026-07-28',
           slug: 'llm-modernes-tesla-k80-2014',
@@ -283,13 +305,13 @@ export const translations = {
   },
   en: {
     hero: {
-      eyebrow: 'Design · Automate · Evolve',
-      heading: ['Your operations deserve better', 'than Excel and copy-paste.'],
+      eyebrow: 'Systems integration consultant',
+      heading: ['When your project', "doesn't fit any mold,", "that's where I come in."],
       brand: 'Integrated Solutions',
       subtitle:
-        'I build custom web applications, automate your operations and connect your tools — from scoping to production.',
+        "I get the call when your systems don't talk to each other, when a critical platform has to evolve without documentation, when an old machine has to work with modern tools, or when the solution doesn't exist on the market. A more standard need? Same rigor, no needless complexity.",
       proofAnchor: '10+ years in IT · From scoping to production · Reply within 24 h',
-      alt: 'Alexandre Lessard full-stack developer',
+      alt: 'Alexandre Lessard, systems integration consultant',
       cta: {
         primary: {
           label: 'Schedule a discovery call (30 min)',
@@ -302,8 +324,8 @@ export const translations = {
     about: {
       title: 'About Me',
       paragraphs: [
-        'Full-stack developer and network administrator with over ten years of experience in IT. I help businesses design, automate and evolve web applications that simplify their operations and support their growth.',
-        'My hybrid development + infrastructure profile allows me to take a project from start to finish, without depending on a full team. You deal with a single person, who understands both the code and the environment it runs in.',
+        "I'm a systems integration consultant with over ten years in IT, in development as well as network administration. My strength: quickly grasping a problem that spans several worlds — software, data, servers, networks, all the way down to physical equipment — and turning it into a solution that runs in production, measured and documented.",
+        'I understand your business reality before talking technology. You deal with a single point of contact from start to finish: the person who designs, builds and launches. And when the need is more standard — an application, an internal tool, a website — you get the same rigor, without needless complexity.',
       ],
       audience: {
         label: 'Who I work with',
@@ -312,21 +334,29 @@ export const translations = {
       method: {
         title: 'My method',
         items: [
-          'Understand your business before writing a single line of code.',
-          'Propose a solution that fits your context, not the most complex one.',
-          'Deliver continuously with regular check-ins, never a tunnel effect.',
+          'Understand your business reality before talking technology.',
+          'Measure before claiming, test before recommending.',
+          "Tell you frankly what isn't worth the investment.",
           'Stay available after launch for adjustments and follow-ups.',
         ],
       },
       recent: {
-        title: 'Recent experience',
-        subtitle: 'SaaS platform — construction industry',
-        text: 'Recently, I worked as a full-stack developer on a SaaS platform for the construction industry. I contributed to both the backend (Python) and frontend (React, Vite, Tailwind), building new features, improving system architecture and delivering production-ready, high-performance functionality.',
+        title: 'Other recent engagements',
+        items: [
+          {
+            title: 'Brokerage firm',
+            text: 'A complete business platform: public website, administrator and broker portals.',
+          },
+          {
+            title: 'Management software for the construction industry',
+            text: 'Features and architecture, from the server to the interface.',
+          },
+        ],
       },
       stats: [
-        { value: '10+', label: 'Years of IT experience' },
-        { value: 'Full-stack', label: 'From frontend to infrastructure' },
-        { value: 'End-to-end', label: 'Scoping, dev, deployment' },
+        { value: '10+', label: 'Years in IT, in development and networking' },
+        { value: '1', label: 'Single point of contact, from scoping to production' },
+        { value: 'In production', label: 'Solutions that are measured and documented' },
       ],
     },
     howItWorks: {
@@ -352,64 +382,71 @@ export const translations = {
       ],
     },
     proofBand: {
-      title: 'Three projects, three concrete needs',
+      title: 'A few recent engagements',
       subtitle:
-        'Real examples of the kind of work I take on — from a website that actually converts to a SaaS platform in production.',
+        'Problems that spanned several worlds at once, solved all the way to production. Clients are presented without their names, for discretion.',
       cases: [
         {
-          tag: 'Website that converts',
-          client: 'Signé Gagné — Carpenter',
-          text: 'DIY GoDaddy site replaced by a real site built on a modern stack and optimized for Google Ads. The client now gets real calls.',
-          stack: 'Redesign · SEO · Conversion',
+          tag: 'Takeover and modernization',
+          client: 'Online marketplace, in production',
+          text: 'Took over development and infrastructure of a platform whose interface could no longer be modified at the source. New features grafted on without touching it, servers upgraded while in full operation, disaster recovery tested by restore, integration of a European technology partner.',
+          stack: 'Takeover · Infrastructure · Integration',
+        },
+        {
+          tag: 'Systems integration',
+          client: 'Agri-food producer',
+          text: "Inventory reports connected directly to the ERP, through the integrator's secure network, on behalf of a business intelligence firm.",
+          stack: 'ERP · Data · Secure network',
         },
         {
           tag: 'SaaS platform in production',
           client: 'Badge (formerly RNBP Canada)',
-          text: 'Co-design and full development of a SaaS platform for asset registration, from scoping to production.',
-          stack: 'SaaS · Cloudflare · Technical co-founder',
+          text: 'Technical co-founder of a SaaS platform for registering valuable assets: design, full development and production infrastructure.',
+          stack: 'SaaS · Technical co-founder',
         },
         {
-          tag: 'Self-managed business tool',
-          client: 'Terra Indomita',
-          text: 'Marketing site with a dynamic event calendar, built so the client can manage everything without help.',
-          stack: 'Marketing site · API · Client autonomy',
+          tag: 'Local AI',
+          client: 'Personal lab',
+          text: 'An unsupported data center GPU brought back into service for recent language models; meeting transcription 24 times faster than real time, off the cloud.',
+          stack: 'Local AI · Measurements · Off the cloud',
+          link: { label: 'Read the case study', href: '/en/article/llm-modernes-tesla-k80-2014/' },
         },
       ],
-      footer: '10+ years in IT · Modern stack (React, Python, Node) · From scoping to production',
+      footer: '10+ years in IT · Software, data, servers, networks · From scoping to production',
     },
     services: {
       title: 'Services',
       categories: [
         {
-          title: 'Web applications & online platforms',
+          title: 'Custom applications and platforms',
           description:
-            'To automate your processes, centralize your data, or offer an online service to your customers.',
+            "To offer an online service, structure your operations or replace a tool that's no longer enough — from scoping to production.",
           items: [
-            'Custom web applications tailored to your business',
+            'Web applications tailored to your business',
             'Online platforms (SaaS) for your customers or your team',
             'Internal tools and dashboards',
-            'Modern, performant interfaces (React, Tailwind)',
+            'A standard need? Same rigor, no needless complexity',
           ],
         },
         {
-          title: 'Automation & integrations',
-          description: 'To eliminate repetitive tasks, connect your tools and let your data flow automatically.',
+          title: 'Systems integration and automation',
+          description: 'So your software works together and your data flows on its own, without copy-paste.',
           items: [
-            'Integration of your existing tools via API',
+            'Your software, databases and APIs connected together',
             'Business process automation',
-            'Data synchronization between platforms',
-            'AI tools integration when it makes sense',
+            'Reports and data pulled directly from your systems',
+            "Applied AI, hosted on your premises when your data can't leave",
           ],
         },
         {
-          title: 'Deployment & launch',
+          title: 'Infrastructure, takeover and modernization',
           description:
-            'Included in every project. Your applications are deployed, monitored and ready to grow with you.',
+            'To take back control of an existing system and keep it running reliably. Deployment is included in every engagement.',
           items: [
-            'Production deployment and automation',
-            'Performant and secure hosting',
-            'Monitoring and ongoing maintenance',
-            'Not a separate service — always included',
+            'Takeover and modernization of existing systems, even without documentation or source code',
+            'Infrastructure, hosting and upgrades',
+            'Backups and disaster recovery',
+            'Deployment and follow-up — not a separate service, always included',
           ],
         },
       ],
@@ -444,16 +481,18 @@ export const translations = {
           github: 'https://github.com/Alexandre-Lessard/rnbp-platform',
         },
         {
-          title: 'Portfolio v2',
-          subtitle: 'Redesign of my own site on a modern stack',
-          situation: 'My previous portfolio was on an aging stack, slow and poorly indexed by search engines.',
+          title: 'Local AI lab',
+          subtitle: 'A 2014 data center GPU brought back into service for recent language models',
+          situation:
+            'Underused machines on my network, including a Tesla K80 abandoned by modern tooling. The goal: private AI, off the cloud, with hardware already on hand.',
           intervention:
-            'Complete redesign on React 19, Vite and Tailwind v4. Migration to Vike SSG for bilingual pre-rendering.',
-          result: 'Live in production. Open source on GitHub.',
-          tags: ['React', 'Tailwind CSS', 'Vite', 'Vike'],
-          image: '/share-card.jpg',
-          github: 'https://github.com/Alexandre-Lessard/al-si.com',
-          githubOnly: true,
+            'Components compiled below the usual tooling, four machines assigned by their strengths, every optimization measured before being kept.',
+          result:
+            'Models of 27 to 35 billion parameters served locally, transcription 24 times faster than real time. A personal lab, documented in a case study.',
+          tags: ['Local AI', 'LLM', 'Proxmox', 'Measurements'],
+          gradient: 'bg-gradient-to-br from-accent/20 to-accent/5',
+          icon: 'K80',
+          url: '/en/article/llm-modernes-tesla-k80-2014/',
         },
       ],
     },
@@ -464,6 +503,11 @@ export const translations = {
           question: 'Who do you typically work with?',
           answer:
             "Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams. My mandates range from a few hours of focused adjustments up to multi-month projects. If you're hesitating because you think you're too small or too big, reach out anyway — that's exactly the kind of question we sort out in 5 minutes.",
+        },
+        {
+          question: 'Is my project too simple for you?',
+          answer:
+            "No. An application, an internal tool, a website: the same rigor serves standard needs. I'll propose a solution sized to your need, never bigger than necessary — and if an existing tool already does the job, I'll tell you.",
         },
         {
           question: 'Do you work solo or with a team?',
@@ -478,7 +522,7 @@ export const translations = {
         {
           question: 'Do you work with AI?',
           answer:
-            "Yes, when it brings real business value — smart automation, document processing, internal assistants, structured content generation. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it.",
+            "Yes, when it brings real business value — smart automation, document processing, internal assistants, structured content generation. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it. And when your data can't leave the company, it can be hosted on your premises, off the cloud.",
         },
         {
           question: 'What happens after launch?',
@@ -525,7 +569,7 @@ export const translations = {
           excerpt:
             'A technical write-up on bringing a Tesla K80 back into service to run modern language models with 27 to 35 billion parameters on local hardware.',
           badge: 'Personal lab — measurements dated July 28, 2026',
-          author: 'Alexandre Lessard — Systems integration and AI solutions consultant',
+          author: 'Alexandre Lessard — Systems integration consultant',
           readingTime: '22 min read',
           datePublished: '2026-07-28',
           slug: 'llm-modernes-tesla-k80-2014',
