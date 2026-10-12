@@ -5,7 +5,7 @@ export const translations = {
       heading: ['Quand votre projet', 'ne rentre dans aucune case,', "c'est là que j'interviens."],
       brand: 'Solutions intégrées',
       subtitle:
-        "On m'appelle quand vos logiciels ne se parlent pas, quand une plateforme critique doit évoluer sans documentation, quand une vieille machine doit dialoguer avec des outils modernes, ou quand la solution n'existe pas sur le marché. Un besoin plus classique? Même rigueur, sans complexité inutile.",
+        "On m'appelle quand les logiciels d'une entreprise ne se parlent pas, quand une plateforme critique doit évoluer sans que personne ne sache comment elle a été bâtie, quand une vieille machine doit dialoguer avec des outils modernes, ou quand la solution n'existe pas sur le marché. Un besoin plus classique? Même rigueur, sans complexité inutile.",
       proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
       alt: 'Alexandre Lessard, consultant en intégration de systèmes',
       cta: {
@@ -309,7 +309,7 @@ export const translations = {
       heading: ['When your project', "doesn't fit any mold,", "that's where I come in."],
       brand: 'Integrated Solutions',
       subtitle:
-        "I get the call when your systems don't talk to each other, when a critical platform has to evolve without documentation, when an old machine has to work with modern tools, or when the solution doesn't exist on the market. A more standard need? Same rigor, no needless complexity.",
+        "I get the call when a company's systems don't talk to each other, when a critical platform has to evolve and nobody knows how it was built, when an old machine has to work with modern tools, or when the solution doesn't exist on the market. A more standard need? Same rigor, no needless complexity.",
       proofAnchor: '10+ years in IT · From scoping to production · Reply within 24 h',
       alt: 'Alexandre Lessard, systems integration consultant',
       cta: {
