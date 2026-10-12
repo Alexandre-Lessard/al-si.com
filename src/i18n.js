@@ -1,7 +1,7 @@
 export const translations = {
   fr: {
     hero: {
-      eyebrow: 'Consultant en intégration de systèmes',
+      eyebrow: 'Alexandre Lessard · Consultant en intégration de systèmes au Québec',
       heading: ['Quand votre projet', 'ne rentre dans aucune case,', "c'est là que j'interviens."],
       brand: 'Solutions intégrées',
       subtitle:
@@ -298,7 +298,7 @@ export const translations = {
   },
   en: {
     hero: {
-      eyebrow: 'Systems integration consultant',
+      eyebrow: 'Alexandre Lessard · Systems integration consultant in Quebec',
       heading: ['When your project', "doesn't fit any mold,", "that's where I come in."],
       brand: 'Integrated Solutions',
       subtitle:

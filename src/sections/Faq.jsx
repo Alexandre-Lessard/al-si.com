@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { translations } from '../i18n';
 import { sectionClasses } from '../styles';
 import { SectionHeader } from '../components/ui';
@@ -30,9 +30,7 @@ const FaqItem = ({ item, isOpen, onToggle, id, animate }) => {
           type="button"
           onClick={onToggle}
           aria-expanded={isOpen}
-          // The panel is unmounted while collapsed, so pointing aria-controls at
-          // it would leave a dangling idref for assistive tech.
-          aria-controls={isOpen ? panelId : undefined}
+          aria-controls={panelId}
           id={buttonId}
           className="w-full flex items-center justify-between gap-4 p-6 text-left bg-transparent border-0 cursor-pointer hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
         >
@@ -40,22 +38,21 @@ const FaqItem = ({ item, isOpen, onToggle, id, animate }) => {
           <ChevronIcon open={isOpen} animate={animate} />
         </button>
       </h3>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role="region"
-            aria-labelledby={buttonId}
-            initial={animate ? { height: 0, opacity: 0 } : false}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={animate ? { height: 0, opacity: 0 } : { opacity: 0 }}
-            transition={animate ? { duration: 0.2, ease: 'easeOut' } : { duration: 0 }}
-            className="overflow-hidden"
-          >
-            <p className="px-6 pb-6 text-sm text-muted leading-relaxed">{item.answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Always mounted so the answers ship in the prerendered HTML that search
+          engines read; a collapsed panel is inert and hidden from assistive tech. */}
+      <motion.div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        initial={false}
+        animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+        transition={animate ? { duration: 0.2, ease: 'easeOut' } : { duration: 0 }}
+        className="overflow-hidden"
+      >
+        <p className="px-6 pb-6 text-sm text-muted leading-relaxed">{item.answer}</p>
+      </motion.div>
     </div>
   );
 };

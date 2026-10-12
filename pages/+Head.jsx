@@ -25,8 +25,8 @@ export default function Head() {
   const title = article
     ? `${article.title} — AL-SI`
     : locale === 'en'
-      ? 'Alexandre Lessard – Systems Integration Consultant | AL-SI'
-      : 'Alexandre Lessard – Consultant en intégration de systèmes | AL-SI';
+      ? 'Alexandre Lessard – Integrated Solutions | Systems Integration Consultant | AL-SI'
+      : 'Alexandre Lessard – Solutions intégrées | Consultant en intégration de systèmes | AL-SI';
   const description = article?.excerpt || ogDescriptions[locale] || ogDescriptions.fr;
   // The error page is pre-rendered as a single /404.html served on any unknown
   // URL, so a canonical or hreflang pointing at /fr/404 would advertise a page
@@ -106,6 +106,12 @@ export default function Head() {
             founder: {
               '@type': 'Person',
               name: 'Alexandre Lessard',
+              url: SITE,
+              sameAs: [
+                'https://www.linkedin.com/in/alexandre-lessard-3b103991/',
+                'https://pige.quebec/profil/tqncfcru7lde49/',
+                'https://github.com/Alexandre-Lessard',
+              ],
               jobTitle: locale === 'en' ? 'Systems Integration Consultant' : 'Consultant en intégration de systèmes',
               knowsLanguage: ['fr', 'en'],
             },
@@ -137,6 +143,22 @@ export default function Head() {
           }),
         }}
       />
+      {!article && !isErrorPage && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: localizedContent.faq.items.map((item) => ({
+                '@type': 'Question',
+                name: item.question,
+                acceptedAnswer: { '@type': 'Answer', text: item.answer },
+              })),
+            }),
+          }}
+        />
+      )}
       {article && (
         <script
           type="application/ld+json"

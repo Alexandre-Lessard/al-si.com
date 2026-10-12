@@ -67,4 +67,12 @@ describe('Faq', () => {
     expect(panel).toHaveAttribute('aria-labelledby', button.getAttribute('id'));
     expect(within(panel).getByText(translations.fr.faq.items[0].answer)).toBeInTheDocument();
   });
+
+  it('keeps every answer in the DOM while collapsed, hidden from assistive tech', () => {
+    render(<Faq lang="fr" />);
+    for (const item of translations.fr.faq.items) {
+      const panel = screen.getByText(item.answer).closest('[role="region"]');
+      expect(panel).toHaveAttribute('aria-hidden', 'true');
+    }
+  });
 });
