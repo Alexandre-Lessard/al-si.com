@@ -5,7 +5,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 
 const About = ({ lang }) => {
   const t = translations[lang] || translations.fr;
-  const { title, paragraphs, audience, method, recent, stats } = t.about;
+  const { title, paragraphs, method, recent, stats } = t.about;
 
   return (
     <section id="about" className={sectionClasses}>
@@ -21,10 +21,6 @@ const About = ({ lang }) => {
                 {p}
               </p>
             ))}
-            <div className="mt-8">
-              <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">{audience.label}</h3>
-              <p className="text-base text-muted leading-relaxed">{audience.text}</p>
-            </div>
             <div className="mt-8 mb-2">
               <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">{method.title}</h3>
               <ul className="space-y-3">

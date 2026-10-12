@@ -20,13 +20,8 @@ export const translations = {
     about: {
       title: 'À propos de moi',
       paragraphs: [
-        "Je suis consultant en intégration de systèmes, avec plus de dix ans en TI, en développement comme en administration de réseaux. Ma force : saisir rapidement un problème qui touche plusieurs mondes — logiciel, données, serveurs, réseau, jusqu'à l'équipement physique — et en tirer une solution qui tourne en production, mesurée et documentée.",
-        "Je comprends votre réalité d'affaires avant de parler technologie. Vous traitez avec un seul interlocuteur du début à la fin : celui qui conçoit, construit et met en ligne. Et quand le besoin est plus classique — une application, un outil interne, un site —, vous profitez de la même rigueur, sans complexité inutile.",
+        "Je suis consultant en intégration de systèmes. Ma force : saisir rapidement un problème qui touche plusieurs mondes — logiciel, données, serveurs, réseau, jusqu'à l'équipement physique — et en tirer une solution qui tourne en production.",
       ],
-      audience: {
-        label: 'Pour qui je travaille',
-        text: "Surtout des PME et des entreprises de services québécoises, avec ou sans équipe technique interne, qui ont besoin de quelqu'un capable de voir l'ensemble — du logiciel jusqu'au réseau.",
-      },
       method: {
         title: 'Ma méthode',
         items: [
@@ -49,8 +44,8 @@ export const translations = {
         ],
       },
       stats: [
-        { value: '10+', label: 'Années en TI, en développement comme en réseaux' },
-        { value: '1', label: 'Seul interlocuteur, du cadrage à la mise en production' },
+        { value: '10+', label: 'Années en TI' },
+        { value: 'Dév + réseaux', label: "Du logiciel jusqu'à l'infrastructure" },
         { value: 'En production', label: 'Des solutions mesurées et documentées' },
       ],
     },
@@ -322,13 +317,8 @@ export const translations = {
     about: {
       title: 'About Me',
       paragraphs: [
-        "I'm a systems integration consultant with over ten years in IT, in development as well as network administration. My strength: quickly grasping a problem that spans several worlds — software, data, servers, networks, all the way down to physical equipment — and turning it into a solution that runs in production, measured and documented.",
-        'I understand your business reality before talking technology. You deal with a single point of contact from start to finish: the person who designs, builds and launches. And when the need is more standard — an application, an internal tool, a website — you get the same rigor, without needless complexity.',
+        "I'm a systems integration consultant. My strength: quickly grasping a problem that spans several worlds — software, data, servers, networks, all the way down to physical equipment — and turning it into a solution that runs in production.",
       ],
-      audience: {
-        label: 'Who I work with',
-        text: 'Mostly Quebec SMBs and service businesses, with or without an in-house tech team, that need someone who can see the whole picture — from software down to the network.',
-      },
       method: {
         title: 'My method',
         items: [
@@ -351,8 +341,8 @@ export const translations = {
         ],
       },
       stats: [
-        { value: '10+', label: 'Years in IT, in development and networking' },
-        { value: '1', label: 'Single point of contact, from scoping to production' },
+        { value: '10+', label: 'Years in IT' },
+        { value: 'Dev + networks', label: 'From software down to infrastructure' },
         { value: 'In production', label: 'Solutions that are measured and documented' },
       ],
     },

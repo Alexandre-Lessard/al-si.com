@@ -9,18 +9,6 @@ describe('About', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'À propos de moi' })).toBeInTheDocument();
   });
 
-  it('renders the audience block (label + text) in FR', () => {
-    render(<About lang="fr" />);
-    expect(screen.getByRole('heading', { level: 3, name: translations.fr.about.audience.label })).toBeInTheDocument();
-    expect(screen.getByText(translations.fr.about.audience.text)).toBeInTheDocument();
-  });
-
-  it('renders the audience block (label + text) in EN', () => {
-    render(<About lang="en" />);
-    expect(screen.getByRole('heading', { level: 3, name: translations.en.about.audience.label })).toBeInTheDocument();
-    expect(screen.getByText(translations.en.about.audience.text)).toBeInTheDocument();
-  });
-
   it('renders the method block with all items', () => {
     render(<About lang="fr" />);
     expect(screen.getByRole('heading', { level: 3, name: translations.fr.about.method.title })).toBeInTheDocument();
