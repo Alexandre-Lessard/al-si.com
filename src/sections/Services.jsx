@@ -5,7 +5,8 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { CodeIcon, NetworkIcon, ServerIcon } from '../icons';
 import Card from '../components/Card';
 
-const icons = [CodeIcon, NetworkIcon, ServerIcon];
+// Follows the order of services.categories in i18n.js: integration, infrastructure, applications.
+const icons = [NetworkIcon, ServerIcon, CodeIcon];
 
 const Services = ({ lang }) => {
   const t = translations[lang] || translations.fr;

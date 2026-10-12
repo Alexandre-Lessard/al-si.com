@@ -115,17 +115,6 @@ export const translations = {
       title: 'Services',
       categories: [
         {
-          title: 'Applications et plateformes sur mesure',
-          description:
-            'Pour offrir un service en ligne, structurer vos opérations ou remplacer un outil qui ne suffit plus — du cadrage à la mise en production.',
-          items: [
-            'Applications web adaptées à votre métier',
-            'Plateformes en ligne (SaaS) pour vos clients ou votre équipe',
-            'Outils internes et tableaux de bord',
-            'Un besoin classique? Même rigueur, sans complexité inutile',
-          ],
-        },
-        {
           title: 'Intégration de systèmes et automatisation',
           description:
             'Pour que vos logiciels travaillent ensemble et que vos données circulent toutes seules, sans copier-coller.',
@@ -145,6 +134,16 @@ export const translations = {
             'Infrastructure, hébergement et mises à niveau',
             'Sauvegardes et reprise après sinistre',
             'Déploiement et suivi — pas un service séparé, toujours inclus',
+          ],
+        },
+        {
+          title: 'Applications et plateformes sur mesure',
+          description:
+            'Pour offrir un service en ligne, structurer vos opérations ou remplacer un outil qui ne suffit plus — du cadrage à la mise en production.',
+          items: [
+            'Applications web adaptées à votre métier',
+            'Plateformes en ligne (SaaS) pour vos clients ou votre équipe',
+            'Un besoin classique? Même rigueur, sans complexité inutile',
           ],
         },
       ],
@@ -418,17 +417,6 @@ export const translations = {
       title: 'Services',
       categories: [
         {
-          title: 'Custom applications and platforms',
-          description:
-            "To offer an online service, structure your operations or replace a tool that's no longer enough — from scoping to production.",
-          items: [
-            'Web applications tailored to your business',
-            'Online platforms (SaaS) for your customers or your team',
-            'Internal tools and dashboards',
-            'A standard need? Same rigor, no needless complexity',
-          ],
-        },
-        {
           title: 'Systems integration and automation',
           description: 'So your software works together and your data flows on its own, without copy-paste.',
           items: [
@@ -447,6 +435,16 @@ export const translations = {
             'Infrastructure, hosting and upgrades',
             'Backups and disaster recovery',
             'Deployment and follow-up — not a separate service, always included',
+          ],
+        },
+        {
+          title: 'Custom applications and platforms',
+          description:
+            "To offer an online service, structure your operations or replace a tool that's no longer enough — from scoping to production.",
+          items: [
+            'Web applications tailored to your business',
+            'Online platforms (SaaS) for your customers or your team',
+            'A standard need? Same rigor, no needless complexity',
           ],
         },
       ],
