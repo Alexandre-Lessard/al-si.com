@@ -6,7 +6,7 @@ export const translations = {
       brand: 'Solutions intégrées',
       subtitle:
         "On m'appelle quand les logiciels d'une entreprise ne se parlent pas, quand une plateforme critique doit évoluer sans que personne ne sache comment elle a été bâtie, quand une vieille machine doit dialoguer avec des outils modernes, ou quand la solution n'existe pas sur le marché. Un besoin plus classique? Même rigueur, sans complexité inutile.",
-      proofAnchor: '10+ ans en TI · Du cadrage à la production · Réponse en moins de 24 h',
+      proofAnchor: '10+ ans en TI · Du cadrage à la production',
       alt: 'Alexandre Lessard, consultant en intégration de systèmes',
       cta: {
         primary: {
@@ -33,7 +33,6 @@ export const translations = {
           "Comprendre votre réalité d'affaires avant de parler technologie.",
           "Mesurer avant d'affirmer, tester avant de recommander.",
           "Vous dire franchement ce qui ne vaut pas l'investissement.",
-          'Rester disponible après la mise en production pour les ajustements.',
         ],
       },
       recent: {
@@ -57,8 +56,7 @@ export const translations = {
     },
     howItWorks: {
       title: 'Comment je travaille',
-      subtitle:
-        'Un processus simple, transparent, sans surprise. Vous savez exactement à quoi vous attendre à chaque étape.',
+      subtitle: "Les grandes étapes d'un mandat, de la première discussion à la mise en production.",
       steps: [
         {
           title: 'Discussion initiale',
@@ -66,15 +64,15 @@ export const translations = {
         },
         {
           title: 'Cadrage & proposition',
-          text: 'Je vous propose une approche, un échéancier et un budget transparent. Aucune mauvaise surprise.',
+          text: 'Je vous propose une approche et une estimation.',
         },
         {
           title: 'Réalisation',
-          text: "Je développe, je teste, je vous montre l'avancement régulièrement. Vous gardez le contrôle.",
+          text: "Je développe et je teste, en vous montrant l'avancement en cours de route.",
         },
         {
-          title: 'Mise en production & suivi',
-          text: 'Je déploie, je vous forme et je reste disponible pour les ajustements et les évolutions.',
+          title: 'Mise en production',
+          text: 'Je mets en production. La suite — ajustements, évolutions — se convient selon vos besoins.',
         },
       ],
     },
@@ -133,13 +131,13 @@ export const translations = {
             'Reprise de systèmes existants, même sans documentation ni code source',
             "Mises à niveau de serveurs et d'infrastructure en pleine exploitation",
             'Sauvegardes et reprise après sinistre, avec tests de restauration au besoin',
-            'Hébergement et déploiement — toujours inclus',
+            'Hébergement et déploiement',
           ],
         },
         {
           title: 'Plateformes et applications sur mesure',
           description:
-            "Quand la solution n'existe pas sur le marché : je la conçois et je la mets en production, du cadrage jusqu'à l'exploitation.",
+            "Quand la solution n'existe pas sur le marché : je la conçois et je la mets en production, du cadrage jusqu'à la mise en ligne.",
           items: [
             'Plateformes en ligne (SaaS) et portails clients',
             'Applications métier bâties autour de votre façon de travailler',
@@ -201,17 +199,17 @@ export const translations = {
         {
           question: 'Pour qui travaillez-vous typiquement?',
           answer:
-            "Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance. Mes mandats vont d'ajustements ponctuels de quelques heures jusqu'à des projets de plusieurs mois. Si vous hésitez parce que vous pensez être trop petit ou trop gros, écrivez quand même — c'est exactement le genre de question qu'on clarifie en 5 minutes.",
+            "Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance. Mes mandats vont d'ajustements ponctuels de quelques heures jusqu'à des projets de plusieurs mois. Si vous hésitez parce que vous pensez être trop petit ou trop gros, écrivez quand même — c'est exactement le genre de question qu'on clarifie au premier échange.",
         },
         {
           question: 'Mon projet est-il trop simple pour vous?',
           answer:
-            'Non. Une application, un outil interne, un site : la même rigueur sert les besoins classiques. Je vous propose la solution à la mesure de votre besoin, jamais plus grosse que nécessaire — et si un outil existant fait déjà le travail, je vous le dis.',
+            'Non. Une application, un outil interne, un site : la même rigueur sert les besoins classiques. Je vous propose la solution à la mesure de votre besoin, jamais plus grosse que nécessaire.',
         },
         {
           question: 'Travaillez-vous seul ou en équipe?',
           answer:
-            "Je travaille seul sur la grande majorité des mandats, et c'est intentionnel. Vous traitez avec une seule personne du début à la fin — je comprends votre besoin, je code, je déploie, je vous accompagne. Pas de chaîne de sous-traitants, pas de communication qui se perd. Pour les projets plus ambitieux où il faut plus de bras, je m'entoure ponctuellement de collaborateurs de confiance, sans jamais perdre le fil du projet.",
+            "Je travaille seul sur la grande majorité des mandats, et c'est intentionnel. Vous traitez avec une seule personne du début à la fin — je comprends votre besoin, je code, je déploie, je vous accompagne. Pas de chaîne de sous-traitants, pas de communication qui se perd. Pour les projets plus ambitieux où il faut plus de bras, je m'entoure ponctuellement de collaborateurs de confiance.",
         },
         {
           question: "Et si je ne sais pas exactement ce dont j'ai besoin?",
@@ -226,7 +224,7 @@ export const translations = {
         {
           question: 'Que se passe-t-il après la mise en production?',
           answer:
-            'Je ne disparais pas après la livraison. Je reste disponible pour les ajustements, les évolutions et les questions. Beaucoup de mes clients reviennent quelques mois plus tard pour faire évoluer leur système au fur et à mesure que leur besoin change.',
+            'Ça dépend de vos besoins. Ajustements, évolutions, questions : la suite se convient avec vous, selon les modalités du mandat.',
         },
       ],
     },
@@ -310,7 +308,7 @@ export const translations = {
       brand: 'Integrated Solutions',
       subtitle:
         "I get the call when a company's systems don't talk to each other, when a critical platform has to evolve and nobody knows how it was built, when an old machine has to work with modern tools, or when the solution doesn't exist on the market. A more standard need? Same rigor, no needless complexity.",
-      proofAnchor: '10+ years in IT · From scoping to production · Reply within 24 h',
+      proofAnchor: '10+ years in IT · From scoping to production',
       alt: 'Alexandre Lessard, systems integration consultant',
       cta: {
         primary: {
@@ -337,7 +335,6 @@ export const translations = {
           'Understand your business reality before talking technology.',
           'Measure before claiming, test before recommending.',
           "Tell you frankly what isn't worth the investment.",
-          'Stay available after launch for adjustments and follow-ups.',
         ],
       },
       recent: {
@@ -361,7 +358,7 @@ export const translations = {
     },
     howItWorks: {
       title: 'How I work',
-      subtitle: 'A simple, transparent process — no surprises. You know exactly what to expect at each step.',
+      subtitle: 'The main steps of an engagement, from the first conversation to launch.',
       steps: [
         {
           title: 'Initial discussion',
@@ -369,15 +366,15 @@ export const translations = {
         },
         {
           title: 'Scoping & proposal',
-          text: 'I propose an approach, a timeline and a transparent budget. No bad surprises.',
+          text: 'I propose an approach and an estimate.',
         },
         {
           title: 'Build',
-          text: 'I develop, I test, I show you progress regularly. You stay in control.',
+          text: 'I build and test, showing you progress along the way.',
         },
         {
-          title: 'Launch & follow-up',
-          text: 'I deploy, train you and stay available for adjustments and future evolutions.',
+          title: 'Launch',
+          text: 'I take it to production. What comes next — adjustments, evolutions — is agreed on based on your needs.',
         },
       ],
     },
@@ -436,13 +433,13 @@ export const translations = {
             'Takeover of existing systems, even without documentation or source code',
             'Server and infrastructure upgrades while in full operation',
             'Backups and disaster recovery, with restore tests when needed',
-            'Hosting and deployment — always included',
+            'Hosting and deployment',
           ],
         },
         {
           title: 'Custom platforms and applications',
           description:
-            "When the solution doesn't exist on the market: I design it and bring it to production, from scoping to operation.",
+            "When the solution doesn't exist on the market: I design it and bring it to production, from scoping to launch.",
           items: [
             'Online platforms (SaaS) and client portals',
             'Business applications built around how you work',
@@ -503,17 +500,17 @@ export const translations = {
         {
           question: 'Who do you typically work with?',
           answer:
-            "Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams. My mandates range from a few hours of focused adjustments up to multi-month projects. If you're hesitating because you think you're too small or too big, reach out anyway — that's exactly the kind of question we sort out in 5 minutes.",
+            "Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams. My mandates range from a few hours of focused adjustments up to multi-month projects. If you're hesitating because you think you're too small or too big, reach out anyway — that's exactly the kind of question we sort out on the first call.",
         },
         {
           question: 'Is my project too simple for you?',
           answer:
-            "No. An application, an internal tool, a website: the same rigor serves standard needs. I'll propose a solution sized to your need, never bigger than necessary — and if an existing tool already does the job, I'll tell you.",
+            "No. An application, an internal tool, a website: the same rigor serves standard needs. I'll propose a solution sized to your need, never bigger than necessary.",
         },
         {
           question: 'Do you work solo or with a team?',
           answer:
-            "I work solo on the vast majority of projects, and it's intentional. You deal with one person from start to finish — I understand your need, I write the code, I deploy, I support you. No chain of subcontractors, no communication getting lost. For more ambitious projects where extra hands are needed, I bring in trusted collaborators occasionally, without ever losing the thread.",
+            "I work solo on the vast majority of projects, and it's intentional. You deal with one person from start to finish — I understand your need, I write the code, I deploy, I support you. No chain of subcontractors, no communication getting lost. For more ambitious projects where extra hands are needed, I bring in trusted collaborators occasionally.",
         },
         {
           question: "What if I don't know exactly what I need?",
@@ -528,7 +525,7 @@ export const translations = {
         {
           question: 'What happens after launch?',
           answer:
-            "I don't disappear after delivery. I stay available for adjustments, evolutions and questions. Many of my clients come back a few months later to evolve their system as their needs change.",
+            'It depends on your needs. Adjustments, evolutions, questions: what comes next is agreed on with you, on the terms of the engagement.',
         },
       ],
     },
