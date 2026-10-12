@@ -1,6 +1,6 @@
 const descriptions = {
-  fr: 'Je conçois, automatise et fais évoluer des applications web sur mesure pour les entreprises qui veulent gagner du temps, structurer leurs opérations ou lancer un nouveau produit. Du cadrage à la mise en production.',
-  en: 'I design, automate and evolve custom web applications for businesses that want to save time, structure their operations or launch a new product. From scoping to production.',
+  fr: "Consultant en intégration de systèmes. On m'appelle quand vos logiciels ne se parlent pas, quand une plateforme doit évoluer sans documentation ou quand la solution n'existe pas sur le marché. Du cadrage à la mise en production.",
+  en: "Systems integration consultant. I get the call when your systems don't talk to each other, when a platform has to evolve without documentation, or when the solution doesn't exist on the market. From scoping to production.",
 };
 
 export default (pageContext) => descriptions[pageContext.locale] || descriptions.fr;

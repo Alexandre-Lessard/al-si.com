@@ -5,8 +5,8 @@ import { barePath as toBarePath, localePath } from '../src/urls.js';
 const SITE = 'https://al-si.com';
 
 const ogDescriptions = {
-  fr: "Concevoir, automatiser, faire évoluer. J'aide les entreprises à structurer leurs opérations et à lancer leurs idées — du cadrage initial à la mise en production.",
-  en: 'Design, automate, evolve. I help businesses structure their operations and launch their ideas — from initial scoping to production.',
+  fr: "Quand votre projet ne rentre dans aucune case, c'est là que j'interviens. Intégration de systèmes, reprise et modernisation, plateformes sur mesure — jusqu'en production.",
+  en: "When your project doesn't fit any mold, that's where I come in. Systems integration, takeover and modernization, custom platforms — all the way to production.",
 };
 
 export default function Head() {
@@ -25,8 +25,8 @@ export default function Head() {
   const title = article
     ? `${article.title} — AL-SI`
     : locale === 'en'
-      ? 'Alexandre Lessard – Integrated solutions | Full-stack developer | AL-SI'
-      : 'Alexandre Lessard – Solutions intégrées | Développeur full-stack | AL-SI';
+      ? 'Alexandre Lessard – Systems Integration Consultant | AL-SI'
+      : 'Alexandre Lessard – Consultant en intégration de systèmes | AL-SI';
   const description = article?.excerpt || ogDescriptions[locale] || ogDescriptions.fr;
   // The error page is pre-rendered as a single /404.html served on any unknown
   // URL, so a canonical or hreflang pointing at /fr/404 would advertise a page
@@ -101,12 +101,12 @@ export default function Head() {
             image: `${SITE}/share-card.jpg`,
             description:
               locale === 'en'
-                ? 'I design, automate and evolve custom web applications for businesses that want to save time, structure their operations or launch a new product.'
-                : 'Je conçois, automatise et fais évoluer des applications web sur mesure pour les entreprises qui veulent gagner du temps, structurer leurs opérations ou lancer un nouveau produit.',
+                ? "Systems integration consultant: connecting software that doesn't talk to each other, taking over and modernizing existing systems, building custom platforms, all the way to production."
+                : "Consultant en intégration de systèmes : brancher ensemble des logiciels qui ne se parlent pas, reprendre et moderniser des systèmes existants, bâtir des plateformes sur mesure, jusqu'en production.",
             founder: {
               '@type': 'Person',
               name: 'Alexandre Lessard',
-              jobTitle: locale === 'en' ? 'Full-stack Developer' : 'Développeur full-stack',
+              jobTitle: locale === 'en' ? 'Systems Integration Consultant' : 'Consultant en intégration de systèmes',
               knowsLanguage: ['fr', 'en'],
             },
             address: { '@type': 'PostalAddress', addressRegion: 'QC', addressCountry: 'CA' },
@@ -116,6 +116,10 @@ export default function Head() {
               'https://www.facebook.com/profile.php?id=100094510380507',
             ],
             knowsAbout: [
+              locale === 'en' ? 'Systems integration' : 'Intégration de systèmes',
+              locale === 'en' ? 'Legacy system modernization' : 'Modernisation de systèmes',
+              locale === 'en' ? 'Disaster recovery' : 'Reprise après sinistre',
+              locale === 'en' ? 'Local AI' : 'IA locale',
               'React',
               'Python',
               'Node.js',

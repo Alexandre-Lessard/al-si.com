@@ -1,6 +1,6 @@
 # al-si.com
 
-Personal website and portfolio of Alexandre Lessard, full-stack developer.
+Personal website and portfolio of Alexandre Lessard, systems integration consultant.
 
 **[al-si.com](https://al-si.com)**
 

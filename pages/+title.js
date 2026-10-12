@@ -1,6 +1,6 @@
 const titles = {
-  fr: 'Alexandre Lessard – Solutions intégrées | Développeur full-stack | AL-SI',
-  en: 'Alexandre Lessard – Integrated Solutions | Full-stack Developer | AL-SI',
+  fr: 'Alexandre Lessard – Consultant en intégration de systèmes | AL-SI',
+  en: 'Alexandre Lessard – Systems Integration Consultant | AL-SI',
 };
 
 export default (pageContext) => titles[pageContext.locale] || titles.fr;
