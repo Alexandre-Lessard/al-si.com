@@ -25,7 +25,7 @@ export const translations = {
       ],
       audience: {
         label: 'Pour qui je travaille',
-        text: 'Surtout des entreprises de services québécoises — PME, entrepreneurs et équipes en croissance qui veulent structurer leur opérationnel numérique sans monter une équipe technique interne.',
+        text: "Surtout des PME et des entreprises de services québécoises, avec ou sans équipe technique interne, qui ont besoin de quelqu'un capable de voir l'ensemble — du logiciel jusqu'au réseau.",
       },
       method: {
         title: 'Ma méthode',
@@ -117,33 +117,34 @@ export const translations = {
         {
           title: 'Intégration de systèmes et automatisation',
           description:
-            'Pour que vos logiciels travaillent ensemble et que vos données circulent toutes seules, sans copier-coller.',
+            "Quand vos systèmes ont été choisis un par un et qu'aucun ne parle aux autres : je les fais travailler ensemble, de façon fiable et documentée.",
           items: [
-            'Vos logiciels, bases de données et API branchés ensemble',
-            'Automatisation de processus métier',
-            'Rapports et données tirés directement de vos systèmes',
+            'Logiciels, ERP, bases de données et API branchés ensemble',
+            'Rapports tirés directement de vos systèmes de gestion',
+            'Intégration de partenaires et de services externes',
             'IA appliquée, hébergée chez vous quand vos données ne doivent pas sortir',
           ],
         },
         {
           title: 'Infrastructure, reprise et modernisation',
           description:
-            'Pour reprendre en main un système existant et le faire tourner de façon fiable. Le déploiement est inclus dans chaque mandat.',
+            'Quand une plateforme critique doit évoluer et que plus personne ne sait comment elle a été bâtie : je la reprends en main et je la fais évoluer, en pleine exploitation.',
           items: [
-            'Reprise et modernisation de systèmes existants, même sans documentation ni code source',
-            'Infrastructure, hébergement et mises à niveau',
-            'Sauvegardes et reprise après sinistre',
-            'Déploiement et suivi — pas un service séparé, toujours inclus',
+            'Reprise de systèmes existants, même sans documentation ni code source',
+            "Mises à niveau de serveurs et d'infrastructure en pleine exploitation",
+            'Sauvegardes et reprise après sinistre, testées par restauration',
+            'Hébergement et déploiement — toujours inclus',
           ],
         },
         {
-          title: 'Applications et plateformes sur mesure',
+          title: 'Plateformes et applications sur mesure',
           description:
-            'Pour offrir un service en ligne, structurer vos opérations ou remplacer un outil qui ne suffit plus — du cadrage à la mise en production.',
+            "Quand la solution n'existe pas sur le marché : je la conçois et je la mets en production, du cadrage jusqu'à l'exploitation.",
           items: [
-            'Applications web adaptées à votre métier',
-            'Plateformes en ligne (SaaS) pour vos clients ou votre équipe',
-            'Un besoin classique? Même rigueur, sans complexité inutile',
+            'Plateformes en ligne (SaaS) et portails clients',
+            'Applications métier bâties autour de votre façon de travailler',
+            'Nouvelles fonctionnalités sur une plateforme existante',
+            'Un besoin plus classique? Même rigueur, sans complexité inutile',
           ],
         },
       ],
@@ -220,12 +221,12 @@ export const translations = {
         {
           question: "Travaillez-vous avec l'IA?",
           answer:
-            "Oui, quand ça apporte une vraie valeur business — automatisation intelligente, traitement de documents, assistants internes, génération de contenu structuré. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens. Et quand vos données ne doivent pas sortir de l'entreprise, elle peut être hébergée chez vous, hors nuage.",
+            "Oui, quand ça apporte une vraie valeur d'affaires — interroger vos propres documents, transcrire vos réunions, brancher un modèle de langage sur vos systèmes. Je n'utilise pas l'IA comme gadget marketing : je l'intègre quand elle résout un vrai problème pour vous, sinon je m'abstiens. Et quand vos données ne doivent pas sortir de l'entreprise, elle peut être hébergée chez vous, hors nuage.",
         },
         {
           question: 'Que se passe-t-il après la mise en production?',
           answer:
-            'Je ne disparais pas après la livraison. Je reste disponible pour les ajustements, les évolutions et les questions. Beaucoup de mes clients reviennent quelques mois plus tard pour faire évoluer leur outil au fur et à mesure que leur besoin change.',
+            'Je ne disparais pas après la livraison. Je reste disponible pour les ajustements, les évolutions et les questions. Beaucoup de mes clients reviennent quelques mois plus tard pour faire évoluer leur système au fur et à mesure que leur besoin change.',
         },
       ],
     },
@@ -328,7 +329,7 @@ export const translations = {
       ],
       audience: {
         label: 'Who I work with',
-        text: 'Mostly Quebec-based service businesses — SMBs, entrepreneurs and growing teams who want to structure their digital operations without building an internal tech team.',
+        text: 'Mostly Quebec SMBs and service businesses, with or without an in-house tech team, that need someone who can see the whole picture — from software down to the network.',
       },
       method: {
         title: 'My method',
@@ -418,33 +419,35 @@ export const translations = {
       categories: [
         {
           title: 'Systems integration and automation',
-          description: 'So your software works together and your data flows on its own, without copy-paste.',
+          description:
+            'When your systems were chosen one at a time and none of them talk to each other: I make them work together, reliably and with documentation.',
           items: [
-            'Your software, databases and APIs connected together',
-            'Business process automation',
-            'Reports and data pulled directly from your systems',
+            'Software, ERPs, databases and APIs connected together',
+            'Reports pulled directly from your management systems',
+            'Integration of partners and external services',
             "Applied AI, hosted on your premises when your data can't leave",
           ],
         },
         {
           title: 'Infrastructure, takeover and modernization',
           description:
-            'To take back control of an existing system and keep it running reliably. Deployment is included in every engagement.',
+            'When a critical platform has to evolve and nobody knows how it was built anymore: I take it over and keep it evolving, while in full operation.',
           items: [
-            'Takeover and modernization of existing systems, even without documentation or source code',
-            'Infrastructure, hosting and upgrades',
-            'Backups and disaster recovery',
-            'Deployment and follow-up — not a separate service, always included',
+            'Takeover of existing systems, even without documentation or source code',
+            'Server and infrastructure upgrades while in full operation',
+            'Backups and disaster recovery, tested by restore',
+            'Hosting and deployment — always included',
           ],
         },
         {
-          title: 'Custom applications and platforms',
+          title: 'Custom platforms and applications',
           description:
-            "To offer an online service, structure your operations or replace a tool that's no longer enough — from scoping to production.",
+            "When the solution doesn't exist on the market: I design it and bring it to production, from scoping to operation.",
           items: [
-            'Web applications tailored to your business',
-            'Online platforms (SaaS) for your customers or your team',
-            'A standard need? Same rigor, no needless complexity',
+            'Online platforms (SaaS) and client portals',
+            'Business applications built around how you work',
+            'New features on an existing platform',
+            'A more standard need? Same rigor, no needless complexity',
           ],
         },
       ],
@@ -520,12 +523,12 @@ export const translations = {
         {
           question: 'Do you work with AI?',
           answer:
-            "Yes, when it brings real business value — smart automation, document processing, internal assistants, structured content generation. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it. And when your data can't leave the company, it can be hosted on your premises, off the cloud.",
+            "Yes, when it brings real business value — searching your own documents, transcribing your meetings, connecting a language model to your systems. I don't use AI as a marketing gadget: I integrate it when it solves a real problem for you, otherwise I stay out of it. And when your data can't leave the company, it can be hosted on your premises, off the cloud.",
         },
         {
           question: 'What happens after launch?',
           answer:
-            "I don't disappear after delivery. I stay available for adjustments, evolutions and questions. Many of my clients come back a few months later to evolve their tool as their needs change.",
+            "I don't disappear after delivery. I stay available for adjustments, evolutions and questions. Many of my clients come back a few months later to evolve their system as their needs change.",
         },
       ],
     },
